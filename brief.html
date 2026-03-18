@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brand Brief — Nocturne Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;700;800&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --ink:#060608;--paper:#f4f0e8;--gold:#b8975a;--gold2:#d4af6e;
+  --dim:#0f0f12;--mid:#1c1c22;--border:rgba(184,151,90,0.18);
+  --light:rgba(244,240,232,0.5);--muted:rgba(244,240,232,0.28);
+  --green:#22c55e;--red:#ef4444;
+  --ff:'Playfair Display',serif;
+  --fs:'Syne',sans-serif;
+  --fm:'DM Mono',monospace;
+}
+html{scroll-behavior:smooth}
+body{background:var(--ink);color:var(--paper);font-family:var(--ff);min-height:100vh;overflow-x:hidden}
+
+/* PROGRESS */
+.prog-wrap{position:fixed;top:0;left:0;right:0;z-index:200;height:3px;background:rgba(184,151,90,0.1)}
+.prog-bar{height:100%;background:linear-gradient(90deg,#b8975a,#d4af6e);width:4%;transition:width .6s ease}
+
+/* NAV */
+.topnav{position:fixed;top:0;left:0;right:0;z-index:100;padding:18px 32px;display:flex;align-items:center;justify-content:space-between;background:rgba(6,6,8,0.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+.tnlogo{font-family:var(--fs);font-weight:800;font-size:.95rem;letter-spacing:.26em;color:var(--paper);text-decoration:none}
+.tnlogo b{color:var(--gold)}
+.tnmeta{font-family:var(--fm);font-size:.6rem;letter-spacing:.18em;color:var(--muted)}
+.tnmeta b{color:var(--gold)}
+
+/* SHELL */
+.shell{max-width:680px;margin:0 auto;padding:90px 24px 80px}
+
+/* INTRO */
+#introBlock{text-align:center;padding:48px 0 16px}
+.itag{font-family:var(--fm);font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:18px}
+.ih{font-family:var(--fs);font-weight:800;font-size:clamp(2rem,7vw,3.6rem);line-height:.9;text-transform:uppercase;letter-spacing:-.02em;margin-bottom:18px}
+.ih i{font-family:var(--ff);font-style:italic;font-weight:400;color:var(--gold);font-size:.85em;text-transform:none}
+.isub{font-family:var(--ff);font-style:italic;font-size:1rem;color:var(--light);line-height:1.75;max-width:440px;margin:0 auto 28px}
+.imeta{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:36px}
+.ipill{font-family:var(--fm);font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);border:1px solid var(--border);padding:8px 14px}
+.ipill b{color:var(--gold)}
+
+/* STEPS */
+.step{display:none}
+.step.on{display:block}
+
+/* STEP HEADER */
+.sh{margin-bottom:32px}
+.snum{font-family:var(--fm);font-size:.58rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;display:flex;align-items:center;gap:10px}
+.snum::before{content:'';display:block;width:20px;height:1px;background:var(--gold)}
+.stitle{font-family:var(--fs);font-weight:800;font-size:clamp(1.6rem,5vw,2.4rem);text-transform:uppercase;line-height:.92;letter-spacing:-.01em}
+.stitle i{font-family:var(--ff);font-style:italic;font-weight:400;color:var(--gold);text-transform:none}
+.sdesc{font-family:var(--ff);font-style:italic;font-size:.93rem;color:var(--light);margin-top:10px;line-height:1.7}
+
+/* FIELDS */
+.fg{margin-bottom:24px}
+.fg label{display:block;font-family:var(--fm);font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.fg .hint{font-family:var(--ff);font-style:italic;font-size:.83rem;color:var(--muted);margin-bottom:8px;line-height:1.5}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+input,textarea,select{width:100%;background:rgba(184,151,90,.04);border:1px solid var(--border);color:var(--paper);font-family:var(--ff);font-size:.95rem;padding:14px 16px;outline:none;transition:border-color .3s;-webkit-appearance:none;appearance:none}
+input:focus,textarea:focus,select:focus{border-color:rgba(184,151,90,.5);background:rgba(184,151,90,.06)}
+input::placeholder,textarea::placeholder{color:var(--muted)}
+textarea{resize:vertical;min-height:96px;line-height:1.6}
+select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23b8975a' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;padding-right:40px}
+select option{background:#1c1c22}
+.err-msg{font-family:var(--fm);font-size:.56rem;letter-spacing:.12em;color:var(--red);margin-top:5px;display:none}
+.err-msg.show{display:block}
+input.bad,textarea.bad,select.bad{border-color:rgba(239,68,68,.5)}
+
+/* CHOICE CARDS */
+.cgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.cgrid.single{grid-template-columns:1fr}
+.cc{border:1px solid var(--border);padding:16px;cursor:pointer;transition:all .22s;position:relative;user-select:none}
+.cc:hover{border-color:rgba(184,151,90,.4);background:rgba(184,151,90,.03)}
+.cc.sel{border-color:var(--gold);background:rgba(184,151,90,.09)}
+.cc.sel::after{content:'✦';position:absolute;top:10px;right:12px;color:var(--gold);font-size:.7rem}
+.cc-label{font-family:var(--fs);font-weight:700;font-size:.88rem;text-transform:uppercase;letter-spacing:.03em;margin-bottom:3px;transition:color .22s}
+.cc.sel .cc-label{color:var(--gold)}
+.cc-sub{font-family:var(--ff);font-style:italic;font-size:.78rem;color:var(--muted);line-height:1.4}
+
+/* TAGS */
+.tgrid{display:flex;flex-wrap:wrap;gap:8px}
+.topt{font-family:var(--fm);font-size:.57rem;letter-spacing:.14em;text-transform:uppercase;border:1px solid var(--border);padding:9px 14px;cursor:pointer;transition:all .22s;color:var(--muted);user-select:none}
+.topt:hover{border-color:rgba(184,151,90,.4);color:var(--light)}
+.topt.sel{border-color:var(--gold);color:var(--gold);background:rgba(184,151,90,.08)}
+
+/* PALETTES */
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.popt{border:1px solid var(--border);overflow:hidden;cursor:pointer;transition:border-color .22s;user-select:none}
+.popt.sel{border-color:var(--gold)}
+.pswatch{height:48px;position:relative}
+.popt.sel .pswatch::after{content:'✦';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:#fff;font-size:.9rem;text-shadow:0 1px 3px rgba(0,0,0,.6)}
+.pname{font-family:var(--fm);font-size:.55rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:9px 10px;transition:color .22s}
+.popt.sel .pname{color:var(--gold)}
+
+/* SCALE */
+.scrow{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.scbtn{border:1px solid var(--border);padding:12px 6px;text-align:center;cursor:pointer;transition:all .22s;user-select:none}
+.scbtn:hover{border-color:rgba(184,151,90,.4)}
+.scbtn.sel{border-color:var(--gold);background:rgba(184,151,90,.09)}
+.scnum{font-family:var(--fs);font-weight:800;font-size:1.05rem;color:var(--gold)}
+.sclbl{font-family:var(--fm);font-size:.5rem;letter-spacing:.08em;color:var(--muted);margin-top:3px;text-transform:uppercase}
+
+/* UPLOAD */
+.upzone{border:1px dashed rgba(184,151,90,.28);padding:28px;text-align:center;transition:all .3s;position:relative}
+.upzone:hover{border-color:var(--gold);background:rgba(184,151,90,.03)}
+.upi{font-size:1.8rem;margin-bottom:10px;opacity:.35}
+.upt{font-family:var(--ff);font-style:italic;font-size:.9rem;color:var(--muted);line-height:1.6}
+.upt b{color:var(--light);font-style:normal}
+.upinput{position:absolute;inset:0;opacity:0;width:100%;height:100%}
+.flist{margin-top:10px;display:flex;flex-direction:column;gap:5px}
+.fitem{font-family:var(--fm);font-size:.58rem;letter-spacing:.1em;color:var(--gold);background:rgba(184,151,90,.05);border:1px solid var(--border);padding:7px 12px}
+
+/* DIVIDER */
+.div{height:1px;background:var(--border);margin:24px 0}
+
+/* BUTTONS */
+.btnrow{display:flex;gap:14px;align-items:center;margin-top:36px;flex-wrap:wrap}
+.btn-n{font-family:var(--fm);font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink);background:var(--gold);border:none;padding:15px 36px;cursor:pointer;transition:background .3s,transform .2s;clip-path:polygon(0 0,calc(100% - 9px) 0,100% 9px,100% 100%,9px 100%,0 calc(100% - 9px))}
+.btn-n:hover{background:var(--paper);transform:translateY(-2px)}
+.btn-b{font-family:var(--fm);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);background:none;border:1px solid var(--border);padding:15px 24px;cursor:pointer;transition:all .3s}
+.btn-b:hover{border-color:var(--gold);color:var(--light)}
+.btn-s{font-family:var(--fm);font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink);background:var(--gold);border:none;padding:15px 44px;cursor:pointer;transition:background .3s,transform .2s;clip-path:polygon(0 0,calc(100% - 9px) 0,100% 9px,100% 100%,9px 100%,0 calc(100% - 9px))}
+.btn-s:hover{background:var(--paper);transform:translateY(-2px)}
+.btn-s:disabled{opacity:.45;transform:none}
+
+/* STATUS NOTES */
+.snote{font-family:var(--fm);font-size:.58rem;letter-spacing:.13em;padding:11px 14px;border:1px solid;margin-top:10px;text-align:center;display:none}
+.snote.sending{display:block;border-color:rgba(184,151,90,.3);color:rgba(184,151,90,.7)}
+.snote.error{display:block;border-color:rgba(239,68,68,.3);color:#f87171}
+
+/* CONFIRM BOX */
+.cbox{background:var(--mid);border:1px solid var(--border);padding:24px;margin-bottom:28px}
+.cbox-t{font-family:var(--fm);font-size:.57rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+.cbox-row{font-family:var(--ff);font-style:italic;font-size:.88rem;color:var(--light);display:flex;gap:10px;margin-bottom:9px;line-height:1.5}
+.cbox-row b{color:var(--gold);font-style:normal}
+
+/* SUCCESS */
+#successBlock{display:none;text-align:center;padding:48px 16px}
+.sicon{font-size:2.8rem;margin-bottom:16px}
+.sh2{font-family:var(--fs);font-weight:800;font-size:2.2rem;text-transform:uppercase;margin-bottom:10px}
+.ssub{font-family:var(--ff);font-style:italic;font-size:1rem;color:var(--light);line-height:1.75;max-width:420px;margin:0 auto 28px}
+.sbox{background:var(--mid);border:1px solid var(--border);padding:24px 28px;text-align:left;max-width:400px;margin:0 auto 24px}
+.sbox-t{font-family:var(--fm);font-size:.57rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+.srow{font-family:var(--ff);font-size:.9rem;color:var(--light);display:flex;gap:10px;margin-bottom:10px;line-height:1.5}
+.srow b{color:var(--gold);font-style:normal;flex-shrink:0}
+.wa-ok{display:inline-flex;align-items:center;gap:10px;font-family:var(--fm);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);background:#25d366;border:none;padding:14px 28px;text-decoration:none;transition:all .3s;margin-top:4px}
+.wa-ok:hover{background:#1da851;transform:translateY(-2px)}
+
+/* FOOTER */
+.foot{text-align:center;padding:40px 0 20px;border-top:1px solid var(--border);margin-top:16px}
+.foot p{font-family:var(--ff);font-style:italic;font-size:.85rem;color:var(--muted);line-height:1.7}
+.foot a{color:var(--gold);text-decoration:none}
+
+/* RESPONSIVE */
+@media(max-width:580px){
+  .topnav{padding:14px 18px}
+  .shell{padding:76px 18px 60px}
+  .row2{grid-template-columns:1fr}
+  .cgrid{grid-template-columns:1fr}
+  .pgrid{grid-template-columns:1fr 1fr}
+  .btnrow{flex-direction:column;align-items:stretch}
+  .btn-n,.btn-b,.btn-s{text-align:center}
+}
+</style>
+</head>
+<body>
+
+<div class="prog-wrap"><div class="prog-bar" id="pbar"></div></div>
+
+<nav class="topnav">
+  <a href="#" class="tnlogo">NOCT<b>.</b>URN</a>
+  <div class="tnmeta" id="stepmeta">Brand Brief &nbsp;·&nbsp; <b>Nocturne Studio</b></div>
+</nav>
+
+<div class="shell">
+
+<!-- ══ INTRO ══ -->
+<div id="introBlock">
+  <div class="itag">Brand Brief &nbsp;·&nbsp; Nocturne Studio</div>
+  <h1 class="ih">LET'S BUILD<br><i>your brand</i><br>PROPERLY</h1>
+  <p class="isub">This form takes about 8 minutes. The more honestly you answer, the better your brand will be. No wrong answers.</p>
+  <div class="imeta">
+    <div class="ipill"><b>◆</b> 8 minutes</div>
+    <div class="ipill"><b>◆</b> 5 sections</div>
+    <div class="ipill"><b>◆</b> Confidential</div>
+  </div>
+  <button class="btn-n" id="startBtn">Start the Brief &nbsp;→</button>
+</div>
+
+<!-- ══ STEP 1 — BASICS ══ -->
+<div class="step" id="step1">
+  <div class="sh">
+    <div class="snum">Step 01 of 05</div>
+    <h2 class="stitle">THE <i>basics</i></h2>
+    <p class="sdesc">Tell me who you are and what you're building.</p>
+  </div>
+
+  <div class="row2">
+    <div class="fg">
+      <label>Your Full Name *</label>
+      <input type="text" id="f1" placeholder="Adaeze Okonkwo">
+      <div class="err-msg" id="e1">Please enter your name</div>
+    </div>
+    <div class="fg">
+      <label>WhatsApp Number *</label>
+      <input type="tel" id="f2" placeholder="+234 801 234 5678">
+      <div class="err-msg" id="e2">Please enter your WhatsApp number</div>
+    </div>
+  </div>
+
+  <div class="fg">
+    <label>Email Address *</label>
+    <input type="email" id="f3" placeholder="you@yourbusiness.com">
+    <div class="err-msg" id="e3">Please enter a valid email</div>
+  </div>
+
+  <div class="row2">
+    <div class="fg">
+      <label>Brand / Business Name *</label>
+      <input type="text" id="f4" placeholder="Bloom Skincare">
+      <div class="err-msg" id="e4">Please enter your brand name</div>
+    </div>
+    <div class="fg">
+      <label>Industry *</label>
+      <select id="f5">
+        <option value="">Select industry...</option>
+        <option>Beauty &amp; Skincare</option>
+        <option>Fashion &amp; Clothing</option>
+        <option>Food &amp; Restaurant</option>
+        <option>Health &amp; Wellness</option>
+        <option>Technology / Startup</option>
+        <option>Finance &amp; Fintech</option>
+        <option>Coaching &amp; Consulting</option>
+        <option>Real Estate</option>
+        <option>Events &amp; Entertainment</option>
+        <option>E-commerce / Retail</option>
+        <option>Education</option>
+        <option>Creative / Agency</option>
+        <option>Other</option>
+      </select>
+      <div class="err-msg" id="e5">Please select your industry</div>
+    </div>
+  </div>
+
+  <div class="fg">
+    <label>What Does Your Business Do? *</label>
+    <div class="hint">One or two sentences. Explain it like you're telling a friend.</div>
+    <textarea id="f6" placeholder="We make natural skincare products for Nigerian women who want clean, effective beauty without harsh chemicals..."></textarea>
+    <div class="err-msg" id="e6">Please describe your business</div>
+  </div>
+
+  <div class="fg">
+    <label>Website or Social Media (if you have one)</label>
+    <input type="text" id="f7" placeholder="instagram.com/yourhandle or yourwebsite.com">
+  </div>
+
+  <div class="btnrow">
+    <button class="btn-n" id="n1">Next: Your Audience &nbsp;→</button>
+  </div>
+</div>
+
+<!-- ══ STEP 2 — AUDIENCE ══ -->
+<div class="step" id="step2">
+  <div class="sh">
+    <div class="snum">Step 02 of 05</div>
+    <h2 class="stitle">YOUR <i>audience</i></h2>
+    <p class="sdesc">Great brands speak directly to one person. Help me understand who we're designing for.</p>
+  </div>
+
+  <div class="fg">
+    <label>Who Is Your Ideal Customer? *</label>
+    <div class="hint">Be specific — age, gender, location, lifestyle. The more detail the better.</div>
+    <textarea id="f8" placeholder="Women aged 22-35 in Lagos and Abuja, working professionals who care about natural ingredients and are willing to pay for quality. They follow skincare influencers on Instagram..."></textarea>
+    <div class="err-msg" id="e8">Please describe your ideal customer</div>
+  </div>
+
+  <div class="fg">
+    <label>What Problem Do You Solve For Them? *</label>
+    <textarea id="f9" placeholder="Most skincare brands use harsh chemicals or are too expensive. We make affordable natural alternatives that actually work for African skin tones..."></textarea>
+    <div class="err-msg" id="e9">Please describe the problem you solve</div>
+  </div>
+
+  <div class="fg">
+    <label>Where Is Your Audience? *</label>
+    <div class="tgrid" id="tg_loc">
+      <div class="topt" data-group="loc">Lagos</div>
+      <div class="topt" data-group="loc">Abuja</div>
+      <div class="topt" data-group="loc">Other Nigeria Cities</div>
+      <div class="topt" data-group="loc">UK</div>
+      <div class="topt" data-group="loc">USA / Canada</div>
+      <div class="topt" data-group="loc">Rest of Africa</div>
+      <div class="topt" data-group="loc">Worldwide / Online</div>
+    </div>
+    <input type="hidden" id="f10">
+    <div class="err-msg" id="e10">Please select at least one location</div>
+  </div>
+
+  <div class="fg">
+    <label>Brands Your Audience Already Loves</label>
+    <input type="text" id="f11" placeholder="e.g. Zaron, SheaMoisture, Fenty Beauty">
+  </div>
+
+  <div class="btnrow">
+    <button class="btn-b" id="b2">← Back</button>
+    <button class="btn-n" id="n2">Next: Brand Personality &nbsp;→</button>
+  </div>
+</div>
+
+<!-- ══ STEP 3 — PERSONALITY ══ -->
+<div class="step" id="step3">
+  <div class="sh">
+    <div class="snum">Step 03 of 05</div>
+    <h2 class="stitle">BRAND <i>personality</i></h2>
+    <p class="sdesc">Your brand has a character. Let's find it. Trust your gut.</p>
+  </div>
+
+  <div class="fg">
+    <label>What Is the Overall Vibe of Your Brand? *</label>
+    <div class="cgrid" id="cg_vibe">
+      <div class="cc" data-group="vibe"><div class="cc-label">Luxury &amp; Premium</div><div class="cc-sub">Elevated, exclusive, worth every penny</div></div>
+      <div class="cc" data-group="vibe"><div class="cc-label">Bold &amp; Energetic</div><div class="cc-sub">Loud, confident, makes noise</div></div>
+      <div class="cc" data-group="vibe"><div class="cc-label">Clean &amp; Minimal</div><div class="cc-sub">Simple, clear, nothing extra</div></div>
+      <div class="cc" data-group="vibe"><div class="cc-label">Warm &amp; Friendly</div><div class="cc-sub">Approachable, human, trustworthy</div></div>
+      <div class="cc" data-group="vibe"><div class="cc-label">Professional &amp; Corporate</div><div class="cc-sub">Serious, credible, established</div></div>
+      <div class="cc" data-group="vibe"><div class="cc-label">Creative &amp; Playful</div><div class="cc-sub">Fun, unexpected, memorable</div></div>
+    </div>
+    <input type="hidden" id="f12">
+    <div class="err-msg" id="e12">Please select a brand vibe</div>
+  </div>
+
+  <div class="fg">
+    <label>Colour Direction — Which Feels Right? *</label>
+    <div class="pgrid" id="pg_col">
+      <div class="popt" data-val="Gold &amp; Black"><div class="pswatch" style="background:linear-gradient(135deg,#1a1200,#b8975a)"></div><div class="pname">Gold &amp; Black</div></div>
+      <div class="popt" data-val="Clean White"><div class="pswatch" style="background:linear-gradient(135deg,#f8f5f0,#e0d8c8)"></div><div class="pname">Clean White</div></div>
+      <div class="popt" data-val="Earth Tones"><div class="pswatch" style="background:linear-gradient(135deg,#3d2510,#c8784a,#f4c89a)"></div><div class="pname">Earth Tones</div></div>
+      <div class="popt" data-val="Bold &amp; Vibrant"><div class="pswatch" style="background:linear-gradient(135deg,#1a0533,#7c1fa0,#e040ff)"></div><div class="pname">Bold &amp; Vibrant</div></div>
+      <div class="popt" data-val="Navy &amp; Gold"><div class="pswatch" style="background:linear-gradient(135deg,#0a1628,#1e3a6e,#c8a84a)"></div><div class="pname">Navy &amp; Gold</div></div>
+      <div class="popt" data-val="Soft &amp; Feminine"><div class="pswatch" style="background:linear-gradient(135deg,#f5e6e8,#d4a0a8,#a06070)"></div><div class="pname">Soft &amp; Feminine</div></div>
+      <div class="popt" data-val="Forest Green"><div class="pswatch" style="background:linear-gradient(135deg,#0a1e0a,#1e5c1e,#4ab84a)"></div><div class="pname">Forest Green</div></div>
+      <div class="popt" data-val="Red &amp; Black"><div class="pswatch" style="background:linear-gradient(135deg,#1a0000,#8b1a1a,#e84040)"></div><div class="pname">Red &amp; Black</div></div>
+      <div class="popt" data-val="Surprise Me"><div class="pswatch" style="background:linear-gradient(135deg,#b8975a,#5a7ab8,#5ab87a)"></div><div class="pname">Surprise Me</div></div>
+    </div>
+    <input type="hidden" id="f13">
+    <div class="err-msg" id="e13">Please select a colour direction</div>
+  </div>
+
+  <div class="fg">
+    <label>Words That Describe Your Brand (pick all that apply)</label>
+    <div class="tgrid" id="tg_words">
+      <div class="topt" data-group="words">Bold</div>
+      <div class="topt" data-group="words">Elegant</div>
+      <div class="topt" data-group="words">Modern</div>
+      <div class="topt" data-group="words">Traditional</div>
+      <div class="topt" data-group="words">Minimal</div>
+      <div class="topt" data-group="words">Luxurious</div>
+      <div class="topt" data-group="words">Feminine</div>
+      <div class="topt" data-group="words">Masculine</div>
+      <div class="topt" data-group="words">Trustworthy</div>
+      <div class="topt" data-group="words">Innovative</div>
+      <div class="topt" data-group="words">Natural</div>
+      <div class="topt" data-group="words">Playful</div>
+      <div class="topt" data-group="words">African</div>
+      <div class="topt" data-group="words">Global</div>
+      <div class="topt" data-group="words">Youthful</div>
+      <div class="topt" data-group="words">Serious</div>
+    </div>
+    <input type="hidden" id="f14">
+  </div>
+
+  <div class="fg">
+    <label>If Your Brand Was a Person, It Would Be...</label>
+    <div class="hint">Example: "A confident Lagos woman in her 30s who shops premium but grew up in Surulere."</div>
+    <textarea id="f15" placeholder="A sharp, successful entrepreneur who commands respect without needing to shout..."></textarea>
+  </div>
+
+  <div class="btnrow">
+    <button class="btn-b" id="b3">← Back</button>
+    <button class="btn-n" id="n3">Next: Competition &nbsp;→</button>
+  </div>
+</div>
+
+<!-- ══ STEP 4 — COMPETITION ══ -->
+<div class="step" id="step4">
+  <div class="sh">
+    <div class="snum">Step 04 of 05</div>
+    <h2 class="stitle">COMPETITION <i>&amp; goals</i></h2>
+    <p class="sdesc">What you want to stand out from tells me as much as what you stand for.</p>
+  </div>
+
+  <div class="fg">
+    <label>Who Are Your 2–3 Main Competitors? *</label>
+    <textarea id="f16" placeholder="1. Zaron — good distribution but feels dated&#10;2. SheaMoisture — aspirational but American&#10;3. Oriflame — too generic"></textarea>
+    <div class="err-msg" id="e16">Please name at least one competitor</div>
+  </div>
+
+  <div class="fg">
+    <label>What Makes You Different From Them? *</label>
+    <textarea id="f17" placeholder="We only use Nigerian-sourced ingredients. Lower price than imports but same quality. We show real women using our products..."></textarea>
+    <div class="err-msg" id="e17">Please describe what makes you different</div>
+  </div>
+
+  <div class="fg">
+    <label>Main Goal of This Branding Project? *</label>
+    <div class="cgrid single" id="cg_goal">
+      <div class="cc" data-group="goal"><div class="cc-label">Launch Something New</div><div class="cc-sub">Starting from scratch — need to look credible on day one</div></div>
+      <div class="cc" data-group="goal"><div class="cc-label">Rebrand / Refresh</div><div class="cc-sub">Already exist but current brand doesn't represent what I've become</div></div>
+      <div class="cc" data-group="goal"><div class="cc-label">Attract Better Clients</div><div class="cc-sub">Need to look more premium to charge more and attract quality customers</div></div>
+      <div class="cc" data-group="goal"><div class="cc-label">Raise Investment / Credibility</div><div class="cc-sub">Pitching to investors or partners and need to look established</div></div>
+    </div>
+    <input type="hidden" id="f18">
+    <div class="err-msg" id="e18">Please select your main goal</div>
+  </div>
+
+  <div class="fg">
+    <label>Rate Your Current Brand (1 = nothing, 5 = decent) *</label>
+    <div class="scrow" id="sc_br">
+      <div class="scbtn" data-val="1"><div class="scnum">1</div><div class="sclbl">Nothing</div></div>
+      <div class="scbtn" data-val="2"><div class="scnum">2</div><div class="sclbl">Very weak</div></div>
+      <div class="scbtn" data-val="3"><div class="scnum">3</div><div class="sclbl">Basic</div></div>
+      <div class="scbtn" data-val="4"><div class="scnum">4</div><div class="sclbl">OK-ish</div></div>
+      <div class="scbtn" data-val="5"><div class="scnum">5</div><div class="sclbl">Decent</div></div>
+    </div>
+    <input type="hidden" id="f19">
+    <div class="err-msg" id="e19">Please rate your current brand</div>
+  </div>
+
+  <div class="btnrow">
+    <button class="btn-b" id="b4">← Back</button>
+    <button class="btn-n" id="n4">Last Step: Project Details &nbsp;→</button>
+  </div>
+</div>
+
+<!-- ══ STEP 5 — PROJECT DETAILS ══ -->
+<div class="step" id="step5">
+  <div class="sh">
+    <div class="snum">Step 05 of 05</div>
+    <h2 class="stitle">PROJECT <i>details</i></h2>
+    <p class="sdesc">Almost done. Tell me exactly what you need and when.</p>
+  </div>
+
+  <div class="fg">
+    <label>What Services Do You Need? *</label>
+    <div class="tgrid" id="tg_srv">
+      <div class="topt" data-group="srv">Logo Design</div>
+      <div class="topt" data-group="srv">Full Brand Identity</div>
+      <div class="topt" data-group="srv">Brand Guidelines</div>
+      <div class="topt" data-group="srv">Website / Landing Page</div>
+      <div class="topt" data-group="srv">Social Media Templates</div>
+      <div class="topt" data-group="srv">Business Card</div>
+      <div class="topt" data-group="srv">Packaging Design</div>
+      <div class="topt" data-group="srv">Pitch Deck</div>
+      <div class="topt" data-group="srv">Monthly Social Content</div>
+      <div class="topt" data-group="srv">Brand Strategy</div>
+    </div>
+    <input type="hidden" id="f20">
+    <div class="err-msg" id="e20">Please select at least one service</div>
+  </div>
+
+  <div class="row2">
+    <div class="fg">
+      <label>Your Deadline *</label>
+      <select id="f21">
+        <option value="">Select timeline...</option>
+        <option>ASAP (within 1 week)</option>
+        <option>2 weeks</option>
+        <option>3-4 weeks</option>
+        <option>1-2 months</option>
+        <option>Flexible — no rush</option>
+      </select>
+      <div class="err-msg" id="e21">Please select a timeline</div>
+    </div>
+    <div class="fg">
+      <label>Budget Range *</label>
+      <select id="f22">
+        <option value="">Select budget...</option>
+        <option>Free (trial project)</option>
+        <option>Under N50,000</option>
+        <option>N50,000 – N150,000</option>
+        <option>N150,000 – N320,000</option>
+        <option>N320,000+</option>
+        <option>International (USD/GBP)</option>
+      </select>
+      <div class="err-msg" id="e22">Please select a budget</div>
+    </div>
+  </div>
+
+  <div class="fg">
+    <label>Brands You Love the Look Of</label>
+    <input type="text" id="f23" placeholder="e.g. Apple (clean), Fenty (bold), Gucci (luxury)">
+  </div>
+
+  <div class="fg">
+    <label>Brands Whose Look You Hate / Want to Avoid</label>
+    <input type="text" id="f24" placeholder="e.g. anything clipart, overly traditional, looks cheap...">
+  </div>
+
+  <div class="fg">
+    <label>Upload Reference Images or Your Existing Logo (optional)</label>
+    <div class="upzone" id="upzone">
+      <div class="upi">◈</div>
+      <div class="upt"><b>Tap to upload files</b><br>PNG, JPG, PDF · Max 10MB each</div>
+      <input type="file" class="upinput" id="f_files" multiple accept=".png,.jpg,.jpeg,.pdf">
+    </div>
+    <div class="flist" id="flist"></div>
+  </div>
+
+  <div class="fg">
+    <label>Anything Else I Should Know?</label>
+    <textarea id="f25" placeholder="Any specific requests, must-haves, concerns, or context before we start..."></textarea>
+  </div>
+
+  <div class="div"></div>
+
+  <div class="cbox">
+    <div class="cbox-t">By submitting you confirm:</div>
+    <div class="cbox-row"><b>→</b> All information is accurate and honest</div>
+    <div class="cbox-row"><b>→</b> Your information is kept strictly confidential</div>
+    <div class="cbox-row"><b>→</b> Joshua will respond within 24 hours via WhatsApp or email</div>
+  </div>
+
+  <div class="btnrow">
+    <button class="btn-b" id="b5">← Back</button>
+    <button class="btn-s" id="submitBtn">Submit Brief &nbsp;→</button>
+  </div>
+  <div class="snote sending" id="msgSending">Sending your brief to Joshua...</div>
+  <div class="snote error" id="msgError">Something went wrong. Please WhatsApp Joshua: +234 702 568 9062</div>
+</div>
+
+<!-- ══ SUCCESS ══ -->
+<div id="successBlock">
+  <div class="sicon">✦</div>
+  <h2 class="sh2">Brief Received.</h2>
+  <p class="ssub">Thank you! Joshua has everything he needs. You will hear back within 24 hours via WhatsApp or email.</p>
+  <div class="sbox">
+    <div class="sbox-t">What Happens Next</div>
+    <div class="srow"><b>01</b> Joshua reviews your brief — usually within a few hours</div>
+    <div class="srow"><b>02</b> You get a WhatsApp message confirming next steps</div>
+    <div class="srow"><b>03</b> If a deposit is needed Joshua sends a Paystack link</div>
+    <div class="srow"><b>04</b> First design concepts delivered within 48 hours</div>
+  </div>
+  <a href="https://wa.me/2347025689062?text=Hi%20Joshua!%20I%20just%20submitted%20my%20brand%20brief." class="wa-ok">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    Send Joshua a WhatsApp too
+  </a>
+</div>
+
+<div class="foot">
+  <p>Nocturne Studio &nbsp;·&nbsp; Joshua &nbsp;·&nbsp; Lagos, Nigeria<br>
+  Questions? <a href="https://wa.me/2347025689062">WhatsApp +234 702 568 9062</a></p>
+</div>
+
+</div><!-- /shell -->
+
+<script>
+(function() {
+
+  var current = 0;
+  var TOTAL = 5;
+
+  function setProgress(n) {
+    var pct = n === 0 ? 4 : Math.round((n / TOTAL) * 100);
+    document.getElementById('pbar').style.width = pct + '%';
+    var meta = document.getElementById('stepmeta');
+    if (n === 0) {
+      meta.innerHTML = 'Brand Brief &nbsp;&middot;&nbsp; <b>Nocturne Studio</b>';
+    } else {
+      meta.innerHTML = 'Step <b>' + n + '</b> of ' + TOTAL;
+    }
+  }
+
+  function showStep(n) {
+    document.getElementById('introBlock').style.display = 'none';
+    for (var i = 1; i <= TOTAL; i++) {
+      var el = document.getElementById('step' + i);
+      if (el) el.classList.remove('on');
+    }
+    document.getElementById('successBlock').style.display = 'none';
+    if (n === 0) {
+      document.getElementById('introBlock').style.display = 'block';
+    } else {
+      var s = document.getElementById('step' + n);
+      if (s) { s.classList.add('on'); }
+    }
+    current = n;
+    setProgress(n);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function getVal(id) {
+    var el = document.getElementById(id);
+    return el ? el.value.trim() : '';
+  }
+
+  function markErr(fid, eid, bad) {
+    var f = document.getElementById(fid);
+    var e = document.getElementById(eid);
+    if (!f || !e) return;
+    if (bad) {
+      f.classList.add('bad');
+      e.classList.add('show');
+    } else {
+      f.classList.remove('bad');
+      e.classList.remove('show');
+    }
+  }
+
+  function validate(n) {
+    var ok = true;
+    if (n === 1) {
+      if (!getVal('f1')) { markErr('f1','e1',true); ok=false; } else markErr('f1','e1',false);
+      if (!getVal('f2')) { markErr('f2','e2',true); ok=false; } else markErr('f2','e2',false);
+      if (!getVal('f3') || getVal('f3').indexOf('@') < 0) { markErr('f3','e3',true); ok=false; } else markErr('f3','e3',false);
+      if (!getVal('f4')) { markErr('f4','e4',true); ok=false; } else markErr('f4','e4',false);
+      if (!getVal('f5')) { markErr('f5','e5',true); ok=false; } else markErr('f5','e5',false);
+      if (!getVal('f6')) { markErr('f6','e6',true); ok=false; } else markErr('f6','e6',false);
+    }
+    if (n === 2) {
+      if (!getVal('f8')) { markErr('f8','e8',true); ok=false; } else markErr('f8','e8',false);
+      if (!getVal('f9')) { markErr('f9','e9',true); ok=false; } else markErr('f9','e9',false);
+      if (!getVal('f10')) { markErr('f10','e10',true); ok=false; } else markErr('f10','e10',false);
+    }
+    if (n === 3) {
+      if (!getVal('f12')) { markErr('f12','e12',true); ok=false; } else markErr('f12','e12',false);
+      if (!getVal('f13')) { markErr('f13','e13',true); ok=false; } else markErr('f13','e13',false);
+    }
+    if (n === 4) {
+      if (!getVal('f16')) { markErr('f16','e16',true); ok=false; } else markErr('f16','e16',false);
+      if (!getVal('f17')) { markErr('f17','e17',true); ok=false; } else markErr('f17','e17',false);
+      if (!getVal('f18')) { markErr('f18','e18',true); ok=false; } else markErr('f18','e18',false);
+      if (!getVal('f19')) { markErr('f19','e19',true); ok=false; } else markErr('f19','e19',false);
+    }
+    if (n === 5) {
+      if (!getVal('f20')) { markErr('f20','e20',true); ok=false; } else markErr('f20','e20',false);
+      if (!getVal('f21')) { markErr('f21','e21',true); ok=false; } else markErr('f21','e21',false);
+      if (!getVal('f22')) { markErr('f22','e22',true); ok=false; } else markErr('f22','e22',false);
+    }
+    if (!ok) {
+      var first = document.querySelector('.bad, .err-msg.show');
+      if (first) first.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+    return ok;
+  }
+
+  // Tags
+  document.querySelectorAll('.topt').forEach(function(el) {
+    el.addEventListener('click', function() {
+      el.classList.toggle('sel');
+      var group = el.getAttribute('data-group');
+      var map = { loc: 'f10', words: 'f14', srv: 'f20' };
+      var hid = document.getElementById(map[group]);
+      if (!hid) return;
+      var parent = el.closest('.tgrid');
+      var sel = Array.from(parent.querySelectorAll('.topt.sel')).map(function(t){ return t.textContent.trim(); });
+      hid.value = sel.join(', ');
+    });
+  });
+
+  // Choice cards
+  document.querySelectorAll('.cc').forEach(function(el) {
+    el.addEventListener('click', function() {
+      var group = el.getAttribute('data-group');
+      var parent = el.closest('[id^="cg_"]');
+      if (parent) parent.querySelectorAll('.cc').forEach(function(c){ c.classList.remove('sel'); });
+      el.classList.add('sel');
+      var map = { vibe: 'f12', goal: 'f18' };
+      var hid = document.getElementById(map[group]);
+      if (hid) hid.value = el.querySelector('.cc-label').textContent.trim();
+    });
+  });
+
+  // Palettes
+  document.querySelectorAll('.popt').forEach(function(el) {
+    el.addEventListener('click', function() {
+      document.querySelectorAll('.popt').forEach(function(p){ p.classList.remove('sel'); });
+      el.classList.add('sel');
+      var hid = document.getElementById('f13');
+      if (hid) hid.value = el.getAttribute('data-val');
+    });
+  });
+
+  // Scale buttons
+  document.querySelectorAll('.scbtn').forEach(function(el) {
+    el.addEventListener('click', function() {
+      var parent = el.closest('.scrow');
+      if (parent) parent.querySelectorAll('.scbtn').forEach(function(b){ b.classList.remove('sel'); });
+      el.classList.add('sel');
+      var hid = document.getElementById('f19');
+      if (hid) hid.value = el.getAttribute('data-val') + '/5';
+    });
+  });
+
+  // File upload
+  var fi = document.getElementById('f_files');
+  if (fi) {
+    fi.addEventListener('change', function() {
+      var list = document.getElementById('flist');
+      list.innerHTML = '';
+      Array.from(fi.files).forEach(function(f) {
+        var d = document.createElement('div');
+        d.className = 'fitem';
+        d.textContent = f.name + ' (' + Math.round(f.size/1024) + 'KB)';
+        list.appendChild(d);
+      });
+    });
+  }
+
+  // Submit
+  function doSubmit() {
+    if (!validate(5)) return;
+    var btn = document.getElementById('submitBtn');
+    var sending = document.getElementById('msgSending');
+    var errMsg = document.getElementById('msgError');
+    btn.disabled = true;
+    btn.textContent = 'Sending...';
+    sending.style.display = 'block';
+    errMsg.style.display = 'none';
+
+    var fd = new FormData();
+    fd.append('_subject', 'New Brand Brief: ' + getVal('f4'));
+    fd.append('_replyto', getVal('f3'));
+
+    var fields = [
+      ['Full Name', 'f1'],
+      ['WhatsApp', 'f2'],
+      ['Email', 'f3'],
+      ['Brand Name', 'f4'],
+      ['Industry', 'f5'],
+      ['Business Description', 'f6'],
+      ['Website / Social', 'f7'],
+      ['Ideal Customer', 'f8'],
+      ['Problem Solved', 'f9'],
+      ['Audience Location', 'f10'],
+      ['Audience Brands', 'f11'],
+      ['Brand Vibe', 'f12'],
+      ['Colour Direction', 'f13'],
+      ['Brand Words', 'f14'],
+      ['Brand Persona', 'f15'],
+      ['Competitors', 'f16'],
+      ['Differentiator', 'f17'],
+      ['Project Goal', 'f18'],
+      ['Current Brand Rating', 'f19'],
+      ['Services Needed', 'f20'],
+      ['Timeline', 'f21'],
+      ['Budget', 'f22'],
+      ['Brands They Love', 'f23'],
+      ['Brands They Hate', 'f24'],
+      ['Additional Info', 'f25']
+    ];
+
+    var msg = '=== NOCTURNE STUDIO BRAND BRIEF ===\n\n';
+    fields.forEach(function(pair) {
+      var v = getVal(pair[1]);
+      if (v) { msg += pair[0] + ':\n' + v + '\n\n'; fd.append(pair[0], v); }
+    });
+    fd.append('message', msg);
+
+    var fileInput = document.getElementById('f_files');
+    if (fileInput && fileInput.files.length > 0) {
+      Array.from(fileInput.files).forEach(function(f) { fd.append('file', f); });
+    }
+
+    fetch('https://formspree.io/f/xqeywgbj', {
+      method: 'POST',
+      body: fd,
+      headers: { 'Accept': 'application/json' }
+    })
+    .then(function(res) {
+      sending.style.display = 'none';
+      if (res.ok) {
+        document.getElementById('introBlock').style.display = 'none';
+        for (var i = 1; i <= TOTAL; i++) {
+          var s = document.getElementById('step' + i);
+          if (s) s.classList.remove('on');
+        }
+        document.getElementById('successBlock').style.display = 'block';
+        document.getElementById('pbar').style.width = '100%';
+        document.getElementById('stepmeta').innerHTML = '<b style="color:#b8975a">Complete ✦</b>';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        errMsg.style.display = 'block';
+        btn.disabled = false;
+        btn.textContent = 'Submit Brief →';
+      }
+    })
+    .catch(function() {
+      sending.style.display = 'none';
+      errMsg.style.display = 'block';
+      btn.disabled = false;
+      btn.textContent = 'Submit Brief →';
+    });
+  }
+
+  // Wire up all buttons
+  document.getElementById('startBtn').addEventListener('click', function() { showStep(1); });
+  document.getElementById('n1').addEventListener('click', function() { if (validate(1)) showStep(2); });
+  document.getElementById('b2').addEventListener('click', function() { showStep(1); });
+  document.getElementById('n2').addEventListener('click', function() { if (validate(2)) showStep(3); });
+  document.getElementById('b3').addEventListener('click', function() { showStep(2); });
+  document.getElementById('n3').addEventListener('click', function() { if (validate(3)) showStep(4); });
+  document.getElementById('b4').addEventListener('click', function() { showStep(3); });
+  document.getElementById('n4').addEventListener('click', function() { if (validate(4)) showStep(5); });
+  document.getElementById('b5').addEventListener('click', function() { showStep(4); });
+  document.getElementById('submitBtn').addEventListener('click', function() { doSubmit(); });
+
+  // Init
+  setProgress(0);
+
+})();
+</script>
+
+</body>
+</html>

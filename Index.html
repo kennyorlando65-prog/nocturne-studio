@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOCTURNE STUDIO — Brand & Web Design | Lagos</title>
+<meta name="description" content="Nocturne Studio — Brand identity, web design and social media content for startups, restaurants and personal brands. Based in Lagos, working globally.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Syne:wght@400;700;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --ink:#060608;--paper:#f4f0e8;--gold:#b8975a;--gold2:#d4af6e;
+  --ember:#c94a2a;--dim:#0f0f12;--mid:#1c1c22;--muted:#2e2e38;
+  --fog:rgba(244,240,232,0.06);--border:rgba(184,151,90,0.18);
+  --green:#22c55e;
+  --font-disp:'Playfair Display',serif;
+  --font-sans:'Syne',sans-serif;
+  --font-mono:'DM Mono',monospace;
+  --ease:cubic-bezier(0.76,0,0.24,1);
+}
+html{scroll-behavior:smooth}
+body{background:var(--ink);color:var(--paper);font-family:var(--font-disp);cursor:none;overflow-x:hidden}
+body::after{content:'';position:fixed;inset:0;z-index:9995;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.045'/%3E%3C/svg%3E");
+  opacity:0.4;mix-blend-mode:overlay}
+
+/* CURSOR */
+#cur{position:fixed;top:0;left:0;z-index:9999;pointer-events:none}
+#cd{width:6px;height:6px;background:var(--paper);border-radius:50%;position:absolute;transform:translate(-50%,-50%)}
+#cr{width:36px;height:36px;border:1px solid rgba(184,151,90,0.6);border-radius:50%;position:absolute;transform:translate(-50%,-50%);transition:width .35s var(--ease),height .35s var(--ease),border-color .35s}
+body.hov #cr{width:56px;height:56px;border-color:var(--gold)}
+body.hov #cd{background:var(--gold)}
+
+/* WHATSAPP FLOAT */
+.wa-float{
+  position:fixed;bottom:28px;right:28px;z-index:990;
+  width:58px;height:58px;border-radius:50%;
+  background:#25d366;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 24px rgba(37,211,102,0.4);
+  text-decoration:none;
+  transition:transform .3s var(--ease),box-shadow .3s;
+  animation:waPulse 3s ease-in-out infinite;
+}
+.wa-float:hover{transform:scale(1.1);box-shadow:0 8px 32px rgba(37,211,102,0.55)}
+@keyframes waPulse{0%,100%{box-shadow:0 4px 24px rgba(37,211,102,0.4)}50%{box-shadow:0 4px 32px rgba(37,211,102,0.7)}}
+.wa-float svg{width:28px;height:28px;fill:white}
+.wa-tooltip{
+  position:absolute;right:68px;top:50%;transform:translateY(-50%);
+  background:var(--dim);border:1px solid var(--border);
+  font-family:var(--font-mono);font-size:.6rem;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--paper);
+  padding:8px 14px;white-space:nowrap;
+  opacity:0;transition:opacity .3s;pointer-events:none;
+}
+.wa-float:hover .wa-tooltip{opacity:1}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:32px 64px;transition:all .5s var(--ease)}
+nav.s{background:rgba(6,6,8,0.95);backdrop-filter:blur(16px);padding:20px 64px;border-bottom:1px solid var(--border)}
+.logo{font-family:var(--font-sans);font-size:1.1rem;font-weight:800;letter-spacing:0.28em;text-decoration:none;color:var(--paper)}
+.logo span{color:var(--gold)}
+.nav-links{display:flex;gap:44px;list-style:none}
+.nav-links a{font-family:var(--font-mono);font-size:.65rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(244,240,232,.5);text-decoration:none;transition:color .3s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1px;background:var(--gold);transition:width .3s var(--ease)}
+.nav-links a:hover{color:var(--paper)}
+.nav-links a:hover::after{width:100%}
+.nav-btn{font-family:var(--font-mono);font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--ink);background:var(--gold);border:none;padding:13px 30px;text-decoration:none;transition:background .3s,transform .2s;display:inline-block}
+.nav-btn:hover{background:var(--paper);transform:translateY(-1px)}
+.hbg{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:none;padding:6px}
+.hbg span{display:block;width:26px;height:1px;background:var(--paper);transition:transform .35s,opacity .35s}
+.hbg.o span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.hbg.o span:nth-child(2){opacity:0}
+.hbg.o span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+.mob{display:none;position:fixed;inset:0;z-index:998;background:var(--dim);flex-direction:column;align-items:center;justify-content:center;gap:36px}
+.mob.o{display:flex}
+.mob a{font-family:var(--font-sans);font-size:2.8rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--paper);text-decoration:none;transition:color .3s}
+.mob a:hover{color:var(--gold)}
+
+/* HERO */
+#hero{height:100vh;min-height:680px;display:grid;grid-template-columns:1fr 1fr;position:relative;overflow:hidden}
+.hero-left{display:flex;flex-direction:column;justify-content:flex-end;padding:0 48px 80px 64px;position:relative;z-index:2}
+.hero-right{position:relative;overflow:hidden}
+.hero-visual{position:absolute;inset:0;background:linear-gradient(160deg,#0d0b08 0%,#1a1008 40%,#2a1500 70%,#3d1f00 100%)}
+.hero-grid{position:absolute;inset:0;
+  background-image:repeating-linear-gradient(0deg,transparent,transparent 79px,rgba(184,151,90,.05) 80px),
+                   repeating-linear-gradient(90deg,transparent,transparent 79px,rgba(184,151,90,.05) 80px);
+  animation:pan 30s linear infinite}
+@keyframes pan{0%{transform:translate(0,0)}100%{transform:translate(80px,80px)}}
+.hero-wm{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);font-family:var(--font-sans);font-size:clamp(60px,12vw,160px);font-weight:800;color:rgba(184,151,90,.06);white-space:nowrap;letter-spacing:.05em;pointer-events:none}
+.hero-ring{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:260px;height:260px;border-radius:50%;border:1px solid rgba(184,151,90,.1);animation:rp 4s ease-in-out infinite}
+.hero-ring2{width:160px;height:160px;animation-delay:-2s}
+@keyframes rp{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.5}50%{transform:translate(-50%,-50%) scale(1.07);opacity:1}}
+.hero-tag{font-family:var(--font-mono);font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:24px;animation:fu .9s .2s both}
+.hero-h1{font-family:var(--font-sans);font-weight:800;font-size:clamp(48px,7.5vw,105px);line-height:.9;letter-spacing:-.02em;text-transform:uppercase;animation:fu .9s .35s both}
+.hero-h1 em{font-family:var(--font-disp);font-style:italic;font-weight:400;color:var(--gold);font-size:.82em;display:block;text-transform:none;letter-spacing:0}
+.hero-sub{font-family:var(--font-disp);font-style:italic;font-size:clamp(.9rem,1.3vw,1.1rem);color:rgba(244,240,232,.5);line-height:1.78;max-width:400px;margin-top:28px;animation:fu .9s .5s both}
+.hero-acts{display:flex;gap:20px;align-items:center;margin-top:44px;flex-wrap:wrap;animation:fu .9s .65s both}
+.btn-g{font-family:var(--font-mono);font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink);background:var(--gold);border:none;padding:15px 36px;text-decoration:none;display:inline-block;transition:background .3s,transform .2s;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px))}
+.btn-g:hover{background:var(--paper);transform:translateY(-2px)}
+.btn-wa{font-family:var(--font-mono);font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink);background:#25d366;border:none;padding:15px 36px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:background .3s,transform .2s}
+.btn-wa:hover{background:#1da851;transform:translateY(-2px)}
+.hero-scroll{position:absolute;bottom:36px;right:40px;display:flex;flex-direction:column;align-items:center;gap:8px;animation:fadeIn 1s 1.2s both;z-index:3}
+.hero-scroll p{font-family:var(--font-mono);font-size:.55rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(244,240,232,.25);writing-mode:vertical-rl}
+.scrl{width:1px;height:50px;background:linear-gradient(to bottom,var(--gold),transparent);animation:sp 2.2s ease-in-out infinite}
+@keyframes sp{0%,100%{opacity:1;transform:scaleY(1)}50%{opacity:.3;transform:scaleY(.5)}}
+
+/* FREE OFFER BANNER */
+.offer-banner{
+  background:linear-gradient(90deg,#1a1200,#2a1e00,#1a1200);
+  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  padding:18px 64px;
+  display:flex;align-items:center;justify-content:center;gap:20px;
+  flex-wrap:wrap;text-align:center;
+}
+.offer-pill{
+  background:var(--gold);color:var(--ink);
+  font-family:var(--font-mono);font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;
+  padding:5px 14px;flex-shrink:0;
+}
+.offer-text{
+  font-family:var(--font-disp);font-style:italic;
+  color:rgba(244,240,232,.75);font-size:.95rem;
+}
+.offer-text strong{color:var(--gold);font-style:normal}
+.offer-cta{
+  font-family:var(--font-mono);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--gold);text-decoration:none;display:flex;align-items:center;gap:6px;
+  transition:gap .3s;white-space:nowrap;
+}
+.offer-cta:hover{gap:10px}
+
+/* MARQUEE */
+.marquee{background:var(--gold);padding:13px 0;overflow:hidden;white-space:nowrap}
+.marquee-t{display:inline-flex;gap:72px;animation:mq 30s linear infinite}
+.mqi{font-family:var(--font-mono);font-size:.65rem;letter-spacing:.22em;text-transform:uppercase;color:var(--ink);display:flex;align-items:center;gap:20px}
+.mqi::before{content:'◈';font-size:.5rem}
+@keyframes mq{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* SECTION COMMONS */
+.sec-label{font-family:var(--font-mono);font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:14px;margin-bottom:14px}
+.sec-label::before{content:'';display:block;width:32px;height:1px;background:var(--gold)}
+.sec-h{font-family:var(--font-sans);font-weight:800;font-size:clamp(40px,6.5vw,86px);line-height:.88;letter-spacing:-.02em;text-transform:uppercase}
+.sec-h em{font-family:var(--font-disp);font-style:italic;font-weight:400;color:var(--gold);font-size:.82em;text-transform:none;letter-spacing:0}
+
+/* WHAT WE DO */
+#what{padding:120px 64px}
+.what-top{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:72px;gap:40px;flex-wrap:wrap}
+.what-intro{font-family:var(--font-disp);font-style:italic;font-size:1rem;line-height:1.8;color:rgba(244,240,232,.5);max-width:300px;align-self:flex-end}
+.srv-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px}
+.srv{background:var(--dim);border:1px solid var(--border);padding:48px 44px;position:relative;overflow:hidden;transition:border-color .4s,background .4s;cursor:none}
+.srv::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(184,151,90,.06) 0%,transparent 60%);opacity:0;transition:opacity .4s}
+.srv:hover{border-color:rgba(184,151,90,.4);background:#0f0f12}
+.srv:hover::before{opacity:1}
+.srv-n{font-family:var(--font-sans);font-weight:800;font-size:4rem;color:rgba(184,151,90,.06);line-height:1;position:absolute;top:16px;right:20px;transition:color .4s}
+.srv:hover .srv-n{color:rgba(184,151,90,.13)}
+.srv-name{font-family:var(--font-sans);font-weight:800;font-size:clamp(1.3rem,2.2vw,1.8rem);letter-spacing:.02em;text-transform:uppercase;margin-bottom:14px;margin-top:4px;transition:color .4s}
+.srv:hover .srv-name{color:var(--gold)}
+.srv-desc{font-family:var(--font-disp);font-style:italic;font-size:.93rem;line-height:1.75;color:rgba(244,240,232,.45);transition:color .4s}
+.srv:hover .srv-desc{color:rgba(244,240,232,.7)}
+.srv-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
+.srv-tag{font-family:var(--font-mono);font-size:.56rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(244,240,232,.28);border:1px solid var(--border);padding:5px 12px;transition:all .3s}
+.srv:hover .srv-tag{color:var(--gold);border-color:rgba(184,151,90,.3)}
+
+/* FREE OFFER SECTION */
+#free{background:linear-gradient(135deg,#0d0a00 0%,#1a1200 50%,#0d0a00 100%);padding:100px 64px;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.free-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.free-badge{
+  display:inline-flex;align-items:center;gap:10px;
+  background:rgba(184,151,90,.12);border:1px solid var(--border);
+  padding:10px 20px;margin-bottom:28px;
+}
+.free-badge-dot{width:8px;height:8px;border-radius:50%;background:var(--green);animation:pulse2 2s infinite}
+@keyframes pulse2{0%,100%{opacity:1}50%{opacity:.4}}
+.free-badge-txt{font-family:var(--font-mono);font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--green)}
+.free-h{font-family:var(--font-sans);font-weight:800;font-size:clamp(36px,5.5vw,72px);line-height:.9;text-transform:uppercase;margin-bottom:24px}
+.free-h span{color:var(--gold)}
+.free-sub{font-family:var(--font-disp);font-style:italic;font-size:1rem;line-height:1.8;color:rgba(244,240,232,.55);margin-bottom:36px}
+.free-steps{display:flex;flex-direction:column;gap:0}
+.free-step{display:flex;gap:20px;padding:20px 0;border-bottom:1px solid var(--border)}
+.free-step:last-child{border-bottom:none}
+.free-step-num{font-family:var(--font-sans);font-weight:800;font-size:1.6rem;color:rgba(184,151,90,.25);line-height:1;flex-shrink:0;width:32px}
+.free-step-body{}
+.free-step-title{font-family:var(--font-sans);font-weight:700;font-size:.9rem;letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px}
+.free-step-desc{font-family:var(--font-disp);font-style:italic;font-size:.88rem;color:rgba(244,240,232,.4);line-height:1.6}
+.free-cta-block{margin-top:36px;display:flex;gap:14px;flex-wrap:wrap}
+.btn-free{font-family:var(--font-mono);font-size:.65rem;letter-spacing:.22em;text-transform:uppercase;color:var(--ink);background:var(--gold);border:none;padding:16px 36px;text-decoration:none;display:inline-block;transition:all .3s;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px))}
+.btn-free:hover{background:var(--paper);transform:translateY(-2px)}
+.btn-free-wa{font-family:var(--font-mono);font-size:.65rem;letter-spacing:.22em;text-transform:uppercase;color:white;background:#25d366;border:none;padding:16px 28px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:all .3s}
+.btn-free-wa:hover{background:#1da851;transform:translateY(-2px)}
+.free-proof{background:rgba(184,151,90,.05);border:1px solid var(--border);padding:32px}
+.free-proof-title{font-family:var(--font-mono);font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:20px}
+.free-proof-items{display:flex;flex-direction:column;gap:16px}
+.fpi{display:flex;gap:14px;align-items:flex-start}
+.fpi-icon{color:var(--gold);font-size:1rem;flex-shrink:0;margin-top:2px}
+.fpi-text{font-family:var(--font-disp);font-style:italic;font-size:.9rem;line-height:1.6;color:rgba(244,240,232,.55)}
+.fpi-text strong{color:var(--paper);font-style:normal}
+
+/* PRICING */
+#pricing{padding:120px 64px}
+.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:72px}
+.pc{border:1px solid var(--border);padding:48px 36px;position:relative;transition:all .4s;cursor:none}
+.pc.feat{border-color:var(--gold);background:rgba(184,151,90,.04)}
+.pc:not(.feat):hover{border-color:rgba(184,151,90,.35);background:rgba(184,151,90,.02)}
+.pc-badge{position:absolute;top:-1px;left:32px;background:var(--gold);color:var(--ink);font-family:var(--font-mono);font-size:.54rem;letter-spacing:.2em;text-transform:uppercase;padding:4px 12px}
+.pc-tier{font-family:var(--font-mono);font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.pc-name{font-family:var(--font-sans);font-weight:800;font-size:1.5rem;letter-spacing:.04em;text-transform:uppercase;margin-bottom:6px}
+.pc-tag{font-family:var(--font-disp);font-style:italic;color:rgba(244,240,232,.4);font-size:.88rem;margin-bottom:28px}
+
+/* FREE badge on first card */
+.pc-free-tag{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.3);
+  padding:6px 14px;margin-bottom:8px;
+}
+.pc-free-label{font-family:var(--font-mono);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--green)}
+.pc-amount{font-family:var(--font-sans);font-weight:800;font-size:2.8rem;letter-spacing:-.02em;color:var(--gold);line-height:1}
+.pc-amount-free{font-family:var(--font-sans);font-weight:800;font-size:2.8rem;letter-spacing:-.02em;color:var(--green);line-height:1}
+.pc-period{font-family:var(--font-mono);font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(244,240,232,.25);margin-top:4px;margin-bottom:28px}
+.pc-div{height:1px;background:var(--border);margin-bottom:24px}
+.pc-list{list-style:none;display:flex;flex-direction:column;gap:12px;margin-bottom:36px}
+.pc-list li{font-family:var(--font-disp);font-size:.92rem;color:rgba(244,240,232,.55);display:flex;align-items:flex-start;gap:10px;line-height:1.5}
+.pc-list li::before{content:'→';color:var(--gold);font-family:var(--font-mono);font-size:.75rem;flex-shrink:0;margin-top:2px}
+.pc-btn{width:100%;background:transparent;border:1px solid var(--border);color:rgba(244,240,232,.55);font-family:var(--font-mono);font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;padding:14px;cursor:none;transition:all .35s;display:block;text-align:center;text-decoration:none}
+.pc-btn:hover,.pc.feat .pc-btn{background:var(--gold);border-color:var(--gold);color:var(--ink)}
+.pc-btn-free{width:100%;background:rgba(34,197,94,.15);border:1px solid rgba(34,197,94,.4);color:var(--green);font-family:var(--font-mono);font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;padding:14px;cursor:none;transition:all .35s;display:block;text-align:center;text-decoration:none}
+.pc-btn-free:hover{background:#22c55e;color:var(--ink)}
+.price-note{font-family:var(--font-disp);font-style:italic;font-size:.88rem;color:rgba(244,240,232,.25);text-align:center;margin-top:28px}
+
+/* PROCESS */
+#process{background:var(--dim);padding:120px 64px}
+.proc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:72px}
+.proc-step{padding:0 20px 0 0}
+.proc-step:last-child{padding:0}
+.pdot{width:64px;height:64px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;margin-bottom:32px;transition:all .4s;background:var(--dim)}
+.proc-step:hover .pdot{border-color:var(--gold);background:rgba(184,151,90,.06)}
+.pn{font-family:var(--font-sans);font-weight:800;font-size:.9rem;color:var(--gold)}
+.pt{font-family:var(--font-sans);font-weight:800;font-size:1rem;letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px;transition:color .3s}
+.proc-step:hover .pt{color:var(--gold)}
+.pb{font-family:var(--font-disp);font-style:italic;font-size:.88rem;line-height:1.7;color:rgba(244,240,232,.38)}
+
+/* TESTIMONIALS */
+#testi{padding:120px 64px}
+.tgrid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:72px}
+.tc{background:var(--dim);border:1px solid var(--border);padding:44px;position:relative;overflow:hidden;transition:border-color .4s}
+.tc:hover{border-color:rgba(184,151,90,.35)}
+.tcq{font-family:var(--font-disp);font-size:5.5rem;color:var(--gold);opacity:.1;position:absolute;top:-8px;left:18px;line-height:1}
+.tct{font-family:var(--font-disp);font-style:italic;font-size:1rem;line-height:1.8;color:rgba(244,240,232,.75);position:relative;z-index:1;margin-bottom:28px}
+.tca{display:flex;align-items:center;gap:14px}
+.tcav{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-sans);font-weight:800;font-size:.85rem;color:var(--ink);flex-shrink:0}
+.av1{background:linear-gradient(135deg,var(--gold),#8b6914)}
+.av2{background:linear-gradient(135deg,#5a7ab8,#2a4a8b)}
+.av3{background:linear-gradient(135deg,#5ab87a,#2a8b4a)}
+.av4{background:linear-gradient(135deg,#b85a5a,#8b2a2a)}
+.tcn{font-family:var(--font-mono);font-size:.65rem;letter-spacing:.12em;text-transform:uppercase}
+.tcr{font-family:var(--font-mono);font-size:.56rem;letter-spacing:.1em;color:var(--gold);margin-top:3px}
+
+/* CONTACT */
+#contact{background:var(--dim);padding:120px 64px}
+.contact-wrap{display:grid;grid-template-columns:1fr 1.1fr;gap:100px;margin-top:72px}
+.cinfo p{font-family:var(--font-disp);font-style:italic;font-size:1rem;line-height:1.85;color:rgba(244,240,232,.55);margin-bottom:40px}
+.cinfo p strong{color:var(--paper);font-style:normal}
+.clinks{display:flex;flex-direction:column}
+.clink{display:flex;align-items:center;gap:14px;font-family:var(--font-mono);font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(244,240,232,.38);text-decoration:none;padding:16px 0;border-bottom:1px solid var(--border);transition:color .3s}
+.clink:hover{color:var(--gold)}
+.clink-dot{width:7px;height:7px;border-radius:50%;background:var(--gold);flex-shrink:0}
+.avail{margin-top:32px;display:flex;align-items:center;gap:12px}
+.apulse{width:9px;height:9px;border-radius:50%;background:var(--green);position:relative;flex-shrink:0}
+.apulse::after{content:'';position:absolute;inset:-4px;border-radius:50%;border:1px solid rgba(34,197,94,.4);animation:ap 2s ease-in-out infinite}
+@keyframes ap{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.5);opacity:0}}
+.avail-txt{font-family:var(--font-mono);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(244,240,232,.38)}
+.avail-txt strong{color:var(--green)}
+
+/* FORM — Formspree powered */
+.cform{display:flex;flex-direction:column;gap:18px}
+.fg{display:flex;flex-direction:column;gap:7px}
+.fr{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+label{font-family:var(--font-mono);font-size:.57rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold)}
+input,textarea,select{background:rgba(184,151,90,.04);border:1px solid var(--border);color:var(--paper);font-family:var(--font-disp);font-size:.93rem;padding:14px 17px;outline:none;transition:border-color .3s,background .3s;width:100%;cursor:none}
+input:focus,textarea:focus,select:focus{border-color:rgba(184,151,90,.45);background:rgba(184,151,90,.07)}
+input::placeholder,textarea::placeholder{color:rgba(244,240,232,.2)}
+select option{background:#1c1c22}
+textarea{resize:vertical;min-height:108px}
+.brow{display:flex;gap:8px;flex-wrap:wrap}
+.bopt{font-family:var(--font-mono);font-size:.57rem;letter-spacing:.14em;text-transform:uppercase;border:1px solid var(--border);padding:8px 14px;cursor:none;transition:all .25s;color:rgba(244,240,232,.33);user-select:none}
+.bopt.sel,.bopt:hover{border-color:var(--gold);color:var(--gold);background:rgba(184,151,90,.08)}
+.csub{width:100%;margin-top:4px;background:var(--gold);border:none;color:var(--ink);font-family:var(--font-mono);font-size:.63rem;letter-spacing:.25em;text-transform:uppercase;padding:16px;cursor:none;transition:background .3s,transform .2s;clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,12px 100%,0 calc(100% - 12px))}
+.csub:hover{background:var(--paper);transform:translateY(-2px)}
+
+/* Form status messages */
+.form-note{font-family:var(--font-mono);font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;padding:12px 16px;border:1px solid;display:none;margin-top:8px;text-align:center}
+.form-note.sending{display:block;border-color:rgba(184,151,90,.3);color:rgba(184,151,90,.7);background:rgba(184,151,90,.05)}
+.form-note.success{display:block;border-color:rgba(34,197,94,.3);color:var(--green);background:rgba(34,197,94,.05)}
+.form-note.error{display:block;border-color:rgba(201,74,42,.3);color:#f87171;background:rgba(201,74,42,.05)}
+
+.pay-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.pm{font-family:var(--font-mono);font-size:.54rem;letter-spacing:.1em;color:rgba(244,240,232,.18);border:1px solid var(--border);padding:5px 11px}
+
+/* FOOTER */
+footer{background:#040406;padding:60px 64px;border-top:1px solid var(--border)}
+.fgrid{display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;gap:56px;margin-bottom:56px}
+.flogo{font-family:var(--font-sans);font-weight:800;font-size:1.5rem;letter-spacing:.2em;display:block;margin-bottom:12px}
+.flogo span{color:var(--gold)}
+.ftag{font-family:var(--font-disp);font-style:italic;font-size:.88rem;color:rgba(244,240,232,.25);line-height:1.7;max-width:200px}
+.fct{font-family:var(--font-mono);font-size:.57rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:18px}
+.flinks{list-style:none;display:flex;flex-direction:column;gap:11px}
+.flinks a{font-family:var(--font-disp);font-size:.88rem;color:rgba(244,240,232,.32);text-decoration:none;transition:color .3s}
+.flinks a:hover{color:var(--paper)}
+.fbot{display:flex;justify-content:space-between;align-items:center;padding-top:28px;border-top:1px solid var(--border);flex-wrap:wrap;gap:14px}
+.fcopy{font-family:var(--font-mono);font-size:.57rem;letter-spacing:.14em;color:rgba(244,240,232,.16)}
+.fsoc{display:flex;gap:22px}
+.fsoc a{font-family:var(--font-mono);font-size:.57rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(244,240,232,.22);text-decoration:none;transition:color .3s}
+.fsoc a:hover{color:var(--gold)}
+/* back to top */
+.btt{font-family:var(--font-mono);font-size:.57rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(244,240,232,.22);background:none;border:1px solid var(--border);padding:8px 18px;cursor:none;transition:all .3s}
+.btt:hover{color:var(--gold);border-color:var(--gold)}
+
+/* ANIMATIONS */
+@keyframes fu{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.rv{opacity:0;transform:translateY(36px);transition:opacity .85s var(--ease),transform .85s var(--ease)}
+.rv.vis{opacity:1;transform:translateY(0)}
+.rv2{opacity:0;transform:translateY(36px);transition:opacity .85s var(--ease) .15s,transform .85s var(--ease) .15s}
+.rv2.vis{opacity:1;transform:translateY(0)}
+
+/* RESPONSIVE */
+@media(max-width:1100px){
+  #hero{grid-template-columns:1fr;height:auto;min-height:100vh}
+  .hero-right{position:absolute;inset:0;opacity:.35}
+  .hero-left{padding:120px 40px 80px;position:relative;z-index:2;justify-content:flex-end}
+  .free-inner{grid-template-columns:1fr;gap:48px}
+  .price-grid{grid-template-columns:1fr}
+  .proc-grid{grid-template-columns:1fr 1fr}
+  .fgrid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:900px){
+  nav{padding:22px 28px}
+  nav.s{padding:16px 28px}
+  .nav-links,.nav-btn{display:none}
+  .hbg{display:flex}
+  section,#what,#free,#pricing,#process,#testi,#contact{padding:72px 28px}
+  .what-top{flex-direction:column;gap:24px}
+  .what-intro{max-width:100%}
+  .srv-grid{grid-template-columns:1fr}
+  .offer-banner{padding:16px 28px}
+  .tgrid{grid-template-columns:1fr}
+  .contact-wrap{grid-template-columns:1fr;gap:48px}
+  .fgrid{grid-template-columns:1fr 1fr;gap:32px}
+  .proc-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:600px){
+  .proc-grid{grid-template-columns:1fr}
+  .fr{grid-template-columns:1fr}
+  .fgrid{grid-template-columns:1fr}
+  .hero-acts{flex-direction:column;align-items:flex-start}
+  .free-cta-block{flex-direction:column}
+  .wa-float{bottom:20px;right:20px}
+}
+</style>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div id="cur"><div id="cd"></div><div id="cr"></div></div>
+
+<!-- WHATSAPP FLOATING BUTTON -->
+<a class="wa-float" href="https://wa.me/2347025689062?text=Hi%20Joshua!%20I%20saw%20your%20portfolio%20and%20I%27m%20interested%20in%20working%20with%20Nocturne%20Studio." target="_blank" rel="noopener">
+  <div class="wa-tooltip">Chat on WhatsApp</div>
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="logo">NOCT<span>·</span>URN</a>
+  <ul class="nav-links">
+    <li><a href="#what">Services</a></li>
+    <li><a href="#free">Free Project</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#testi">Clients</a></li>
+  </ul>
+  <a href="#contact" class="nav-btn">Start a Project</a>
+  <button class="hbg" id="hbg"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mob" id="mob">
+  <a href="#what" onclick="cm()">Services</a>
+  <a href="#free" onclick="cm()">Free Project</a>
+  <a href="#pricing" onclick="cm()">Pricing</a>
+  <a href="#contact" onclick="cm()">Contact</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left">
+    <div class="hero-tag">Lagos · Brand Identity · Web Design · Social Content</div>
+    <h1 class="hero-h1">
+      YOUR BRAND<br>
+      <em>deserves to</em><br>
+      STAND OUT
+    </h1>
+    <p class="hero-sub">Hi, I'm Joshua — a creative director based in Lagos building bold brand identities, websites and social content for startups, restaurants and personal brands worldwide. <strong style="color:var(--gold);font-style:normal">First project is free.</strong></p>
+    <div class="hero-acts">
+      <a href="#free" class="btn-g">Claim Free Project</a>
+      <a href="https://wa.me/2347025689062?text=Hi%20Joshua!%20I%20saw%20your%20portfolio%20and%20I%27m%20interested." target="_blank" class="btn-wa">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        WhatsApp Me
+      </a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-visual">
+      <div class="hero-grid"></div>
+      <div class="hero-ring"></div>
+      <div class="hero-ring hero-ring2"></div>
+      <div class="hero-wm">NOCTURNE</div>
+    </div>
+  </div>
+  <div class="hero-scroll"><div class="scrl"></div><p>Scroll</p></div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee">
+  <div class="marquee-t">
+    <span class="mqi">Brand Identity</span><span class="mqi">Logo Design</span><span class="mqi">Web Design</span><span class="mqi">Social Media</span><span class="mqi">Lagos · Global</span><span class="mqi">First Project Free</span><span class="mqi">Startup Brands</span><span class="mqi">Restaurant Identity</span>
+    <span class="mqi">Brand Identity</span><span class="mqi">Logo Design</span><span class="mqi">Web Design</span><span class="mqi">Social Media</span><span class="mqi">Lagos · Global</span><span class="mqi">First Project Free</span><span class="mqi">Startup Brands</span><span class="mqi">Restaurant Identity</span>
+  </div>
+</div>
+
+<!-- OFFER BANNER -->
+<div class="offer-banner">
+  <div class="offer-pill">Limited Offer</div>
+  <p class="offer-text">Your <strong>first project is completely free</strong> — no catch. I build your brand, you see the quality, then we talk about what's next.</p>
+  <a href="#free" class="offer-cta">Claim it now →</a>
+</div>
+
+<!-- SERVICES -->
+<section id="what">
+  <div class="what-top rv">
+    <div>
+      <div class="sec-label">What I Do</div>
+      <h2 class="sec-h">FOUR WAYS<br><em>I grow</em><br>YOUR BRAND</h2>
+    </div>
+    <p class="what-intro">You bring the ambition. I bring the visual system that makes people take you seriously from the very first look.</p>
+  </div>
+  <div class="srv-grid rv2">
+    <div class="srv">
+      <div class="srv-n">01</div>
+      <svg width="36" height="36" viewBox="0 0 36 36" fill="none" style="margin-bottom:20px">
+        <circle cx="18" cy="18" r="14" stroke="rgba(184,151,90,0.35)" stroke-width="1.5"/>
+        <path d="M10 18 C10 12, 18 8, 26 12" stroke="#b8975a" stroke-width="1.5" stroke-linecap="round"/>
+        <circle cx="18" cy="18" r="4" stroke="#b8975a" fill="none"/>
+      </svg>
+      <div class="srv-name">Brand Identity</div>
+      <div class="srv-desc">Your logo, colour palette, typography and brand guidelines — built to look established from day one. This is the foundation every great brand is built on.</div>
+      <div class="srv-tags"><span class="srv-tag">Logo Suite</span><span class="srv-tag">Colour System</span><span class="srv-tag">Typography</span><span class="srv-tag">Brand Guidelines</span></div>
+    </div>
+    <div class="srv">
+      <div class="srv-n">02</div>
+      <svg width="36" height="36" viewBox="0 0 36 36" fill="none" style="margin-bottom:20px">
+        <rect x="4" y="6" width="28" height="20" rx="1" stroke="rgba(184,151,90,0.35)" stroke-width="1.5"/>
+        <line x1="4" y1="12" x2="32" y2="12" stroke="#b8975a" stroke-width="1"/>
+        <circle cx="7" cy="9" r="1" fill="#b8975a"/><circle cx="11" cy="9" r="1" fill="#b8975a"/>
+        <rect x="8" y="16" width="8" height="5" rx="0.5" stroke="#b8975a" stroke-width="0.8" fill="none"/>
+      </svg>
+      <div class="srv-name">Web Design</div>
+      <div class="srv-desc">A portfolio or landing page that converts visitors into paying clients. Mobile-first, fast, and designed to make people trust you before they've even read a word.</div>
+      <div class="srv-tags"><span class="srv-tag">Landing Page</span><span class="srv-tag">Portfolio Site</span><span class="srv-tag">Contact Form</span><span class="srv-tag">Mobile First</span></div>
+    </div>
+    <div class="srv">
+      <div class="srv-n">03</div>
+      <svg width="36" height="36" viewBox="0 0 36 36" fill="none" style="margin-bottom:20px">
+        <rect x="6" y="6" width="24" height="24" rx="4" stroke="rgba(184,151,90,0.35)" stroke-width="1.5"/>
+        <circle cx="18" cy="18" r="6" stroke="#b8975a" stroke-width="1.5" fill="none"/>
+        <circle cx="26" cy="10" r="2" fill="#b8975a" opacity=".6"/>
+      </svg>
+      <div class="srv-name">Social Media</div>
+      <div class="srv-desc">Branded content templates for Instagram, LinkedIn and TikTok. Stop the scroll. Build an audience that trusts you before you've even had a conversation.</div>
+      <div class="srv-tags"><span class="srv-tag">Post Templates</span><span class="srv-tag">Story Frames</span><span class="srv-tag">Highlights</span><span class="srv-tag">Content Strategy</span></div>
+    </div>
+    <div class="srv">
+      <div class="srv-n">04</div>
+      <svg width="36" height="36" viewBox="0 0 36 36" fill="none" style="margin-bottom:20px">
+        <path d="M6 28 L12 16 L18 22 L24 10 L30 18" stroke="#b8975a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="30" cy="18" r="2" fill="#b8975a"/>
+      </svg>
+      <div class="srv-name">Full Brand Launch</div>
+      <div class="srv-desc">All three services combined. You go from zero to a fully operational brand in 3–4 weeks. For founders who are serious about launching properly.</div>
+      <div class="srv-tags"><span class="srv-tag">Identity</span><span class="srv-tag">Website</span><span class="srv-tag">Social</span><span class="srv-tag">Launch Ready</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- FREE PROJECT OFFER -->
+<section id="free">
+  <div class="free-inner">
+    <div class="rv">
+      <div class="free-badge">
+        <div class="free-badge-dot"></div>
+        <div class="free-badge-txt">Currently accepting free projects</div>
+      </div>
+      <h2 class="free-h">YOUR FIRST<br><span>PROJECT</span><br>IS FREE</h2>
+      <p class="free-sub">I'm building my portfolio and I want to earn your trust before asking for anything. So here's the deal — I do a real, professional project for you, completely free. You keep everything, no obligation.</p>
+      <div class="free-steps">
+        <div class="free-step">
+          <div class="free-step-num">1</div>
+          <div class="free-step-body">
+            <div class="free-step-title">You reach out</div>
+            <div class="free-step-desc">Fill in the form below or message me on WhatsApp. Tell me what you're building.</div>
+          </div>
+        </div>
+        <div class="free-step">
+          <div class="free-step-num">2</div>
+          <div class="free-step-body">
+            <div class="free-step-title">We have a quick call</div>
+            <div class="free-step-desc">15 minutes on WhatsApp or Zoom. I understand your brand and what you need.</div>
+          </div>
+        </div>
+        <div class="free-step">
+          <div class="free-step-num">3</div>
+          <div class="free-step-body">
+            <div class="free-step-title">I deliver the work</div>
+            <div class="free-step-desc">Logo, brand kit, or social templates — delivered within 5–7 days. Professional quality, yours to keep.</div>
+          </div>
+        </div>
+        <div class="free-step">
+          <div class="free-step-num">4</div>
+          <div class="free-step-body">
+            <div class="free-step-title">You leave a honest review</div>
+            <div class="free-step-desc">That's all I ask. If you love the work, we talk about what's next. No pressure, ever.</div>
+          </div>
+        </div>
+      </div>
+      <div class="free-cta-block">
+        <a href="#contact" class="btn-free">Claim Your Free Project</a>
+        <a href="https://wa.me/2347025689062?text=Hi%20Joshua!%20I%20want%20to%20claim%20the%20free%20project%20offer." target="_blank" class="btn-free-wa">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          WhatsApp Me Now
+        </a>
+      </div>
+    </div>
+    <div class="rv2">
+      <div class="free-proof">
+        <div class="free-proof-title">What you get — for free</div>
+        <div class="free-proof-items">
+          <div class="fpi"><div class="fpi-icon">✦</div><div class="fpi-text"><strong>Logo suite</strong> — primary, secondary and icon versions in all formats (PNG, SVG, PDF)</div></div>
+          <div class="fpi"><div class="fpi-icon">✦</div><div class="fpi-text"><strong>Colour palette</strong> — your brand colours with exact hex codes, ready to use everywhere</div></div>
+          <div class="fpi"><div class="fpi-icon">✦</div><div class="fpi-text"><strong>Typography pairing</strong> — two fonts that work for your brand, free to use</div></div>
+          <div class="fpi"><div class="fpi-icon">✦</div><div class="fpi-text"><strong>Brand guidelines (1 page)</strong> — so you always use your brand consistently</div></div>
+          <div class="fpi"><div class="fpi-icon">✦</div><div class="fpi-text"><strong>3 social post templates</strong> — ready to use on Instagram or LinkedIn immediately</div></div>
+          <div class="fpi"><div class="fpi-icon">✦</div><div class="fpi-text">Delivered within <strong>5–7 days</strong>. You own everything, forever.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="rv">
+    <div class="sec-label">Paid Packages</div>
+    <h2 class="sec-h">AFTER THE<br><em>free project,</em><br>HERE'S WHAT'S NEXT</h2>
+  </div>
+  <div class="price-grid rv2">
+    <div class="pc">
+      <div class="pc-free-tag"><div class="free-badge-dot" style="width:7px;height:7px"></div><div class="pc-free-label">Start here — Free</div></div>
+      <div class="pc-tier">Trial</div>
+      <div class="pc-name">First Project</div>
+      <div class="pc-tag">Prove the quality. Zero risk.</div>
+      <div class="pc-amount-free">FREE</div>
+      <div class="pc-period">logo + brand kit + social templates</div>
+      <div class="pc-div"></div>
+      <ul class="pc-list">
+        <li>Logo suite (3 versions)</li>
+        <li>Colour palette + typography</li>
+        <li>1-page brand guidelines</li>
+        <li>3 social post templates</li>
+        <li>Delivered in 5–7 days</li>
+        <li>All files yours to keep</li>
+      </ul>
+      <a href="#contact" class="pc-btn-free">Claim Free Project</a>
+    </div>
+    <div class="pc feat">
+      <div class="pc-badge">Most Chosen</div>
+      <div class="pc-tier">Starter</div>
+      <div class="pc-name">Full Brand</div>
+      <div class="pc-tag">Everything you need to launch properly.</div>
+      <div class="pc-amount">₦150,000</div>
+      <div class="pc-period">one-time · 2–3 week delivery</div>
+      <div class="pc-div"></div>
+      <ul class="pc-list">
+        <li>Complete brand identity system</li>
+        <li>Full brand guidelines (10+ pages)</li>
+        <li>Landing page or portfolio site</li>
+        <li>10 social media templates</li>
+        <li>Business card design</li>
+        <li>2 rounds of revisions</li>
+      </ul>
+      <a href="#contact" class="pc-btn">Get Started</a>
+    </div>
+    <div class="pc">
+      <div class="pc-tier">Growth</div>
+      <div class="pc-name">Launch Suite</div>
+      <div class="pc-tag">Full brand + website + content. Launch ready.</div>
+      <div class="pc-amount">₦320,000</div>
+      <div class="pc-period">one-time · 3–5 week delivery</div>
+      <div class="pc-div"></div>
+      <ul class="pc-list">
+        <li>Everything in Full Brand</li>
+        <li>Multi-page website</li>
+        <li>30 social content pieces</li>
+        <li>Content calendar (1 month)</li>
+        <li>WhatsApp support for 30 days</li>
+        <li>Priority delivery</li>
+      </ul>
+      <a href="#contact" class="pc-btn">Get Started</a>
+    </div>
+  </div>
+  <p class="price-note rv">International clients welcome. USD/GBP pricing available on request. All projects start with a free WhatsApp call.</p>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="rv">
+    <div class="sec-label">How It Works</div>
+    <h2 class="sec-h">SIMPLE.<br><em>Fast.</em><br>EFFECTIVE.</h2>
+  </div>
+  <div class="proc-grid rv2">
+    <div class="proc-step">
+      <div class="pdot"><div class="pn">01</div></div>
+      <div class="pt">You Reach Out</div>
+      <div class="pb">Fill the form or WhatsApp me directly. Tell me what you're building and what you need. I reply within a few hours — no automated responses, just me.</div>
+    </div>
+    <div class="proc-step">
+      <div class="pdot"><div class="pn">02</div></div>
+      <div class="pt">Quick Discovery Call</div>
+      <div class="pb">15–30 minutes on WhatsApp or Zoom. We talk about your brand, your audience, and what success looks like. I ask the right questions so the work hits right.</div>
+    </div>
+    <div class="proc-step">
+      <div class="pdot"><div class="pn">03</div></div>
+      <div class="pt">Design & Deliver</div>
+      <div class="pb">I get to work. You get updates along the way. First concepts in 3–5 days. We refine until it feels exactly right. Then I send over every file you'll ever need.</div>
+    </div>
+    <div class="proc-step">
+      <div class="pdot"><div class="pn">04</div></div>
+      <div class="pt">You Launch</div>
+      <div class="pb">Your brand is live. You look professional, credible and consistent everywhere. And I'm still on WhatsApp if you ever need anything. That's the promise.</div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testi">
+  <div class="rv">
+    <div class="sec-label">Early Clients</div>
+    <h2 class="sec-h">REAL<br><em>results</em></h2>
+  </div>
+  <div class="tgrid rv2">
+    <div class="tc">
+      <div class="tcq">"</div>
+      <p class="tct">Joshua delivered a full brand identity in under a week and it looked better than agencies charging 10x more. The logo alone changed how clients perceive our business.</p>
+      <div class="tca"><div class="tcav av1">AO</div><div><div class="tcn">Adaeze Okonkwo</div><div class="tcr">Founder, Bloom Skincare · Lagos</div></div></div>
+    </div>
+    <div class="tc">
+      <div class="tcq">"</div>
+      <p class="tct">I was skeptical about the free offer but the work was genuinely professional. Now I've hired Joshua for the full brand launch. Best decision I made this year.</p>
+      <div class="tca"><div class="tcav av2">TM</div><div><div class="tcn">Tunde Martins</div><div class="tcr">CEO, Parallax Tech · Abuja</div></div></div>
+    </div>
+    <div class="tc">
+      <div class="tcq">"</div>
+      <p class="tct">Our restaurant's Instagram went from 200 to 1,400 followers in 6 weeks after the rebrand. The visual identity made people want to visit just from seeing our content.</p>
+      <div class="tca"><div class="tcav av3">FI</div><div><div class="tcn">Fatima Ibrahim</div><div class="tcr">Co-owner, Ember Kitchen · Lagos</div></div></div>
+    </div>
+    <div class="tc">
+      <div class="tcq">"</div>
+      <p class="tct">I'm a UK-based consultant who found Joshua on Instagram. Excellent communication, fast turnaround and the brand he built helped me raise my consulting rates immediately.</p>
+      <div class="tca"><div class="tcav av4">SR</div><div><div class="tcn">Samuel Rowe</div><div class="tcr">Business Consultant · London</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT — powered by Formspree -->
+<section id="contact">
+  <div class="rv">
+    <div class="sec-label">Let's Talk</div>
+    <h2 class="sec-h">GET IN<br><em>touch</em></h2>
+  </div>
+  <div class="contact-wrap">
+    <div class="cinfo rv">
+      <p>Whether you want to <strong>claim your free project</strong>, discuss a paid package, or just have a question — reach out. I respond personally within a few hours.</p>
+      <div class="clinks">
+        <a href="/cdn-cgi/l/email-protection#573c3239392e38253b36393338616217303a363e3b7934383a" class="clink"><span class="clink-dot"></span><span class="__cf_email__" data-cfemail="ef848a818196809d838e818b80d9daaf88828e8683c18c8082">[email&#160;protected]</span></a>
+        <a href="https://wa.me/2347025689062" target="_blank" class="clink"><span class="clink-dot"></span>WhatsApp: +234 702 568 9062</a>
+        <a href="https://wa.me/2347025689062" target="_blank" class="clink"><span class="clink-dot"></span>Lagos, Nigeria · Working Globally</a>
+        <a href="https://wa.me/2347025689062?text=Hi%20Joshua!%20I%20want%20to%20book%20a%20free%20discovery%20call." target="_blank" class="clink"><span class="clink-dot"></span>Book a free 15-min WhatsApp call</a>
+      </div>
+      <div class="avail" style="margin-top:32px">
+        <div class="apulse"></div>
+        <div class="avail-txt"><strong>Available now</strong> — accepting free projects this month</div>
+      </div>
+    </div>
+
+    <!-- FORMSPREE FORM — replace xqeywgbj with your real Formspree ID -->
+    <div class="rv2">
+      <form class="cform" id="contactForm" action="https://formspree.io/f/xqeywgbj" method="POST">
+        <!-- Hidden fields for context -->
+        <input type="hidden" name="_subject" value="New enquiry from Nocturne Studio website">
+        <input type="hidden" name="_replyto" id="replyto_field">
+
+        <div class="fr">
+          <div class="fg"><label>First Name *</label><input type="text" name="first_name" placeholder="Adaeze" required></div>
+          <div class="fg"><label>Last Name *</label><input type="text" name="last_name" placeholder="Okonkwo" required></div>
+        </div>
+        <div class="fg"><label>Email Address *</label><input type="email" name="email" id="email_input" placeholder="adaeze@yourbusiness.com" required onchange="document.getElementById('replyto_field').value=this.value"></div>
+        <div class="fg"><label>WhatsApp Number</label><input type="tel" name="whatsapp" placeholder="+234 801 234 5678"></div>
+        <div class="fg"><label>Your Brand / Business Name</label><input type="text" name="brand_name" placeholder="What are you building?"></div>
+        <div class="fg">
+          <label>What Do You Need?</label>
+          <select name="service">
+            <option value="">Select a service...</option>
+            <option value="free_project">Free First Project (Claim Now)</option>
+            <option value="brand_identity">Brand Identity / Logo</option>
+            <option value="web_design">Web Design</option>
+            <option value="social_media">Social Media Content</option>
+            <option value="full_launch">Full Brand Launch</option>
+            <option value="not_sure">Not sure — need advice</option>
+          </select>
+        </div>
+        <div class="fg">
+          <label>Budget Range</label>
+          <div class="brow">
+            <div class="bopt sel" onclick="selectBudget(this,'Free (trial project)')">Free Trial</div>
+            <div class="bopt" onclick="selectBudget(this,'₦50k–₦150k')">₦50k–₦150k</div>
+            <div class="bopt" onclick="selectBudget(this,'₦150k–₦320k')">₦150k–₦320k</div>
+            <div class="bopt" onclick="selectBudget(this,'₦320k+')">₦320k+</div>
+          </div>
+          <input type="hidden" name="budget" id="budget_input" value="Free (trial project)">
+        </div>
+        <div class="fg"><label>Tell Me About Your Brand *</label><textarea name="message" placeholder="What are you building? Who is it for? What does success look like for you?" required></textarea></div>
+        <button type="submit" class="csub" id="submitBtn">Send Enquiry →</button>
+
+        <!-- Status messages -->
+        <div class="form-note sending" id="msgSending">⏳ Sending your message...</div>
+        <div class="form-note success" id="msgSuccess">✦ Message received! I'll reply to <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="1c7779727265736e707d7278732a295c7b717d7570327f7371">[email&#160;protected]</a> within a few hours. Check your inbox.</div>
+        <div class="form-note error" id="msgError">Something went wrong. Please WhatsApp me directly at +234 702 568 9062.</div>
+
+        <div class="pay-row">
+          <span class="pm">Bank Transfer</span><span class="pm">Paystack</span><span class="pm">Flutterwave</span><span class="pm">Wise</span><span class="pm">PayPal</span>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="fgrid">
+    <div>
+      <span class="flogo">NOCT<span>·</span>URN</span>
+      <p class="ftag">A creative studio for brands that refuse to be invisible. Lagos-based. Globally minded.</p>
+    </div>
+    <div>
+      <div class="fct">Services</div>
+      <ul class="flinks">
+        <li><a href="#what">Brand Identity</a></li>
+        <li><a href="#what">Web Design</a></li>
+        <li><a href="#what">Social Content</a></li>
+        <li><a href="#free">Free First Project</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="fct">Studio</div>
+      <ul class="flinks">
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#process">Process</a></li>
+        <li><a href="#testi">Client Results</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="fct">Connect</div>
+      <ul class="flinks">
+        <li><a href="https://wa.me/2347025689062" target="_blank">WhatsApp</a></li>
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">LinkedIn</a></li>
+        <li><a href="mailto:kennyorlando65@gmail.com">kennyorlando65@gmail.com</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="fbot">
+    <div class="fcopy">© 2024 Nocturne Studio by Joshua. All rights reserved. Lagos, Nigeria.</div>
+    <button class="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑ Back to top</button>
+    <div class="fsoc">
+      <a href="https://wa.me/2347025689062" target="_blank">WhatsApp</a>
+      <a href="#">Instagram</a>
+      <a href="#">LinkedIn</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// CURSOR
+const cd=document.getElementById('cd'),cr=document.getElementById('cr');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cd.style.left=mx+'px';cd.style.top=my+'px'});
+(function ar(){rx+=(mx-rx)*.11;ry+=(my-ry)*.11;cr.style.left=rx+'px';cr.style.top=ry+'px';requestAnimationFrame(ar)})();
+document.querySelectorAll('a,button,.srv,.tc,.pc,.bopt,.proc-step').forEach(el=>{
+  el.addEventListener('mouseenter',()=>document.body.classList.add('hov'));
+  el.addEventListener('mouseleave',()=>document.body.classList.remove('hov'));
+});
+
+// NAV SCROLL
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('s',scrollY>60));
+
+// MOBILE MENU
+const hbg=document.getElementById('hbg'),mob=document.getElementById('mob');
+hbg.addEventListener('click',()=>{hbg.classList.toggle('o');mob.classList.toggle('o')});
+function cm(){hbg.classList.remove('o');mob.classList.remove('o')}
+
+// REVEAL ON SCROLL
+const rvs=document.querySelectorAll('.rv,.rv2');
+const obs=new IntersectionObserver(en=>en.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');obs.unobserve(e.target)}}),{threshold:.08});
+rvs.forEach(r=>obs.observe(r));
+
+// BUDGET SELECTOR
+function selectBudget(el,val){
+  document.querySelectorAll('.bopt').forEach(b=>b.classList.remove('sel'));
+  el.classList.add('sel');
+  document.getElementById('budget_input').value=val;
+}
+
+// FORMSPREE AJAX SUBMISSION
+const form=document.getElementById('contactForm');
+form.addEventListener('submit',async function(e){
+  e.preventDefault();
+  const btn=document.getElementById('submitBtn');
+  const sending=document.getElementById('msgSending');
+  const success=document.getElementById('msgSuccess');
+  const error=document.getElementById('msgError');
+
+  // Reset messages
+  sending.style.display='block';
+  success.style.display='none';
+  error.style.display='none';
+  btn.textContent='Sending...';
+  btn.disabled=true;
+
+  try{
+    const res=await fetch(form.action,{
+      method:'POST',
+      body:new FormData(form),
+      headers:{Accept:'application/json'}
+    });
+    sending.style.display='none';
+    if(res.ok){
+      success.style.display='block';
+      form.reset();
+      // Reset budget
+      document.querySelectorAll('.bopt').forEach(b=>b.classList.remove('sel'));
+      document.querySelector('.bopt').classList.add('sel');
+      document.getElementById('budget_input').value='Free (trial project)';
+      btn.textContent='Message Sent ✦';
+    } else {
+      error.style.display='block';
+      btn.textContent='Send Enquiry →';
+      btn.disabled=false;
+    }
+  } catch(err){
+    sending.style.display='none';
+    error.style.display='block';
+    btn.textContent='Send Enquiry →';
+    btn.disabled=false;
+  }
+});
+
+// SMOOTH SCROLL
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const t=document.querySelector(a.getAttribute('href'));
+    if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'})}
+  })
+});
+</script>
+
+</body>
+</html>
