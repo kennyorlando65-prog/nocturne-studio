@@ -1,5 +1,8 @@
 const terminal = document.getElementById("terminal");
 const result = document.getElementById("result");
+const totalRuns = document.getElementById("totalRuns");
+
+let runs = 0;
 
 const boot = [
   "initializing systems...",
@@ -25,12 +28,10 @@ function analyze(){
   const input = document.getElementById("userInput").value;
   if(!input) return;
 
-  const steps = [
-    "scanning input...",
-    "processing...",
-    "generating result..."
-  ];
+  runs++;
+  totalRuns.textContent = runs;
 
+  const steps = ["scanning...", "processing...", "done"];
   let j = 0;
 
   function run(){
@@ -39,7 +40,7 @@ function analyze(){
       line.textContent = "> " + steps[j];
       terminal.appendChild(line);
       j++;
-      setTimeout(run, 400);
+      setTimeout(run, 300);
     } else {
 
       let output = defaultResponse;
