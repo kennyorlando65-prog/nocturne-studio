@@ -1,50 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Systems / Experiments</title>
-  <style>
-    body {
-      background: #0a0a0f;
-      color: #eaeaea;
-      font-family: monospace;
-      padding: 40px;
-    }
-    h1 {
-      color: #00ff9f;
-      letter-spacing: 2px;
-    }
-    .card {
-      border: 1px solid rgba(0,255,159,0.2);
-      padding: 20px;
-      margin-top: 20px;
-      transition: 0.3s;
-    }
-    .card:hover {
-      background: rgba(0,255,159,0.05);
-      transform: translateY(-5px);
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Systems / Experiments</title>
+
+<style>
+body{
+  background:#05050a;
+  color:#eaeaea;
+  font-family:monospace;
+  margin:0;
+  padding:40px;
+}
+
+/* HEADER */
+h1{
+  color:#00ff9f;
+  letter-spacing:2px;
+}
+
+/* TERMINAL */
+.terminal{
+  margin-top:20px;
+  background:#000;
+  border:1px solid rgba(0,255,159,0.2);
+  padding:20px;
+  font-size:14px;
+  line-height:1.8;
+}
+
+/* CARDS */
+.card{
+  border:1px solid rgba(0,255,159,0.2);
+  padding:20px;
+  margin-top:20px;
+  transition:0.3s;
+}
+
+.card:hover{
+  background:rgba(0,255,159,0.05);
+  transform:translateY(-5px);
+}
+
+/* STATUS DOT */
+.dot{
+  display:inline-block;
+  width:8px;
+  height:8px;
+  background:#00ff9f;
+  border-radius:50%;
+  margin-right:6px;
+  animation:pulse 1.5s infinite;
+}
+
+@keyframes pulse{
+  0%,100%{opacity:1;}
+  50%{opacity:0.3;}
+}
+</style>
 </head>
+
 <body>
 
-<h1>⚡ Experimental Systems</h1>
-<p>Interactive systems, AI tools, and logic experiments.</p>
+<h1> Experimental Systems</h1>
+<p>Interactive systems, AI tools, and automation experiments.</p>
 
-<div class="card">
-  <h3>AI Behavior Analyzer</h3>
-  <p>Analyzes text patterns, tone, and intent.</p>
+<div class="terminal">
+  > initializing systems...<br>
+  > loading modules...<br>
+  > AI engine: <span style="color:#00ff9f">ACTIVE</span><br>
+  > automation layer: <span style="color:#00ff9f">RUNNING</span><br>
 </div>
 
 <div class="card">
-  <h3>Automation Engine</h3>
+  <h3><span class="dot"></span>AI Behavior Analyzer</h3>
+  <p>Analyzes text patterns, tone, and intent in real time.</p>
+</div>
+
+<div class="card">
+  <h3><span class="dot"></span>Automation Engine</h3>
   <p>Generates responses and executes actions automatically.</p>
 </div>
 
 <div class="card">
-  <h3>Logic Simulation</h3>
-  <p>Visual representation of decision-making systems.</p>
+  <h3><span class="dot"></span>Logic Simulation</h3>
+  <p>Visualizes decision-making systems and flow logic.</p>
 </div>
 
 </body>
