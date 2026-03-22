@@ -4,18 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>NOCTURNE — Private Brand Systems</title>
+<title>Nocturne Studio — Lagos</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Syne:wght@700;800&family=DM+Mono&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Syne:wght@700;800&family=DM+Mono&display=swap" rel="stylesheet">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
 
 body{
   background:#050506;
   color:#eae7df;
   font-family:'Playfair Display',serif;
-  overflow-x:hidden;
 }
 
 /* GRID BACKGROUND */
@@ -24,138 +24,127 @@ body::before{
   position:fixed;
   inset:0;
   background:
-    linear-gradient(rgba(184,151,90,0.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(184,151,90,0.08) 1px, transparent 1px);
+    linear-gradient(rgba(184,151,90,0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(184,151,90,0.07) 1px, transparent 1px);
   background-size:120px 120px;
-  opacity:.15;
-  pointer-events:none;
+  opacity:.2;
 }
 
 /* NAV */
 nav{
   position:fixed;
   width:100%;
-  padding:22px 50px;
+  padding:20px 40px;
   display:flex;
   justify-content:space-between;
-  align-items:center;
-  z-index:1000;
-  background:rgba(5,5,6,0.7);
+  background:rgba(0,0,0,0.7);
   backdrop-filter:blur(10px);
-  border-bottom:1px solid rgba(184,151,90,0.1);
-}
-
-.logo{
-  font-family:'Syne';
-  letter-spacing:4px;
-  font-size:14px;
+  z-index:1000;
 }
 
 nav a{
   color:#888;
   text-decoration:none;
-  margin-left:25px;
+  margin-left:20px;
   font-family:'DM Mono';
   font-size:11px;
-  letter-spacing:2px;
 }
 
 nav a:hover{color:#b8975a}
 
-/* TOP BAR */
-.ticker{
-  margin-top:70px;
-  padding:10px 50px;
-  border-bottom:1px solid rgba(184,151,90,0.1);
-  font-family:'DM Mono';
-  font-size:11px;
-  color:#aaa;
-  display:flex;
-  justify-content:space-between;
-}
-
-.green{color:#22c55e}
-
-/* ALERT */
-.alert{
-  padding:12px;
-  text-align:center;
-  font-family:'DM Mono';
-  font-size:11px;
-  color:#b8975a;
-  border-bottom:1px solid rgba(184,151,90,0.1);
-}
-
 /* HERO */
 #hero{
-  height:90vh;
+  height:100vh;
   display:flex;
   align-items:center;
-  padding:0 50px;
+  padding:0 40px;
 }
 
-.hero h1{
-  font-size:clamp(40px,6vw,90px);
-  line-height:1.1;
+h1{
+  font-family:'Syne';
+  font-size:clamp(40px,7vw,90px);
 }
 
 .gold{color:#b8975a}
 
-.hero p{
-  margin-top:20px;
-  max-width:500px;
-  color:#888;
-  font-size:16px;
-}
+p{color:#888;max-width:500px;margin-top:20px}
 
 /* BUTTONS */
 .btn{
   margin-top:40px;
   background:#b8975a;
   color:#000;
-  padding:18px 40px;
+  padding:15px 40px;
   display:inline-block;
+  cursor:pointer;
   font-family:'DM Mono';
   letter-spacing:2px;
-  font-size:11px;
-  cursor:pointer;
-  transition:.3s;
 }
-
-.btn:hover{transform:translateY(-4px)}
 
 .btn-outline{
-  border:1px solid rgba(184,151,90,0.3);
-  padding:18px 40px;
+  border:1px solid #333;
+  padding:15px 40px;
   display:inline-block;
+  margin-top:10px;
+  cursor:pointer;
+  font-family:'DM Mono';
+}
+
+/* SECTION */
+section{padding:100px 40px}
+
+/* SERVICES */
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+}
+
+.card{
+  border:1px solid #222;
+  padding:30px;
+}
+
+/* MODAL */
+#modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.9);
+  justify-content:center;
+  align-items:center;
+  z-index:2000;
+}
+
+.modal-box{
+  background:#111;
+  padding:40px;
+  width:90%;
+  max-width:400px;
+}
+
+input, textarea{
+  width:100%;
+  padding:10px;
+  margin-top:10px;
+  background:#000;
+  border:none;
+  color:#fff;
+}
+
+button{
   margin-top:15px;
-  font-family:'DM Mono';
-  font-size:11px;
-  color:#888;
-}
-
-/* STATUS */
-.status{
-  margin-top:60px;
-  font-family:'DM Mono';
-  font-size:12px;
-  color:#777;
-}
-
-.dot{
-  height:8px;
-  width:8px;
-  background:#22c55e;
-  display:inline-block;
-  border-radius:50%;
-  margin-right:8px;
+  width:100%;
+  padding:12px;
+  background:#b8975a;
+  border:none;
 }
 
 /* WHATSAPP */
 .wa{
   position:fixed;
-  bottom:25px;
-  right:25px;
+  bottom:20px;
+  right:20px;
   background:#25D366;
   width:60px;
   height:60px;
@@ -164,35 +153,7 @@ nav a:hover{color:#b8975a}
   justify-content:center;
   align-items:center;
   text-decoration:none;
-  box-shadow:0 0 25px rgba(37,211,102,0.6);
   font-size:24px;
-}
-
-/* PAYWALL */
-#paywall{
-  display:none;
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,0.96);
-  z-index:9999;
-  align-items:center;
-  justify-content:center;
-  flex-direction:column;
-  text-align:center;
-}
-
-#paywall h1{
-  font-size:40px;
-  color:#b8975a;
-  font-family:'Syne';
-}
-
-.close{
-  margin-top:20px;
-  padding:12px 30px;
-  background:#b8975a;
-  color:#000;
-  cursor:pointer;
 }
 </style>
 </head>
@@ -201,67 +162,84 @@ nav a:hover{color:#b8975a}
 
 <!-- NAV -->
 <nav>
-  <div class="logo">NOCTURNE</div>
+  <div>NOCTURNE</div>
   <div>
-    <a href="#">Services</a>
-    <a href="#">Work</a>
-    <a href="#">Access</a>
+    <a href="#services">Services</a>
+    <a href="#work">Work</a>
   </div>
 </nav>
 
-<!-- TICKER -->
-<div class="ticker">
-  <div>Frontier Fund — $7,500 <span class="green">✔ CONFIRMED</span></div>
-  <div>T. OKONKWO</div>
-</div>
-
-<!-- ALERT -->
-<div class="alert">
-⚠ ONLY 3 SPOTS REMAIN FOR Q2 2026 ONBOARDING — SECURE YOURS →
-</div>
-
 <!-- HERO -->
 <section id="hero">
-  <div class="hero">
-    <p>PRIVATE BRAND SYSTEMS · BY INVITATION ONLY</p>
+  <div>
+    <p>Brand Identity · Web Design · Content</p>
 
     <h1>
-      Where Elite <br>
-      Capital Meets <br>
-      <span class="gold">Identity</span>
+      We build <span class="gold">brands</span><br>
+      that feel expensive
     </h1>
 
     <p>
-      Institutional-grade brand identity and digital systems for 
-      founders, creators, and high-value businesses. Based in Lagos.
+      Helping startups, restaurants and personal brands
+      look premium and charge accordingly. Based in Lagos.
     </p>
 
-    <div class="btn" onclick="openPaywall()">START PROJECT →</div>
-    <div class="btn-outline">REQUEST ACCESS →</div>
-
-    <div class="status">
-      <span class="dot"></span> 1,247 partners active right now
-    </div>
+    <div class="btn" onclick="openModal()">START PROJECT →</div>
+    <div class="btn-outline" onclick="scrollToWork()">VIEW WORK →</div>
   </div>
 </section>
 
-<!-- PAYWALL -->
-<div id="paywall">
-  <h1>Private Access</h1>
-  <p>Premium clients only</p>
-  <div class="close" onclick="closePaywall()">Close</div>
+<!-- SERVICES -->
+<section id="services">
+  <h2>Services</h2>
+
+  <div class="grid">
+    <div class="card">Brand Identity</div>
+    <div class="card">Web Design</div>
+    <div class="card">Content Systems</div>
+    <div class="card">Strategy</div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section id="work">
+  <h2>Selected Work</h2>
+  <p>Portfolio coming soon.</p>
+</section>
+
+<!-- MODAL -->
+<div id="modal">
+  <div class="modal-box">
+    <h3>Start Project</h3>
+
+    <input placeholder="Your Name">
+    <input placeholder="Your Brand">
+    <textarea placeholder="What do you need?"></textarea>
+
+    <button onclick="sendWhatsApp()">Send via WhatsApp</button>
+    <button onclick="closeModal()">Close</button>
+  </div>
 </div>
 
 <!-- WHATSAPP -->
-<a href="https://wa.me/2347025689062" class="wa"></a>
+<a href="https://wa.me/2347025689062" class="wa">💬</a>
 
 <script>
-function openPaywall(){
-  document.getElementById("paywall").style.display="flex";
+function openModal(){
+  document.getElementById('modal').style.display='flex';
 }
 
-function closePaywall(){
-  document.getElementById("paywall").style.display="none";
+function closeModal(){
+  document.getElementById('modal').style.display='none';
+}
+
+function scrollToWork(){
+  document.getElementById('work').scrollIntoView({behavior:'smooth'});
+}
+
+function sendWhatsApp(){
+  let text="Hello, I want to start a project.";
+  window.open("https://wa.me/2347025689062?text="+encodeURIComponent(text));
 }
 </script>
 
