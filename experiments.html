@@ -28,6 +28,7 @@ h1{
   padding:20px;
   font-size:14px;
   line-height:1.8;
+  min-height:120px;
 }
 
 /* CARDS */
@@ -58,6 +59,17 @@ h1{
   0%,100%{opacity:1;}
   50%{opacity:0.3;}
 }
+
+/* BUTTON */
+button{
+  margin-top:30px;
+  padding:12px 20px;
+  background:#00ff9f;
+  border:none;
+  color:#000;
+  cursor:pointer;
+  font-weight:bold;
+}
 </style>
 </head>
 
@@ -66,12 +78,7 @@ h1{
 <h1> Experimental Systems</h1>
 <p>Interactive systems, AI tools, and automation experiments.</p>
 
-<div class="terminal">
-  > initializing systems...<br>
-  > loading modules...<br>
-  > AI engine: <span style="color:#00ff9f">ACTIVE</span><br>
-  > automation layer: <span style="color:#00ff9f">RUNNING</span><br>
-</div>
+<div class="terminal" id="terminal"></div>
 
 <div class="card">
   <h3><span class="dot"></span>AI Behavior Analyzer</h3>
@@ -87,6 +94,16 @@ h1{
   <h3><span class="dot"></span>Logic Simulation</h3>
   <p>Visualizes decision-making systems and flow logic.</p>
 </div>
+
+<button onclick="runSimulation()">Run Simulation</button>
+
+<!-- LINK TO YOUR JS FILE -->
+<script src="systems.js"></script>
+
+<!-- START SYSTEM -->
+<script>
+startSystem();
+</script>
 
 </body>
 </html>
