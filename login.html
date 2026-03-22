@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Secure Access</title>
+
+<style>
+body{
+  margin:0;
+  height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#05050a;
+  color:#d4af6e;
+  font-family:monospace;
+}
+
+.box{
+  background:rgba(0,0,0,0.7);
+  padding:30px;
+  border:1px solid rgba(212,175,110,0.2);
+  text-align:center;
+  width:90%;
+  max-width:300px;
+}
+
+input{
+  width:100%;
+  padding:10px;
+  margin-top:15px;
+  background:#000;
+  border:1px solid rgba(212,175,110,0.3);
+  color:#d4af6e;
+}
+
+button{
+  width:100%;
+  padding:12px;
+  margin-top:15px;
+  background:#d4af6e;
+  border:none;
+  color:#000;
+  font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+  <h2> Secure Access</h2>
+  <p>Enter system key</p>
+
+  <input type="password" id="key" placeholder="Access Key">
+  <button onclick="login()">Enter</button>
+
+  <p id="msg"></p>
+</div>
+
+<script>
+function login(){
+  const key = document.getElementById("key").value;
+
+  if(key === "nocturne"){
+    window.location.href = "experiments.html";
+  } else {
+    document.getElementById("msg").textContent = "Access Denied";
+  }
+}
+</script>
+
+</body>
+</html>
