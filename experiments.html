@@ -3,172 +3,71 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Systems / Experiments</title>
+<title>Systems Dashboard</title>
 
-<style>
-body{
-  background:#05050a;
-  color:#eaeaea;
-  font-family:monospace;
-  margin:0;
-  padding:40px;
-}
-
-/* HEADER */
-h1{
-  color:#00ff9f;
-  letter-spacing:2px;
-}
-
-/* LAYOUT */
-.container{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:20px;
-}
-
-/* TERMINAL */
-.terminal{
-  background:#000;
-  border:1px solid rgba(0,255,159,0.2);
-  padding:20px;
-  font-size:14px;
-  min-height:200px;
-}
-
-/* RESULT PANEL */
-.result{
-  background:#020202;
-  border:1px solid rgba(0,255,159,0.2);
-  padding:20px;
-  min-height:200px;
-}
-
-.result h3{
-  color:#00ff9f;
-  margin-bottom:10px;
-}
-
-/* CARDS */
-.card{
-  border:1px solid rgba(0,255,159,0.2);
-  padding:20px;
-  margin-top:20px;
-  transition:0.3s;
-}
-
-.card:hover{
-  background:rgba(0,255,159,0.05);
-}
-
-/* INPUT */
-input{
-  width:100%;
-  padding:12px;
-  background:#000;
-  border:1px solid rgba(0,255,159,0.3);
-  color:#00ff9f;
-  margin-top:20px;
-}
-
-/* BUTTON */
-button{
-  margin-top:15px;
-  padding:12px 20px;
-  background:#00ff9f;
-  border:none;
-  color:#000;
-  cursor:pointer;
-  font-weight:bold;
-}
-</style>
+<link rel="stylesheet" href="css/systems.css">
 </head>
 
 <body>
 
-<h1> Experimental Systems</h1>
-<p>AI-driven interaction and automation interface.</p>
+<div class="app">
 
-<div class="container">
-  <div class="terminal" id="terminal"></div>
-  <div class="result" id="result">
-    <h3>System Output</h3>
-    <p>No analysis yet...</p>
-  </div>
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <h2> SYSTEMS</h2>
+    <ul>
+      <li class="active">Analyzer</li>
+      <li>Automation</li>
+      <li>Logs</li>
+      <li>Settings</li>
+    </ul>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <!-- TOP BAR -->
+    <div class="topbar">
+      <span class="status"><span class="dot"></span>System Active</span>
+      <span id="time"></span>
+    </div>
+
+    <!-- STATS -->
+    <div class="stats">
+      <div class="stat">
+        <h3 id="totalRuns">0</h3>
+        <p>Analyses Run</p>
+      </div>
+      <div class="stat">
+        <h3>98%</h3>
+        <p>Accuracy</p>
+      </div>
+      <div class="stat">
+        <h3>Live</h3>
+        <p>Status</p>
+      </div>
+    </div>
+
+    <!-- TERMINAL -->
+    <div class="terminal" id="terminal"></div>
+
+    <!-- RESULT -->
+    <div class="result" id="result">
+      <h3>System Output</h3>
+      <p>No analysis yet...</p>
+    </div>
+
+    <!-- INPUT -->
+    <input id="userInput" type="text" placeholder="Enter text...">
+    <button onclick="analyze()">Analyze</button>
+
+  </main>
+
 </div>
 
-<input id="userInput" type="text" placeholder="Enter text to analyze...">
-<button onclick="analyzeInput()">Analyze</button>
-
-<script>
-const terminal = document.getElementById("terminal");
-const resultBox = document.getElementById("result");
-
-const logs = [
-  "initializing systems...",
-  "loading AI modules...",
-  "connecting to automation layer...",
-  "system ready."
-];
-
-let i = 0;
-
-function startSystem(){
-  function type(){
-    if(i < logs.length){
-      const line = document.createElement("div");
-      line.textContent = "> " + logs[i];
-      terminal.appendChild(line);
-      i++;
-      setTimeout(type, 600);
-    }
-  }
-  type();
-}
-
-startSystem();
-
-function analyzeInput(){
-  const input = document.getElementById("userInput").value;
-  if(!input) return;
-
-  const steps = [
-    "scanning input...",
-    "detecting tone...",
-    "mapping intent...",
-    "generating output..."
-  ];
-
-  let j = 0;
-
-  function process(){
-    if(j < steps.length){
-      const line = document.createElement("div");
-      line.textContent = "> " + steps[j];
-      terminal.appendChild(line);
-      j++;
-      setTimeout(process, 500);
-    } else {
-      let output = "";
-
-      if(input.toLowerCase().includes("love")){
-        output = "Positive emotional signal detected.";
-      } else if(input.toLowerCase().includes("hate")){
-        output = "Negative sentiment detected.";
-      } else {
-        output = "Neutral / analytical communication style.";
-      }
-
-      resultBox.innerHTML = `
-        <h3>System Output</h3>
-        <p>${output}</p>
-      `;
-    }
-  }
-
-  process();
-}
-</script>
+<script src="data/responses.js"></script>
+<script src="js/systems.js"></script>
+<script src="js/ui.js"></script>
 
 </body>
 </html>
