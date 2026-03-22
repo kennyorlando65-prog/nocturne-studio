@@ -20,15 +20,33 @@ h1{
   letter-spacing:2px;
 }
 
+/* LAYOUT */
+.container{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+}
+
 /* TERMINAL */
 .terminal{
-  margin-top:20px;
   background:#000;
   border:1px solid rgba(0,255,159,0.2);
   padding:20px;
   font-size:14px;
-  line-height:1.8;
-  min-height:150px;
+  min-height:200px;
+}
+
+/* RESULT PANEL */
+.result{
+  background:#020202;
+  border:1px solid rgba(0,255,159,0.2);
+  padding:20px;
+  min-height:200px;
+}
+
+.result h3{
+  color:#00ff9f;
+  margin-bottom:10px;
 }
 
 /* CARDS */
@@ -41,23 +59,6 @@ h1{
 
 .card:hover{
   background:rgba(0,255,159,0.05);
-  transform:translateY(-5px);
-}
-
-/* STATUS DOT */
-.dot{
-  display:inline-block;
-  width:8px;
-  height:8px;
-  background:#00ff9f;
-  border-radius:50%;
-  margin-right:6px;
-  animation:pulse 1.5s infinite;
-}
-
-@keyframes pulse{
-  0%,100%{opacity:1;}
-  50%{opacity:0.3;}
 }
 
 /* INPUT */
@@ -86,75 +87,56 @@ button{
 <body>
 
 <h1> Experimental Systems</h1>
-<p>Interactive systems, AI tools, and automation experiments.</p>
+<p>AI-driven interaction and automation interface.</p>
 
-<div class="terminal" id="terminal"></div>
-
-<div class="card">
-  <h3><span class="dot"></span>AI Behavior Analyzer</h3>
-  <p>Analyzes text patterns, tone, and intent in real time.</p>
+<div class="container">
+  <div class="terminal" id="terminal"></div>
+  <div class="result" id="result">
+    <h3>System Output</h3>
+    <p>No analysis yet...</p>
+  </div>
 </div>
-
-<div class="card">
-  <h3><span class="dot"></span>Automation Engine</h3>
-  <p>Generates responses and executes actions automatically.</p>
-</div>
-
-<div class="card">
-  <h3><span class="dot"></span>Logic Simulation</h3>
-  <p>Visualizes decision-making systems and flow logic.</p>
-</div>
-
-<button onclick="runSimulation()">Run Simulation</button>
 
 <input id="userInput" type="text" placeholder="Enter text to analyze...">
 <button onclick="analyzeInput()">Analyze</button>
 
 <script>
+const terminal = document.getElementById("terminal");
+const resultBox = document.getElementById("result");
+
 const logs = [
   "initializing systems...",
   "loading AI modules...",
   "connecting to automation layer...",
-  "analyzing patterns...",
   "system ready."
 ];
 
 let i = 0;
-const terminal = document.getElementById("terminal");
 
-/* SYSTEM BOOT */
 function startSystem(){
-  function typeLog(){
+  function type(){
     if(i < logs.length){
       const line = document.createElement("div");
       line.textContent = "> " + logs[i];
       terminal.appendChild(line);
       i++;
-      setTimeout(typeLog, 700);
+      setTimeout(type, 600);
     }
   }
-  typeLog();
+  type();
 }
 
 startSystem();
 
-/* SIMULATION BUTTON */
-function runSimulation(){
-  const line = document.createElement("div");
-  line.textContent = "> simulation complete ✔";
-  terminal.appendChild(line);
-}
-
-/* AI ANALYZER */
 function analyzeInput(){
   const input = document.getElementById("userInput").value;
   if(!input) return;
 
   const steps = [
-    "analyzing tone...",
-    "detecting intent...",
-    "processing patterns...",
-    "finalizing results..."
+    "scanning input...",
+    "detecting tone...",
+    "mapping intent...",
+    "generating output..."
   ];
 
   let j = 0;
@@ -167,18 +149,20 @@ function analyzeInput(){
       j++;
       setTimeout(process, 500);
     } else {
-      const result = document.createElement("div");
-      result.style.color = "#00ff9f";
+      let output = "";
 
       if(input.toLowerCase().includes("love")){
-        result.textContent = "> RESULT: Positive emotional intent detected.";
+        output = "Positive emotional signal detected.";
       } else if(input.toLowerCase().includes("hate")){
-        result.textContent = "> RESULT: Negative sentiment detected.";
+        output = "Negative sentiment detected.";
       } else {
-        result.textContent = "> RESULT: Neutral / analytical tone.";
+        output = "Neutral / analytical communication style.";
       }
 
-      terminal.appendChild(result);
+      resultBox.innerHTML = `
+        <h3>System Output</h3>
+        <p>${output}</p>
+      `;
     }
   }
 
