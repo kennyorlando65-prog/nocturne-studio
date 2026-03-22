@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>NOCTURNE STUDIO — Brand Identity & Web Design | Lagos </title>
+<title>NOCTURNE STUDIO — Lagos</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Syne:wght@400;700;800&family=DM+Mono&display=swap" rel="stylesheet">
 
@@ -15,37 +15,43 @@ body{
   background:#07070a;
   color:#f3efe6;
   font-family:'Playfair Display',serif;
+  overflow-x:hidden;
 }
 
 /* NAV */
 nav{
   position:fixed;
   width:100%;
+  padding:20px 40px;
   display:flex;
   justify-content:space-between;
-  padding:30px 60px;
   z-index:1000;
+  background:rgba(0,0,0,0.6);
+  backdrop-filter:blur(10px);
 }
+
 nav a{
   color:#aaa;
   text-decoration:none;
-  margin-left:25px;
+  margin:0 12px;
   font-family:'DM Mono';
+  font-size:12px;
+  letter-spacing:2px;
 }
-nav a:hover{color:#fff}
+
+nav a:hover{color:#b8975a}
 
 /* HERO */
 #hero{
   height:100vh;
   display:flex;
   align-items:center;
-  justify-content:center;
-  text-align:center;
+  padding:0 40px;
 }
 
-.hero h1{
+.hero-text h1{
+  font-size:clamp(40px,7vw,90px);
   font-family:'Syne';
-  font-size:70px;
   line-height:1;
 }
 
@@ -53,71 +59,125 @@ nav a:hover{color:#fff}
 
 /* BUTTON */
 .btn{
-  margin-top:30px;
-  display:inline-block;
-  padding:14px 36px;
+  margin-top:40px;
   background:#b8975a;
   color:#000;
-  text-decoration:none;
+  padding:16px 40px;
+  display:inline-block;
+  cursor:pointer;
   font-family:'DM Mono';
+  letter-spacing:2px;
+  transition:.3s;
+}
+.btn:hover{transform:translateY(-4px)}
+
+/* WHATSAPP */
+.wa{
+  position:fixed;
+  bottom:25px;
+  right:25px;
+  background:#25D366;
+  width:60px;
+  height:60px;
+  border-radius:50%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-decoration:none;
+  font-size:24px;
+  box-shadow:0 0 20px rgba(37,211,102,0.6);
 }
 
-/* TRIAL BANNER */
-#trialBanner{
-  position:fixed;
-  bottom:0;
-  width:100%;
-  background:#111;
-  padding:10px 20px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
+/* SERVICES */
+#services{
+  padding:100px 40px;
 }
-#trialBanner span{color:#b8975a}
+
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+}
+
+.card{
+  border:1px solid rgba(184,151,90,0.2);
+  padding:40px;
+  transition:.4s;
+  background:#0d0d12;
+}
+
+.card:hover{
+  transform:translateY(-10px) scale(1.02);
+  border-color:#b8975a;
+}
+
+.card h3{
+  font-family:'Syne';
+  margin-bottom:10px;
+}
+
+/* SYSTEM PANEL */
+#systemUI{
+  position:fixed;
+  right:0;
+  top:0;
+  height:100%;
+  width:320px;
+  background:#0d0d12;
+  border-left:1px solid rgba(184,151,90,0.2);
+  padding:20px;
+}
+
+.sys-box{
+  border:1px solid rgba(184,151,90,0.2);
+  padding:20px;
+  margin-top:20px;
+  background:#07070a;
+}
+
+input{
+  width:100%;
+  padding:12px;
+  background:#111;
+  border:none;
+  color:#fff;
+  margin-top:10px;
+}
+
+button{
+  margin-top:10px;
+  width:100%;
+  padding:12px;
+  background:#b8975a;
+  border:none;
+  cursor:pointer;
+}
 
 /* PAYWALL */
 #paywall{
+  display:none;
   position:fixed;
   inset:0;
   background:rgba(0,0,0,0.95);
-  display:none;
+  z-index:9999;
   align-items:center;
   justify-content:center;
   flex-direction:column;
   text-align:center;
 }
 
-#paywall.show{display:flex}
-
-#paywall h2{
-  font-family:'Syne';
-  font-size:40px;
+#paywall h1{
   color:#b8975a;
+  font-family:'Syne';
 }
 
-#paywall button{
+.close{
   margin-top:20px;
-  padding:15px 30px;
+  padding:10px 30px;
   background:#b8975a;
-  border:none;
+  color:#000;
   cursor:pointer;
 }
-
-/* WHATSAPP */
-.wa-btn{
-  position:fixed;
-  bottom:70px;
-  right:25px;
-  width:55px;
-  height:55px;
-  border-radius:50%;
-  background:#25d366;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  box-shadow:0 4px 20px rgba(37,211,102,.4);
-}
-.wa-btn svg{width:26px;fill:#fff}
 </style>
 </head>
 
@@ -127,52 +187,101 @@ nav a:hover{color:#fff}
 <nav>
   <div>NOCTURNE</div>
   <div>
-    <a href="#">Services</a>
+    <a href="#services">Services</a>
     <a href="#">Work</a>
-    <a href="experiments.html">Experiments</a>
+    <a href="#">Experiments</a>
   </div>
 </nav>
 
 <!-- HERO -->
 <section id="hero">
-  <div class="hero">
+  <div class="hero-text">
     <h1>
       We design <span class="gold">identity</span><br>
       that feels expensive
     </h1>
-
-    <a href="#" class="btn" onclick="openPaywall()">Start Project</a>
+    <div class="btn" onclick="openPaywall()">Start Project</div>
   </div>
 </section>
 
-<!-- PAYWALL -->
-<div id="paywall">
-  <h2>Private Access</h2>
-  <p>Premium clients only</p>
-  <button onclick="closePaywall()">Close</button>
+<!-- SERVICES -->
+<section id="services">
+  <div class="grid">
+    <div class="card">
+      <h3>Brand Identity</h3>
+      <p>Luxury visual systems that command attention.</p>
+    </div>
+    <div class="card">
+      <h3>Web Design</h3>
+      <p>High-end digital experiences that convert.</p>
+    </div>
+    <div class="card">
+      <h3>Content</h3>
+      <p>Strategic visuals for social dominance.</p>
+    </div>
+    <div class="card">
+      <h3>Systems</h3>
+      <p>Automation + intelligence tools.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SYSTEM UI -->
+<div id="systemUI">
+  <h3 style="color:#b8975a">● System Active</h3>
+
+  <div class="sys-box">
+    <p>Analyses Run: <b id="count">0</b></p>
+  </div>
+
+  <div class="sys-box">
+    <p id="output">No analysis yet...</p>
+  </div>
+
+  <div class="sys-box">
+    <input id="input" placeholder="Enter brand idea...">
+    <button onclick="analyze()">Analyze</button>
+  </div>
 </div>
 
-<!-- TRIAL BANNER -->
-<div id="trialBanner">
-  <div>System Active <span>●</span></div>
-  <button onclick="openPaywall()">Upgrade</button>
+<!-- PAYWALL -->
+<div id="paywall">
+  <h1>Private Access</h1>
+  <p>Premium clients only</p>
+  <div class="close" onclick="closePaywall()">Close</div>
 </div>
 
 <!-- WHATSAPP -->
-<a href="https://wa.me/2347025689062" class="wa-btn" target="_blank">
-  <svg viewBox="0 0 32 32">
-    <path d="M16 .5C7.5.5.5 7.4.5 15.8c0 2.8.8 5.4 2.1 7.6L.5 31.5l8.4-2.1c2.1 1.2 4.5 1.9 7.1 1.9 8.5 0 15.5-6.9 15.5-15.3C31.5 7.4 24.5.5 16 .5z"/>
-  </svg>
-</a>
+<a href="https://wa.me/2347025689062" class="wa"></a>
 
-<!-- SCRIPT -->
 <script>
+let count = 0;
+
+function analyze(){
+  let input = document.getElementById("input").value;
+  let output = document.getElementById("output");
+
+  count++;
+  document.getElementById("count").innerText = count;
+
+  if(input === ""){
+    output.innerText = "Enter something...";
+    return;
+  }
+
+  output.innerText =
+    "Analyzing '"+input+"'...\n\n" +
+    "→ Market Position: Premium\n" +
+    "→ Brand Strength: High\n" +
+    "→ Recommendation: Scale aggressively";
+}
+
 function openPaywall(){
-  document.getElementById("paywall").classList.add("show");
+  document.getElementById("paywall").style.display = "flex";
 }
 
 function closePaywall(){
-  document.getElementById("paywall").classList.remove("show");
+  document.getElementById("paywall").style.display = "none";
 }
 </script>
 
