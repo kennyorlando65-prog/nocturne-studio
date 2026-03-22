@@ -4,35 +4,35 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>NOCTURNE STUDIO — Brand Identity & Web Design | Lagos</title>
-<meta name="description" content="Nocturne Studio — Brand identity, web design and social media content for startups, restaurants and personal brands. Based in Lagos, working globally.">
+<title>NOCTURNE STUDIO — Brand Identity & Web Design | Lagos </title>
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Syne:wght@400;700;800&family=DM+Mono&display=swap" rel="stylesheet">
 
 <style>
+*{margin:0;padding:0;box-sizing:border-box}
+
 body{
-  margin:0;
   background:#07070a;
   color:#f3efe6;
-  font-family:'Playfair Display', serif;
+  font-family:'Playfair Display',serif;
 }
 
 /* NAV */
 nav{
-  display:flex;
-  justify-content:space-between;
-  padding:20px 40px;
   position:fixed;
   width:100%;
-  background:#07070a;
+  display:flex;
+  justify-content:space-between;
+  padding:30px 60px;
   z-index:1000;
 }
 nav a{
-  color:#f3efe6;
+  color:#aaa;
   text-decoration:none;
-  margin-left:20px;
-  font-family:'DM Mono', monospace;
+  margin-left:25px;
+  font-family:'DM Mono';
 }
+nav a:hover{color:#fff}
 
 /* HERO */
 #hero{
@@ -41,66 +41,83 @@ nav a{
   align-items:center;
   justify-content:center;
   text-align:center;
-  flex-direction:column;
 }
 
-h1{
-  font-size:60px;
-  font-family:'Syne', sans-serif;
+.hero h1{
+  font-family:'Syne';
+  font-size:70px;
+  line-height:1;
 }
 
-.gold{
-  color:#b8975a;
-}
+.gold{color:#b8975a}
 
+/* BUTTON */
 .btn{
-  margin-top:20px;
-  padding:12px 30px;
+  margin-top:30px;
+  display:inline-block;
+  padding:14px 36px;
   background:#b8975a;
   color:#000;
   text-decoration:none;
   font-family:'DM Mono';
 }
 
-/* SECTION */
-.section{
-  padding:120px 40px;
-}
-
-/* SERVICES */
-.services{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:20px;
-}
-
-.card{
-  border:1px solid #333;
-  padding:30px;
-}
-
-/* PORTFOLIO */
-.portfolio{
-  display:flex;
-  gap:20px;
-  overflow:auto;
-}
-
-.project{
-  min-width:250px;
-  height:300px;
+/* TRIAL BANNER */
+#trialBanner{
+  position:fixed;
+  bottom:0;
+  width:100%;
   background:#111;
+  padding:10px 20px;
   display:flex;
-  align-items:end;
-  padding:20px;
+  justify-content:space-between;
+  align-items:center;
+}
+#trialBanner span{color:#b8975a}
+
+/* PAYWALL */
+#paywall{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.95);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  text-align:center;
 }
 
-/* FOOTER */
-footer{
-  padding:40px;
-  text-align:center;
-  border-top:1px solid #222;
+#paywall.show{display:flex}
+
+#paywall h2{
+  font-family:'Syne';
+  font-size:40px;
+  color:#b8975a;
 }
+
+#paywall button{
+  margin-top:20px;
+  padding:15px 30px;
+  background:#b8975a;
+  border:none;
+  cursor:pointer;
+}
+
+/* WHATSAPP */
+.wa-btn{
+  position:fixed;
+  bottom:70px;
+  right:25px;
+  width:55px;
+  height:55px;
+  border-radius:50%;
+  background:#25d366;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 4px 20px rgba(37,211,102,.4);
+}
+.wa-btn svg{width:26px;fill:#fff}
 </style>
 </head>
 
@@ -110,64 +127,54 @@ footer{
 <nav>
   <div>NOCTURNE</div>
   <div>
-    <a href="#services">Services</a>
-    <a href="#portfolio">Work</a>
+    <a href="#">Services</a>
+    <a href="#">Work</a>
     <a href="experiments.html">Experiments</a>
   </div>
 </nav>
 
 <!-- HERO -->
 <section id="hero">
-  <h1>
-    We design <span class="gold">identity</span><br>
-    that feels expensive
-  </h1>
+  <div class="hero">
+    <h1>
+      We design <span class="gold">identity</span><br>
+      that feels expensive
+    </h1>
 
-  <a href="#services" class="btn">Start Project</a>
-</section>
-
-<!-- SERVICES -->
-<section id="services" class="section">
-  <h2>Services</h2>
-
-  <div class="services">
-    <div class="card">
-      <h3>Brand Identity</h3>
-      <p>Logos, visual systems, brand direction.</p>
-    </div>
-
-    <div class="card">
-      <h3>Web Design</h3>
-      <p>High-end websites that convert.</p>
-    </div>
-
-    <div class="card">
-      <h3>Social Content</h3>
-      <p>Clean, premium social visuals.</p>
-    </div>
-
-    <div class="card">
-      <h3>Strategy</h3>
-      <p>Positioning and brand clarity.</p>
-    </div>
+    <a href="#" class="btn" onclick="openPaywall()">Start Project</a>
   </div>
 </section>
 
-<!-- PORTFOLIO -->
-<section id="portfolio" class="section">
-  <h2>Selected Work</h2>
+<!-- PAYWALL -->
+<div id="paywall">
+  <h2>Private Access</h2>
+  <p>Premium clients only</p>
+  <button onclick="closePaywall()">Close</button>
+</div>
 
-  <div class="portfolio">
-    <div class="project">Project 1</div>
-    <div class="project">Project 2</div>
-    <div class="project">Project 3</div>
-  </div>
-</section>
+<!-- TRIAL BANNER -->
+<div id="trialBanner">
+  <div>System Active <span>●</span></div>
+  <button onclick="openPaywall()">Upgrade</button>
+</div>
 
-<!-- FOOTER -->
-<footer>
-  © 2026 Nocturne Studio — Lagos
-</footer>
+<!-- WHATSAPP -->
+<a href="https://wa.me/2347025689062" class="wa-btn" target="_blank">
+  <svg viewBox="0 0 32 32">
+    <path d="M16 .5C7.5.5.5 7.4.5 15.8c0 2.8.8 5.4 2.1 7.6L.5 31.5l8.4-2.1c2.1 1.2 4.5 1.9 7.1 1.9 8.5 0 15.5-6.9 15.5-15.3C31.5 7.4 24.5.5 16 .5z"/>
+  </svg>
+</a>
+
+<!-- SCRIPT -->
+<script>
+function openPaywall(){
+  document.getElementById("paywall").classList.add("show");
+}
+
+function closePaywall(){
+  document.getElementById("paywall").classList.remove("show");
+}
+</script>
 
 </body>
 </html>
