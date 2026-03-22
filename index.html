@@ -25,7 +25,7 @@ font-family:'Playfair Display',serif;
 overflow-x:hidden;
 }
 
-/* GRID */
+/* GRID BACKGROUND */
 body::before{
 content:'';
 position:fixed;
@@ -118,7 +118,7 @@ font-family:'Syne';
 
 /* PORTFOLIO */
 .portfolio{
-padding:120px 40px;
+padding:140px 40px;
 }
 
 .slider{
@@ -130,69 +130,98 @@ scroll-behavior:smooth;
 
 .project{
 min-width:300px;
-height:400px;
-background:#0d0d12;
+height:420px;
+border-radius:10px;
 padding:20px;
 display:flex;
 flex-direction:column;
 justify-content:flex-end;
 position:relative;
 overflow:hidden;
+background:#111;
 transition:.4s;
 }
 
+/* VISUAL LAYERS */
 .project::before{
 content:'';
 position:absolute;
 inset:0;
-background:linear-gradient(to top,rgba(0,0,0,0.8),transparent);
+background:linear-gradient(135deg,#1a1a22,#000);
+}
+
+.project::after{
+content:'';
+position:absolute;
+inset:0;
+background:radial-gradient(circle at top,rgba(184,151,90,0.2),transparent 70%);
+opacity:0;
+transition:.4s;
+}
+
+.project:hover::after{
+opacity:1;
 }
 
 .project:hover{
-transform:scale(1.04);
+transform:scale(1.05);
 }
 
 .project h3{
 font-family:'Syne';
 font-size:20px;
+z-index:2;
 }
 
 .project span{
 font-size:12px;
 color:var(--gold);
 font-family:'DM Mono';
+z-index:2;
 }
 
-/* TESTIMONIALS */
+/* TESTIMONIAL GRID */
 .testimonials{
-padding:120px 40px;
-text-align:center;
+padding:140px 40px;
 }
 
-.testimonial{
-max-width:600px;
-margin:auto;
+.test-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:24px;
+}
+
+.test-card{
+background:#0d0d12;
+padding:24px;
+border:1px solid rgba(255,255,255,0.05);
+transition:.4s;
 opacity:0;
-transition:1s;
-position:absolute;
-left:0;right:0;
+transform:translateY(40px);
 }
 
-.testimonial.active{
+.test-card.show{
 opacity:1;
-position:relative;
+transform:translateY(0);
 }
 
-.testimonial p{
-font-size:18px;
-line-height:1.6;
+.test-card:hover{
+border-color:var(--gold);
+transform:translateY(-6px);
+box-shadow:0 10px 30px rgba(184,151,90,0.15);
+}
+
+.test-card p{
 color:#ccc;
+font-size:15px;
+line-height:1.6;
 }
 
-.testimonial h4{
-margin-top:20px;
+.test-card h4{
+margin-top:16px;
 font-family:'Syne';
 color:var(--gold);
+font-size:14px;
 }
 
 /* WHATSAPP */
@@ -222,6 +251,7 @@ background:var(--gold);
 position:fixed;
 pointer-events:none;
 transform:translate(-50%,-50%);
+transition:.1s;
 }
 </style>
 </head>
@@ -249,7 +279,7 @@ that feel expensive
 Premium brand identity and digital systems for founders, restaurants and high-value businesses in Lagos.
 </p>
 
-<a href="https://wa.me/2347025689062?text=Hello%20Nocturne%20Studio%2C%20I%20want%20to%20start%20a%20project.%0A%0ABrand%20Name%3A%0ABudget%3A%0ATimeline%3A" class="btn">START PROJECT</a>
+<a href="https://wa.me/2347025689062?text=Hello%20Nocturne%20Studio%2C%20I%20want%20to%20start%20a%20project.%0ABrand%20Name%3A%0ABudget%3A%0ATimeline%3A" class="btn">START PROJECT</a>
 
 <a href="#work" class="btn btn-outline">VIEW WORK</a>
 
@@ -266,48 +296,28 @@ Premium brand identity and digital systems for founders, restaurants and high-va
 <h2 style="font-family:'Syne';margin-bottom:40px;">Selected Work</h2>
 
 <div class="slider">
-<div class="project">
-<span>Brand Identity • 2025</span>
-<h3>Luxury Restaurant</h3>
-</div>
-
-<div class="project">
-<span>UI System • 2025</span>
-<h3>Fintech Startup</h3>
-</div>
-
-<div class="project">
-<span>Rebrand • 2024</span>
-<h3>Fashion House</h3>
-</div>
-
-<div class="project">
-<span>Web Design • 2025</span>
-<h3>Real Estate Group</h3>
-</div>
+<div class="project"><span>Brand • 2025</span><h3>Luxury Restaurant</h3></div>
+<div class="project"><span>UI • 2025</span><h3>Fintech Startup</h3></div>
+<div class="project"><span>Rebrand • 2024</span><h3>Fashion House</h3></div>
+<div class="project"><span>Web • 2025</span><h3>Real Estate</h3></div>
 </div>
 </section>
 
 <section id="testimonials" class="testimonials">
-<h2 style="font-family:'Syne';margin-bottom:60px;">Client Results</h2>
+<h2 style="font-family:'Syne';margin-bottom:50px;">Client Results</h2>
 
-<div class="testimonial active">
-<p>"They completely repositioned our brand. We went from average to premium overnight."</p>
-<h4>— T. Okonkwo, Founder</h4>
+<div class="test-grid">
+<div class="test-card"><p>"We repositioned our entire brand and doubled pricing."</p><h4>— T. Okonkwo</h4></div>
+<div class="test-card"><p>"Their attention to detail is insane."</p><h4>— Adaeze K.</h4></div>
+<div class="test-card"><p>"We now look like a global company."</p><h4>— Ibrahim S.</h4></div>
+<div class="test-card"><p>"Best investment we've made."</p><h4>— Daniel M.</h4></div>
+<div class="test-card"><p>"They understand premium positioning."</p><h4>— Chika N.</h4></div>
+<div class="test-card"><p>"Our conversions increased massively."</p><h4>— Zainab A.</h4></div>
 </div>
 
-<div class="testimonial">
-<p>"Nocturne understands value perception. Our pricing doubled after the redesign."</p>
-<h4>— Adaeze K., Creative Director</h4>
-</div>
-
-<div class="testimonial">
-<p>"The level of detail and execution is unmatched. Worth every naira."</p>
-<h4>— Ibrahim S., CEO</h4>
-</div>
 </section>
 
-<a href="https://wa.me/2347025689062?text=Hello%20Nocturne%20Studio%2C%20I%20want%20to%20start%20a%20project.%0A%0ABrand%20Name%3A%0ABudget%3A%0ATimeline%3A" class="wa">💬</a>
+<a href="https://wa.me/2347025689062?text=Hello%20Nocturne%20Studio%2C%20I%20want%20to%20start%20a%20project.%0ABrand%20Name%3A%0ABudget%3A%0ATimeline%3A" class="wa">💬</a>
 
 <script>
 /* CURSOR */
@@ -331,15 +341,16 @@ animate('clients',64);
 animate('projects',180);
 animate('accuracy',98);
 
-/* TESTIMONIAL ROTATION */
-let t=0;
-const items=document.querySelectorAll('.testimonial');
-
-setInterval(()=>{
-items[t].classList.remove('active');
-t=(t+1)%items.length;
-items[t].classList.add('active');
-},4000);
+/* SCROLL REVEAL */
+const cards=document.querySelectorAll('.test-card');
+window.addEventListener('scroll',()=>{
+cards.forEach(card=>{
+let top=card.getBoundingClientRect().top;
+if(top<window.innerHeight-50){
+card.classList.add('show');
+}
+});
+});
 </script>
 
 </body>
