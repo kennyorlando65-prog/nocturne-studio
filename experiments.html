@@ -28,7 +28,7 @@ h1{
   padding:20px;
   font-size:14px;
   line-height:1.8;
-  min-height:120px;
+  min-height:150px;
 }
 
 /* CARDS */
@@ -60,9 +60,19 @@ h1{
   50%{opacity:0.3;}
 }
 
+/* INPUT */
+input{
+  width:100%;
+  padding:12px;
+  background:#000;
+  border:1px solid rgba(0,255,159,0.3);
+  color:#00ff9f;
+  margin-top:20px;
+}
+
 /* BUTTON */
 button{
-  margin-top:30px;
+  margin-top:15px;
   padding:12px 20px;
   background:#00ff9f;
   border:none;
@@ -97,12 +107,83 @@ button{
 
 <button onclick="runSimulation()">Run Simulation</button>
 
-<!-- LINK TO YOUR JS FILE -->
-<script src="systems.js"></script>
+<input id="userInput" type="text" placeholder="Enter text to analyze...">
+<button onclick="analyzeInput()">Analyze</button>
 
-<!-- START SYSTEM -->
 <script>
+const logs = [
+  "initializing systems...",
+  "loading AI modules...",
+  "connecting to automation layer...",
+  "analyzing patterns...",
+  "system ready."
+];
+
+let i = 0;
+const terminal = document.getElementById("terminal");
+
+/* SYSTEM BOOT */
+function startSystem(){
+  function typeLog(){
+    if(i < logs.length){
+      const line = document.createElement("div");
+      line.textContent = "> " + logs[i];
+      terminal.appendChild(line);
+      i++;
+      setTimeout(typeLog, 700);
+    }
+  }
+  typeLog();
+}
+
 startSystem();
+
+/* SIMULATION BUTTON */
+function runSimulation(){
+  const line = document.createElement("div");
+  line.textContent = "> simulation complete ✔";
+  terminal.appendChild(line);
+}
+
+/* AI ANALYZER */
+function analyzeInput(){
+  const input = document.getElementById("userInput").value;
+  if(!input) return;
+
+  const steps = [
+    "analyzing tone...",
+    "detecting intent...",
+    "processing patterns...",
+    "finalizing results..."
+  ];
+
+  let j = 0;
+
+  function process(){
+    if(j < steps.length){
+      const line = document.createElement("div");
+      line.textContent = "> " + steps[j];
+      terminal.appendChild(line);
+      j++;
+      setTimeout(process, 500);
+    } else {
+      const result = document.createElement("div");
+      result.style.color = "#00ff9f";
+
+      if(input.toLowerCase().includes("love")){
+        result.textContent = "> RESULT: Positive emotional intent detected.";
+      } else if(input.toLowerCase().includes("hate")){
+        result.textContent = "> RESULT: Negative sentiment detected.";
+      } else {
+        result.textContent = "> RESULT: Neutral / analytical tone.";
+      }
+
+      terminal.appendChild(result);
+    }
+  }
+
+  process();
+}
 </script>
 
 </body>
