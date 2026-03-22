@@ -1,0 +1,35 @@
+body{
+  background:#05050a;
+  color:#eaeaea;
+  font-family:monospace;
+  padding:20px;
+}
+
+h1{
+  color:#00ff9f;
+}
+
+.terminal, .result{
+  background:#000;
+  border:1px solid rgba(0,255,159,0.2);
+  padding:15px;
+  margin-top:15px;
+}
+
+input{
+  width:100%;
+  padding:10px;
+  margin-top:15px;
+  background:#000;
+  border:1px solid rgba(0,255,159,0.3);
+  color:#00ff9f;
+}
+
+button{
+  width:100%;
+  margin-top:10px;
+  padding:12px;
+  background:#00ff9f;
+  border:none;
+  color:#000;
+}
