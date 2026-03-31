@@ -1,0 +1,1720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOCTURNE STUDIO — Brand Identity · Web Design · Lagos</title>
+<meta name="description" content="Nocturne Studio — Brand identity, web design and social media content for startups, restaurants and personal brands. Based in Lagos, working globally.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;600;700;800&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+/* ─── RESET & ROOT ─────────────────────────────────────────────── */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --ink:#07070a;
+  --ink2:#0d0d12;
+  --paper:#f3efe6;
+  --gold:#b8975a;
+  --gold-light:#d4af6e;
+  --gold-dim:rgba(184,151,90,0.15);
+  --dim:#111116;
+  --mid:#1a1a22;
+  --border:rgba(184,151,90,0.14);
+  --border2:rgba(184,151,90,0.25);
+  --text-main:rgba(243,239,230,0.92);
+  --text-mid:rgba(243,239,230,0.55);
+  --text-low:rgba(243,239,230,0.28);
+  --green:#c8a96e;
+  --red:#ef4444;
+  /* FONTS */
+  --serif:'Cormorant Garamond','Cormorant',Georgia,serif;
+  --sans:'Outfit',system-ui,sans-serif;
+  --mono:'DM Mono',monospace;
+  /* SPACING — generous */
+  --section-y:110px;
+  --section-x:72px;
+  --ease:cubic-bezier(0.76,0,0.24,1);
+}
+
+/* ─── CURSOR ─────────────────────────────────────────────────── */
+#cur{position:fixed;top:0;left:0;z-index:9999;pointer-events:none}
+#cd{width:6px;height:6px;background:var(--paper);border-radius:50%;position:absolute;transform:translate(-50%,-50%);transition:background .3s}
+#cr{width:34px;height:34px;border:1px solid rgba(184,151,90,0.55);border-radius:50%;position:absolute;transform:translate(-50%,-50%);transition:width .35s var(--ease),height .35s var(--ease),border-color .35s}
+body.hov #cr{width:54px;height:54px;border-color:var(--gold)}
+body.hov #cd{background:var(--gold)}
+
+html{scroll-behavior:smooth;font-size:16px}
+body{
+  background:var(--ink);
+  color:var(--text-main);
+  font-family:var(--serif);
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ─── GRAIN OVERLAY ───────────────────────────────────────────── */
+body::after{
+  content:'';position:fixed;inset:0;z-index:9990;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)' opacity='0.038'/%3E%3C/svg%3E");
+  opacity:.42;mix-blend-mode:overlay;
+}
+
+/* ─── WHATSAPP FLOAT ──────────────────────────────────────────── */
+.wa-btn{
+  position:fixed;bottom:60px;right:24px;z-index:390;
+  width:52px;height:52px;border-radius:50%;background:#25d366;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 20px rgba(37,211,102,.35);
+  text-decoration:none;
+  transition:transform .3s,box-shadow .3s;
+}
+.wa-btn:hover{transform:scale(1.1);box-shadow:0 6px 28px rgba(37,211,102,.5)}
+.wa-btn svg{width:24px;height:24px;fill:#fff}
+
+/* ─── NAV ─────────────────────────────────────────────────────── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:32px var(--section-x);
+  transition:padding .5s var(--ease),background .5s,border-color .5s;
+  border-bottom:1px solid transparent;
+}
+nav.scrolled{
+  background:rgba(7,7,10,.94);
+  backdrop-filter:blur(18px);
+  padding:18px var(--section-x);
+  border-bottom-color:var(--border);
+}
+.nav-logo{
+  font-family:var(--sans);font-weight:800;
+  font-size:1rem;letter-spacing:.28em;
+  text-decoration:none;color:var(--paper);
+}
+.nav-logo b{color:var(--gold)}
+.nav-links{display:flex;gap:40px;list-style:none}
+.nav-links a{
+  font-family:var(--mono);font-size:.62rem;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--text-low);
+  text-decoration:none;transition:color .3s;position:relative;
+}
+.nav-links a::after{
+  content:'';position:absolute;bottom:-4px;left:0;
+  width:0;height:1px;background:var(--gold);
+  transition:width .35s var(--ease);
+}
+.nav-links a:hover{color:var(--paper)}
+.nav-links a:hover::after{width:100%}
+.nav-cta{
+  font-family:var(--mono);font-size:.6rem;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--ink);background:var(--gold);
+  padding:12px 28px;text-decoration:none;
+  transition:background .3s,transform .2s;display:inline-block;
+}
+.nav-cta:hover{background:var(--paper);transform:translateY(-1px)}
+
+/* hamburger */
+.hbg{display:none;flex-direction:column;gap:5px;background:none;border:none;padding:6px;cursor:pointer}
+.hbg span{display:block;width:24px;height:1px;background:var(--paper);transition:transform .35s,opacity .35s}
+.hbg.open span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.hbg.open span:nth-child(2){opacity:0}
+.hbg.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+.mob-menu{
+  display:none;position:fixed;inset:0;z-index:999;
+  background:var(--dim);flex-direction:column;
+  align-items:center;justify-content:center;gap:32px;
+}
+.mob-menu.open{display:flex}
+.mob-menu a{
+  font-family:var(--sans);font-weight:800;
+  font-size:clamp(2rem,8vw,3rem);
+  text-transform:uppercase;color:var(--paper);
+  text-decoration:none;letter-spacing:-.01em;
+  transition:color .3s;
+}
+.mob-menu a:hover{color:var(--gold)}
+
+/* ─── HERO ─────────────────────────────────────────────────────── */
+#hero{
+  height:100vh;min-height:680px;
+  display:grid;grid-template-columns:55% 45%;
+  position:relative;overflow:hidden;
+}
+
+/* LEFT — gold accent bar */
+.hero-left{
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:0 52px 88px var(--section-x);
+  position:relative;z-index:2;
+}
+/* gold accent bar on left edge of hero */
+.hero-left::before{
+  content:'';
+  position:absolute;top:0;left:0;bottom:0;
+  width:4px;
+  background:linear-gradient(to bottom,transparent 0%,var(--gold) 30%,var(--gold) 70%,transparent 100%);
+  opacity:.6;
+}
+
+/* RIGHT — animated visual */
+.hero-right{position:relative;overflow:hidden}
+.hero-visual{
+  position:absolute;inset:0;
+  background:linear-gradient(155deg,#0e0c09 0%,#1c1408 40%,#2e1c00 65%,#3d2200 100%);
+}
+.hero-grid{
+  position:absolute;inset:0;
+  background-image:
+    repeating-linear-gradient(0deg,transparent,transparent 79px,rgba(184,151,90,.05) 80px),
+    repeating-linear-gradient(90deg,transparent,transparent 79px,rgba(184,151,90,.05) 80px);
+  animation:gridPan 28s linear infinite;
+}
+@keyframes gridPan{0%{transform:translate(0,0)}100%{transform:translate(80px,80px)}}
+.hero-wm{
+  position:absolute;bottom:28px;left:50%;transform:translateX(-50%);
+  font-family:var(--sans);font-weight:800;
+  font-size:clamp(56px,11vw,148px);
+  color:rgba(184,151,90,.055);
+  white-space:nowrap;letter-spacing:.06em;
+  pointer-events:none;user-select:none;
+}
+.hero-ring{
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  width:280px;height:280px;border-radius:50%;
+  border:1px solid rgba(184,151,90,.1);
+  animation:ringPulse 4.5s ease-in-out infinite;
+}
+.hero-ring-2{width:170px;height:170px;animation-delay:-2.2s}
+.hero-ring-3{width:380px;height:380px;animation-delay:-1s;border-color:rgba(184,151,90,.05)}
+@keyframes ringPulse{
+  0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.5}
+  50%{transform:translate(-50%,-50%) scale(1.06);opacity:.9}
+}
+
+/* Hero text */
+.hero-eyebrow{
+  font-family:var(--mono);font-size:.6rem;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--gold);
+  margin-bottom:22px;
+  animation:fadeUp .9s .15s both;
+}
+.hero-h1{
+  font-family:var(--sans);font-weight:800;
+  font-size:clamp(52px,7.5vw,108px);
+  line-height:.92;letter-spacing:-.025em;
+  text-transform:uppercase;
+  animation:fadeUp .9s .3s both;
+}
+.hero-h1 em{
+  font-family:var(--serif);font-style:italic;
+  font-weight:300;color:var(--gold);
+  font-size:.95em;display:block;
+  text-transform:none;letter-spacing:.02em;
+  margin:.05em 0;
+}
+.hero-sub{
+  font-family:var(--serif);font-style:italic;
+  font-size:clamp(.9rem,1.25vw,1.08rem);
+  color:var(--text-mid);line-height:1.82;
+  max-width:380px;margin-top:28px;
+  animation:fadeUp .9s .45s both;
+}
+.hero-sub b{color:var(--gold);font-style:normal;font-weight:600}
+.hero-actions{
+  display:flex;gap:16px;align-items:center;
+  margin-top:44px;flex-wrap:wrap;
+  animation:fadeUp .9s .6s both;
+}
+.btn-primary{
+  font-family:var(--mono);font-size:.62rem;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--ink);background:var(--gold);
+  border:none;padding:15px 36px;text-decoration:none;
+  display:inline-block;transition:background .3s,transform .2s;
+  clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px));
+}
+.btn-primary:hover{background:var(--paper);transform:translateY(-2px)}
+.btn-whatsapp{
+  font-family:var(--mono);font-size:.62rem;letter-spacing:.2em;
+  text-transform:uppercase;color:#fff;background:#25d366;
+  border:none;padding:15px 28px;text-decoration:none;
+  display:inline-flex;align-items:center;gap:8px;
+  transition:background .3s,transform .2s;
+}
+.btn-whatsapp:hover{background:#1da851;transform:translateY(-2px)}
+.btn-whatsapp svg{width:14px;height:14px;fill:#fff;flex-shrink:0}
+.hero-scroll-ind{
+  position:absolute;bottom:32px;right:40px;z-index:3;
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  animation:fadeIn 1s 1.4s both;
+}
+.hero-scroll-ind p{
+  font-family:var(--mono);font-size:.52rem;letter-spacing:.3em;
+  text-transform:uppercase;color:var(--text-low);writing-mode:vertical-rl;
+}
+.scroll-line{
+  width:1px;height:52px;
+  background:linear-gradient(to bottom,var(--gold),transparent);
+  animation:scrollAnim 2.4s ease-in-out infinite;
+}
+@keyframes scrollAnim{0%,100%{transform:scaleY(1);opacity:1}50%{transform:scaleY(.45);opacity:.3}}
+
+/* ─── MARQUEE ─────────────────────────────────────────────────── */
+.marquee-wrap{background:var(--gold);padding:13px 0;overflow:hidden;white-space:nowrap}
+.marquee-inner{display:inline-flex;gap:80px;animation:marquee 32s linear infinite}
+.marquee-item{
+  font-family:var(--mono);font-size:.65rem;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--ink);
+  display:flex;align-items:center;gap:20px;
+}
+.marquee-item::before{content:'◈';font-size:.5rem}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* ─── OFFER BANNER ────────────────────────────────────────────── */
+.offer-banner{
+  background:linear-gradient(90deg,#120d00,#1e1600,#120d00);
+  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  padding:18px var(--section-x);
+  display:flex;align-items:center;justify-content:center;
+  gap:24px;flex-wrap:wrap;text-align:center;
+}
+.offer-pill{
+  background:var(--gold);color:var(--ink);
+  font-family:var(--mono);font-size:.56rem;letter-spacing:.18em;
+  text-transform:uppercase;padding:5px 14px;flex-shrink:0;
+}
+.offer-text{font-family:var(--serif);font-style:italic;color:var(--text-mid);font-size:.94rem}
+.offer-text b{color:var(--gold);font-style:normal}
+.offer-link{
+  font-family:var(--mono);font-size:.58rem;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--gold);text-decoration:none;
+  display:flex;align-items:center;gap:6px;transition:gap .3s;white-space:nowrap;
+}
+.offer-link:hover{gap:10px}
+
+/* ─── SECTION COMMONS ─────────────────────────────────────────── */
+.section{padding:var(--section-y) var(--section-x)}
+.sec-eyebrow{
+  font-family:var(--mono);font-size:.6rem;letter-spacing:.3em;
+  text-transform:uppercase;color:var(--gold);
+  display:flex;align-items:center;gap:14px;
+  margin-bottom:16px;
+}
+.sec-eyebrow::before{content:'';display:block;width:28px;height:1px;background:var(--gold)}
+.sec-title{
+  font-family:var(--sans);font-weight:800;
+  font-size:clamp(42px,6.5vw,86px);
+  line-height:.88;letter-spacing:-.03em;
+  text-transform:uppercase;
+}
+.sec-title em{
+  font-family:var(--serif);font-style:italic;
+  font-weight:300;color:var(--gold);
+  font-size:.88em;text-transform:none;letter-spacing:.02em;
+}
+.rule{height:1px;background:var(--border);margin:80px 0}
+
+/* ─── SERVICES ────────────────────────────────────────────────── */
+#services{background:var(--dim)}
+.services-intro{
+  display:flex;justify-content:space-between;align-items:flex-end;
+  margin-bottom:72px;gap:40px;flex-wrap:wrap;
+}
+.services-desc{
+  font-family:var(--serif);font-style:italic;
+  font-size:1rem;line-height:1.82;color:var(--text-mid);
+  max-width:320px;
+}
+.services-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px}
+.srv-card{
+  background:var(--ink);border:1px solid var(--border);
+  padding:52px 48px;position:relative;overflow:hidden;
+  transition:border-color .45s,background .45s;
+}
+.srv-card::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(145deg,rgba(184,151,90,.07) 0%,transparent 55%);
+  opacity:0;transition:opacity .45s;
+}
+.srv-card:hover{border-color:var(--border2);background:#0b0b10}
+.srv-card:hover::before{opacity:1}
+.srv-num{
+  font-family:var(--sans);font-weight:800;
+  font-size:4.5rem;color:rgba(184,151,90,.06);
+  line-height:1;position:absolute;top:18px;right:22px;
+  transition:color .45s;
+}
+.srv-card:hover .srv-num{color:rgba(184,151,90,.14)}
+.srv-name{
+  font-family:var(--sans);font-weight:800;
+  font-size:clamp(1.25rem,2.2vw,1.75rem);
+  text-transform:uppercase;letter-spacing:.02em;
+  margin-bottom:14px;margin-top:4px;
+  transition:color .35s;
+}
+.srv-card:hover .srv-name{color:var(--gold)}
+.srv-body{
+  font-family:var(--serif);font-style:italic;
+  font-size:.94rem;line-height:1.78;color:var(--text-low);
+  transition:color .35s;
+}
+.srv-card:hover .srv-body{color:var(--text-mid)}
+.srv-pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
+.srv-pill{
+  font-family:var(--mono);font-size:.55rem;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--text-low);
+  border:1px solid var(--border);padding:5px 12px;
+  transition:all .35s;
+}
+.srv-card:hover .srv-pill{color:var(--gold);border-color:var(--border2)}
+
+/* ─── PORTFOLIO ───────────────────────────────────────────────── */
+#portfolio{padding:var(--section-y) 0;overflow:hidden}
+.portfolio-head{
+  padding:0 var(--section-x);
+  display:flex;justify-content:space-between;
+  align-items:flex-end;margin-bottom:56px;
+  flex-wrap:wrap;gap:24px;
+}
+.car-controls{display:flex;gap:10px}
+.car-btn{
+  width:50px;height:50px;
+  border:1px solid var(--border);background:none;color:var(--paper);
+  font-size:1rem;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:all .3s;font-family:var(--mono);
+}
+.car-btn:hover{background:var(--gold);border-color:var(--gold);color:var(--ink)}
+.car-overflow{overflow:hidden}
+.car-track{
+  display:flex;gap:22px;
+  padding:0 var(--section-x);
+  transition:transform .75s var(--ease);
+  will-change:transform;
+}
+/* PROJECT CARDS */
+.proj-card{flex:0 0 calc(44vw - 44px);min-width:300px;cursor:pointer}
+.proj-visual{
+  position:relative;
+  padding-bottom:100%; /* 1:1 square — less tall */
+  overflow:hidden;
+}
+.proj-bg{
+  position:absolute;inset:0;
+  transition:transform .75s var(--ease);
+}
+.proj-card:hover .proj-bg{transform:scale(1.055)}
+.proj-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(7,7,10,.88) 0%,transparent 52%);
+  opacity:0;transition:opacity .4s;
+  display:flex;align-items:flex-end;padding:28px;
+}
+.proj-card:hover .proj-overlay{opacity:1}
+.proj-tag{
+  font-family:var(--mono);font-size:.58rem;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--ink);background:var(--gold);
+  padding:9px 20px;transform:translateY(12px);
+  transition:transform .4s .05s;
+}
+.proj-card:hover .proj-tag{transform:translateY(0)}
+.proj-info{padding:20px 0 0;display:flex;justify-content:space-between;align-items:flex-start}
+.proj-name{font-family:var(--serif);font-size:1.15rem;font-weight:400}
+.proj-cat{font-family:var(--mono);font-size:.55rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-top:4px}
+.proj-year{font-family:var(--mono);font-size:.6rem;color:var(--text-low)}
+
+/* OLD MONEY PLACEHOLDER VISUALS */
+.pm-auric{
+  background:
+    radial-gradient(ellipse at 30% 40%, rgba(184,151,90,.18) 0%, transparent 60%),
+    linear-gradient(165deg,#0e0c08 0%,#1a1508 30%,#231c0a 55%,#2a2110 80%,#1a1508 100%);
+}
+.pm-crest{
+  background:
+    radial-gradient(ellipse at 70% 60%, rgba(180,160,120,.12) 0%, transparent 55%),
+    linear-gradient(155deg,#0a0e14 0%,#0e1520 35%,#142038 60%,#1a2840 80%,#0e1520 100%);
+}
+.pm-maison{
+  background:
+    radial-gradient(ellipse at 50% 30%, rgba(160,140,110,.1) 0%, transparent 50%),
+    linear-gradient(145deg,#100c0a 0%,#1c1410 30%,#281c0e 55%,#1c1410 100%);
+}
+.pm-volta{
+  background:
+    radial-gradient(ellipse at 40% 70%, rgba(100,80,140,.15) 0%, transparent 55%),
+    linear-gradient(155deg,#0c0a14 0%,#141020 35%,#1c1830 60%,#141020 100%);
+}
+.pm-jauto{
+  background:
+    radial-gradient(ellipse at 60% 40%, rgba(0,140,200,.12) 0%, transparent 55%),
+    linear-gradient(155deg,#06080f 0%,#0a0e1a 35%,#0e1628 60%,#0a0e1a 100%);
+}
+
+/* Placeholder art inside each card */
+.proj-art{
+  position:absolute;inset:0;
+  display:flex;align-items:center;justify-content:center;
+  flex-direction:column;gap:14px;
+}
+.proj-art-line{
+  width:48px;height:1px;background:rgba(184,151,90,.4);
+}
+.proj-art-name{
+  font-family:var(--sans);font-weight:800;
+  font-size:clamp(1.4rem,3vw,2.2rem);
+  letter-spacing:.22em;color:rgba(243,239,230,.18);
+  text-transform:uppercase;text-align:center;
+}
+.proj-art-mark{
+  font-family:var(--serif);font-style:italic;
+  font-size:.75rem;letter-spacing:.2em;
+  color:rgba(184,151,90,.35);
+}
+
+/* ─── FREE OFFER SECTION ──────────────────────────────────────── */
+#free-offer{
+  background:
+    linear-gradient(135deg,#0e0a00 0%,#181200 45%,#0e0a00 100%);
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+}
+.free-inner{display:grid;grid-template-columns:1fr 1fr;gap:96px;align-items:start}
+.free-avail{
+  display:inline-flex;align-items:center;gap:10px;
+  background:rgba(34,197,94,.07);border:1px solid rgba(34,197,94,.2);
+  padding:9px 18px;margin-bottom:28px;
+}
+.free-avail-dot{width:7px;height:7px;border-radius:50%;background:#4ade80;animation:tbp 2s infinite}
+.free-avail-txt{font-family:var(--mono);font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--green)}
+.free-heading{
+  font-family:var(--sans);font-weight:800;
+  font-size:clamp(36px,5.5vw,72px);
+  line-height:.9;text-transform:uppercase;margin-bottom:22px;
+}
+.free-heading b{color:var(--gold)}
+.free-body{
+  font-family:var(--serif);font-style:italic;
+  font-size:.98rem;line-height:1.82;color:var(--text-mid);margin-bottom:36px;
+}
+.free-steps{display:flex;flex-direction:column;gap:0}
+.free-step{
+  display:flex;gap:20px;padding:18px 0;
+  border-bottom:1px solid var(--border);
+}
+.free-step:last-child{border:none}
+.fs-n{
+  font-family:var(--sans);font-weight:800;
+  font-size:1.5rem;color:rgba(184,151,90,.22);
+  line-height:1;flex-shrink:0;width:26px;
+}
+.fs-title{font-family:var(--sans);font-weight:700;font-size:.88rem;text-transform:uppercase;letter-spacing:.05em;margin-bottom:3px}
+.fs-desc{font-family:var(--serif);font-style:italic;font-size:.85rem;color:var(--text-low);line-height:1.62}
+.free-ctas{display:flex;gap:14px;flex-wrap:wrap;margin-top:36px}
+.free-proof{
+  background:rgba(184,151,90,.04);border:1px solid var(--border);
+  padding:36px;
+}
+.fp-head{
+  font-family:var(--mono);font-size:.58rem;letter-spacing:.24em;
+  text-transform:uppercase;color:var(--gold);margin-bottom:24px;
+}
+.fp-row{
+  display:flex;gap:14px;align-items:flex-start;
+  margin-bottom:18px;padding-bottom:18px;
+  border-bottom:1px solid var(--border);
+}
+.fp-row:last-child{border:none;margin:0;padding:0}
+.fp-icon{color:var(--gold);flex-shrink:0;font-size:.9rem;margin-top:2px}
+.fp-text{font-family:var(--serif);font-style:italic;font-size:.9rem;color:var(--text-low);line-height:1.58}
+.fp-text b{color:var(--text-main);font-style:normal;font-weight:600}
+
+/* ─── PRICING ─────────────────────────────────────────────────── */
+#pricing{}
+.pricing-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:2px;margin-top:60px;
+}
+.price-card{
+  border:1px solid var(--border);padding:52px 36px;
+  position:relative;transition:all .4s;
+}
+.price-card.featured{border-color:var(--gold);background:rgba(184,151,90,.03)}
+.price-card:not(.featured):hover{border-color:var(--border2);background:rgba(184,151,90,.02)}
+.price-badge{
+  position:absolute;top:-1px;left:32px;
+  background:var(--gold);color:var(--ink);
+  font-family:var(--mono);font-size:.52rem;letter-spacing:.2em;
+  text-transform:uppercase;padding:4px 12px;
+}
+.price-tier{font-family:var(--mono);font-size:.58rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.price-name{font-family:var(--sans);font-weight:800;font-size:1.45rem;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px}
+.price-tagline{font-family:var(--serif);font-style:italic;color:var(--text-low);font-size:.88rem;margin-bottom:26px;margin-top:8px}
+.price-amount{font-family:var(--sans);font-weight:800;font-size:2.7rem;color:var(--gold);line-height:1;letter-spacing:-.02em}
+.price-timeline{font-family:var(--mono);font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:var(--text-low);margin-top:4px;margin-bottom:28px}
+.price-divider{height:1px;background:var(--border);margin-bottom:24px}
+.price-features{list-style:none;display:flex;flex-direction:column;gap:12px;margin-bottom:36px}
+.price-features li{
+  font-family:var(--serif);font-size:.92rem;color:var(--text-mid);
+  display:flex;align-items:flex-start;gap:10px;line-height:1.5;
+}
+.price-features li::before{content:'→';color:var(--gold);font-family:var(--mono);font-size:.72rem;flex-shrink:0;margin-top:3px}
+.price-btn{
+  width:100%;background:transparent;border:1px solid var(--border);
+  color:var(--text-low);font-family:var(--mono);font-size:.6rem;
+  letter-spacing:.2em;text-transform:uppercase;padding:14px;
+  cursor:pointer;transition:all .35s;display:block;text-align:center;text-decoration:none;
+}
+.price-btn:hover,.price-card.featured .price-btn{background:var(--gold);border-color:var(--gold);color:var(--ink)}
+.pricing-note{
+  font-family:var(--serif);font-style:italic;
+  font-size:.88rem;color:var(--text-low);
+  text-align:center;margin-top:36px;
+}
+
+/* ─── TESTIMONIALS — MASONRY ──────────────────────────────────── */
+#testimonials{background:var(--dim)}
+.testi-grid{
+  margin-top:72px;
+  columns:3;column-gap:18px;
+}
+.testi-card{
+  background:var(--ink);border:1px solid var(--border);
+  padding:36px;break-inside:avoid;
+  margin-bottom:18px;display:block;
+  position:relative;overflow:hidden;
+  transition:border-color .4s;
+}
+.testi-card:hover{border-color:var(--border2)}
+.testi-quote-mark{
+  font-family:var(--serif);font-size:5rem;
+  color:var(--gold);opacity:.09;
+  position:absolute;top:-6px;left:16px;
+  line-height:1;
+}
+.testi-stars{color:var(--gold);font-size:.75rem;margin-bottom:10px;letter-spacing:2px}
+.testi-text{
+  font-family:var(--serif);font-style:italic;
+  font-size:.95rem;line-height:1.82;color:var(--text-mid);
+  position:relative;z-index:1;margin-bottom:24px;
+}
+.testi-author{display:flex;align-items:center;gap:14px}
+.testi-avatar{
+  width:42px;height:42px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--sans);font-weight:800;font-size:.85rem;
+  color:var(--ink);flex-shrink:0;overflow:hidden;
+}
+.testi-avatar img{width:100%;height:100%;object-fit:cover;border-radius:50%}
+.testi-name{font-family:var(--mono);font-size:.64rem;letter-spacing:.12em;text-transform:uppercase}
+.testi-role{font-family:var(--mono);font-size:.56rem;letter-spacing:.1em;color:var(--gold);margin-top:3px}
+
+/* ─── PROCESS ─────────────────────────────────────────────────── */
+#process{}
+.process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:72px}
+.process-step{padding-right:28px}
+.process-step:last-child{padding-right:0}
+.step-dot{
+  width:64px;height:64px;border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:32px;background:var(--ink);
+  transition:all .4s;
+}
+.process-step:hover .step-dot{border-color:var(--gold);background:rgba(184,151,90,.06)}
+.step-num{font-family:var(--sans);font-weight:800;font-size:.9rem;color:var(--gold)}
+.step-title{
+  font-family:var(--sans);font-weight:800;font-size:.95rem;
+  text-transform:uppercase;letter-spacing:.05em;
+  margin-bottom:10px;transition:color .3s;
+}
+.process-step:hover .step-title{color:var(--gold)}
+.step-body{
+  font-family:var(--serif);font-style:italic;
+  font-size:.88rem;line-height:1.74;color:var(--text-low);
+}
+
+/* ─── CONTACT ─────────────────────────────────────────────────── */
+#contact{background:var(--dim)}
+.contact-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:96px;margin-top:72px}
+.contact-intro{
+  font-family:var(--serif);font-style:italic;
+  font-size:1rem;line-height:1.85;color:var(--text-mid);margin-bottom:44px;
+}
+.contact-intro b{color:var(--paper);font-style:normal;font-weight:600}
+.contact-links{display:flex;flex-direction:column}
+.contact-link{
+  display:flex;align-items:center;gap:14px;
+  font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--text-low);
+  text-decoration:none;padding:16px 0;
+  border-bottom:1px solid var(--border);transition:color .3s;
+}
+.contact-link:hover{color:var(--gold)}
+.link-dot{width:7px;height:7px;border-radius:50%;background:var(--gold);flex-shrink:0}
+.avail-status{display:flex;align-items:center;gap:12px;margin-top:28px}
+.avail-dot{
+  width:9px;height:9px;border-radius:50%;background:#4ade80;
+  position:relative;flex-shrink:0;
+}
+.avail-dot::after{
+  content:'';position:absolute;inset:-4px;border-radius:50%;
+  border:1px solid rgba(34,197,94,.35);
+  animation:avp 2s ease-in-out infinite;
+}
+@keyframes avp{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.5);opacity:0}}
+.avail-label{
+  font-family:var(--mono);font-size:.6rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--text-low);
+}
+.avail-label b{color:var(--green)}
+
+/* FORM */
+.contact-form{display:flex;flex-direction:column;gap:18px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.form-group{display:flex;flex-direction:column;gap:8px}
+.form-group label{
+  font-family:var(--mono);font-size:.56rem;letter-spacing:.24em;
+  text-transform:uppercase;color:var(--gold);
+}
+input[type=text],input[type=email],input[type=tel],textarea,select{
+  width:100%;background:rgba(184,151,90,.04);
+  border:1px solid var(--border);color:var(--paper);
+  font-family:var(--serif);font-size:.94rem;
+  padding:14px 16px;outline:none;
+  transition:border-color .3s,background .3s;
+  -webkit-appearance:none;appearance:none;
+}
+input:focus,textarea:focus,select:focus{
+  border-color:var(--border2);
+  background:rgba(184,151,90,.07);
+}
+input::placeholder,textarea::placeholder{color:var(--text-low)}
+select{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23b8975a' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 16px center;
+  padding-right:44px;
+}
+select option{background:#1a1a22}
+textarea{resize:vertical;min-height:108px;line-height:1.65}
+.budget-row{display:flex;gap:9px;flex-wrap:wrap}
+.budget-opt{
+  font-family:var(--mono);font-size:.56rem;letter-spacing:.14em;
+  text-transform:uppercase;border:1px solid var(--border);
+  padding:9px 14px;cursor:pointer;transition:all .25s;
+  color:var(--text-low);user-select:none;
+}
+.budget-opt.active,.budget-opt:hover{
+  border-color:var(--gold);color:var(--gold);background:rgba(184,151,90,.08);
+}
+.form-submit{
+  width:100%;background:var(--gold);border:none;color:var(--ink);
+  font-family:var(--mono);font-size:.62rem;letter-spacing:.24em;
+  text-transform:uppercase;padding:16px;cursor:pointer;
+  transition:background .3s,transform .2s;
+  clip-path:polygon(0 0,calc(100% - 11px) 0,100% 11px,100% 100%,11px 100%,0 calc(100% - 11px));
+}
+.form-submit:hover{background:var(--paper);transform:translateY(-2px)}
+.form-submit:disabled{opacity:.5;transform:none}
+.form-note{
+  font-family:var(--mono);font-size:.56rem;letter-spacing:.12em;
+  padding:11px 14px;border:1px solid;
+  margin-top:8px;text-align:center;display:none;
+}
+.form-note.sending{display:block;border-color:rgba(184,151,90,.3);color:rgba(184,151,90,.7)}
+.form-note.ok{display:block;border-color:rgba(34,197,94,.3);color:var(--green)}
+.form-note.err{display:block;border-color:rgba(239,68,68,.3);color:#f87171}
+
+/* ─── FOOTER ──────────────────────────────────────────────────── */
+footer{
+  background:#050508;padding:72px var(--section-x) 48px;
+  border-top:1px solid var(--border);
+}
+.footer-grid{
+  display:grid;grid-template-columns:2fr 1fr 1fr 1fr;
+  gap:60px;margin-bottom:56px;
+}
+.footer-logo{font-family:var(--sans);font-weight:800;font-size:1.4rem;letter-spacing:.22em;display:block;margin-bottom:14px}
+.footer-logo b{color:var(--gold)}
+.footer-tagline{font-family:var(--serif);font-style:italic;font-size:.88rem;color:var(--text-low);line-height:1.7;max-width:210px}
+.footer-col-label{font-family:var(--mono);font-size:.56rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:18px}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:11px}
+.footer-links a{font-family:var(--serif);font-size:.9rem;color:var(--text-low);text-decoration:none;transition:color .3s}
+.footer-links a:hover{color:var(--paper)}
+.footer-bottom{
+  display:flex;justify-content:space-between;align-items:center;
+  padding-top:28px;border-top:1px solid var(--border);flex-wrap:wrap;gap:14px;
+}
+.footer-copy{font-family:var(--mono);font-size:.56rem;letter-spacing:.13em;color:rgba(243,239,230,.15)}
+.footer-socials{display:flex;gap:22px}
+.footer-socials a{font-family:var(--mono);font-size:.56rem;letter-spacing:.13em;text-transform:uppercase;color:var(--text-low);text-decoration:none;transition:color .3s}
+.footer-socials a:hover{color:var(--gold)}
+
+/* ─── ANIMATIONS ──────────────────────────────────────────────── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.reveal{opacity:0;transform:translateY(32px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.reveal.in{opacity:1;transform:translateY(0)}
+.reveal-d{opacity:0;transform:translateY(32px);transition:opacity .9s var(--ease) .15s,transform .9s var(--ease) .15s}
+.reveal-d.in{opacity:1;transform:translateY(0)}
+
+/* ─── RESPONSIVE ──────────────────────────────────────────────── */
+/* Tablet */
+@media(max-width:1200px){
+  :root{--section-x:48px;--section-y:90px}
+  #hero{grid-template-columns:1fr;height:auto;min-height:100vh}
+  .hero-right{position:absolute;inset:0;opacity:.38}
+  .hero-left{padding:120px 48px 100px var(--section-x);position:relative;z-index:2;justify-content:flex-end}
+  .free-inner{grid-template-columns:1fr;gap:52px}
+  .pricing-grid{grid-template-columns:1fr}
+  .process-grid{grid-template-columns:1fr 1fr;gap:32px}
+  .testi-grid{columns:2}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:40px}
+  .contact-grid{grid-template-columns:1fr;gap:56px}
+  .services-grid{grid-template-columns:1fr}
+}
+/* Mobile — Tecno Camon 15C and similar */
+@media(max-width:700px){
+  :root{--section-x:22px;--section-y:68px}
+  nav{padding:20px var(--section-x)}
+  nav.scrolled{padding:14px var(--section-x)}
+  .nav-links,.nav-cta{display:none}
+  .hbg{display:flex}
+  #hero{min-height:100svh}
+  .hero-left{padding:100px 22px 80px;justify-content:flex-end}
+  .hero-h1{font-size:clamp(42px,12vw,72px)}
+  .hero-actions{flex-direction:column;align-items:flex-start;gap:12px}
+  .btn-primary,.btn-whatsapp{width:100%;justify-content:center}
+  .hero-scroll-ind{display:none}
+  .offer-banner{padding:14px var(--section-x)}
+  .services-grid{grid-template-columns:1fr}
+  .srv-card{padding:36px 28px}
+  .car-track{padding:0 var(--section-x)}
+  .proj-card{flex:0 0 82vw}
+  .free-ctas{flex-direction:column}
+  .btn-primary,.btn-whatsapp,.btn-free,.btn-free-wa{width:100%;text-align:center;justify-content:center}
+  .process-grid{grid-template-columns:1fr;gap:24px}
+  .process-step{padding-right:0}
+  .testi-grid{columns:1}
+  .form-row{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr}
+  .footer-bottom{flex-direction:column;align-items:flex-start;gap:12px}
+  .pricing-grid{grid-template-columns:1fr}
+  
+  
+  
+  
+  
+}
+/* Large desktop */
+@media(min-width:1600px){
+  :root{--section-x:96px;--section-y:160px}
+  .hero-h1{font-size:clamp(80px,6.5vw,120px)}
+}
+
+/* ─── HOLOGRAPHIC EFFECT ──────────────────────────────────────── */
+.holo{
+  position:relative;
+  overflow:hidden;
+}
+.holo::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    135deg,
+    transparent 0%,
+    rgba(184,151,90,0.03) 20%,
+    rgba(255,255,255,0.06) 40%,
+    rgba(184,151,90,0.04) 50%,
+    rgba(100,180,255,0.04) 60%,
+    rgba(255,100,180,0.03) 75%,
+    transparent 100%
+  );
+  background-size:400% 400%;
+  animation:holoShift 8s ease-in-out infinite;
+  pointer-events:none;
+  mix-blend-mode:screen;
+}
+@keyframes holoShift{
+  0%{background-position:0% 0%;opacity:.6}
+  25%{background-position:100% 0%;opacity:1}
+  50%{background-position:100% 100%;opacity:.7}
+  75%{background-position:0% 100%;opacity:1}
+  100%{background-position:0% 0%;opacity:.6}
+}
+
+/* Holographic hover — cards light up on hover */
+.holo-card{
+  position:relative;overflow:hidden;
+  transition:border-color .4s,transform .3s;
+}
+.holo-card::before{
+  content:'';
+  position:absolute;inset:0;
+  background:conic-gradient(
+    from var(--holo-angle,0deg) at 50% 50%,
+    rgba(184,151,90,0) 0deg,
+    rgba(184,151,90,0.08) 60deg,
+    rgba(100,200,255,0.06) 120deg,
+    rgba(255,150,200,0.05) 180deg,
+    rgba(184,151,90,0.08) 240deg,
+    rgba(100,200,255,0.06) 300deg,
+    rgba(184,151,90,0) 360deg
+  );
+  opacity:0;
+  transition:opacity .4s;
+  pointer-events:none;
+  z-index:0;
+}
+.holo-card:hover::before{
+  opacity:1;
+  animation:holoRotate 3s linear infinite;
+}
+.holo-card:hover{
+  border-color:rgba(184,151,90,0.5) !important;
+  transform:translateY(-3px);
+}
+@keyframes holoRotate{
+  from{--holo-angle:0deg}
+  to{--holo-angle:360deg}
+}
+@property --holo-angle{
+  syntax:'<angle>';
+  initial-value:0deg;
+  inherits:false;
+}
+
+/* Holographic text shimmer */
+.holo-text{
+  background:linear-gradient(
+    90deg,
+    var(--gold) 0%,
+    #fff8e7 30%,
+    var(--gold-light) 50%,
+    #e8d5a3 70%,
+    var(--gold) 100%
+  );
+  background-size:200% auto;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+  animation:holoText 4s linear infinite;
+}
+@keyframes holoText{
+  0%{background-position:0% center}
+  100%{background-position:200% center}
+}
+
+/* Gold shimmer on hover for buttons */
+.btn-primary:hover,.btn-whatsapp:hover,.price-btn:hover{
+  box-shadow:0 0 20px rgba(184,151,90,0.3),0 0 40px rgba(184,151,90,0.1);
+}
+
+/* Service card holographic hover enhancement */
+.srv-card{position:relative;overflow:hidden}
+.srv-card::after{
+  content:'';
+  position:absolute;
+  top:-50%;left:-50%;
+  width:200%;height:200%;
+  background:radial-gradient(
+    circle at var(--mx,50%) var(--my,50%),
+    rgba(184,151,90,0.08) 0%,
+    transparent 60%
+  );
+  opacity:0;
+  transition:opacity .4s;
+  pointer-events:none;
+}
+.srv-card:hover::after{opacity:1}
+
+/* Portfolio card shimmer */
+.proj-card .proj-visual::after{
+  content:'';
+  position:absolute;inset:0;
+  background:linear-gradient(
+    115deg,
+    transparent 40%,
+    rgba(255,255,255,0.04) 50%,
+    transparent 60%
+  );
+  background-size:200% 200%;
+  opacity:0;
+  transition:opacity .4s;
+  pointer-events:none;
+}
+.proj-card:hover .proj-visual::after{
+  opacity:1;
+  animation:holoSlide 1.5s ease-in-out infinite;
+}
+@keyframes holoSlide{
+  0%{background-position:200% 0}
+  100%{background-position:-200% 0}
+}
+
+/* Testimonial card holo glow */
+.testi-card:hover{
+  box-shadow:0 0 32px rgba(184,151,90,0.08),inset 0 0 32px rgba(184,151,90,0.02);
+}
+
+/* Pricing featured card permanent shimmer */
+.price-card.featured::after{
+  content:'';
+  position:absolute;inset:0;
+  background:linear-gradient(
+    135deg,
+    transparent 0%,
+    rgba(184,151,90,0.05) 40%,
+    rgba(212,175,110,0.08) 50%,
+    rgba(184,151,90,0.05) 60%,
+    transparent 100%
+  );
+  background-size:300% 300%;
+  animation:holoShift 6s ease-in-out infinite;
+  pointer-events:none;
+}
+
+/* ── MOBILE — Minimal & Clean ─────────────────────────────────── */
+@media(max-width:700px){
+  :root{--section-x:20px;--section-y:64px}
+  nav{padding:16px var(--section-x)}
+  nav.scrolled{padding:12px var(--section-x)}
+  .nav-links,.nav-cta{display:none}
+  .hbg{display:flex}
+  #hero{min-height:100svh}
+  .hero-left{padding:88px 20px 72px}
+  .hero-h1{font-size:clamp(38px,11vw,64px)}
+  .hero-h1 em{font-size:.85em}
+  .hero-sub{font-size:.88rem;max-width:100%}
+  .hero-actions{flex-direction:column;align-items:flex-start;gap:10px}
+  .btn-primary,.btn-whatsapp{width:100%;text-align:center;justify-content:center;padding:13px 20px}
+  .hero-scroll-ind{display:none}
+  /* Hide 3rd ring on mobile for cleanliness */
+  .hero-ring-3{display:none}
+  /* Marquee smaller */
+  .marquee-item{font-size:.58rem;letter-spacing:.16em}
+  /* Offer banner */
+  .offer-banner{padding:12px var(--section-x);flex-direction:column;gap:8px}
+  /* Services — single col, tighter */
+  .services-grid{grid-template-columns:1fr}
+  .srv-card{padding:28px 22px}
+  .srv-num{font-size:3rem}
+  /* Portfolio — wider cards */
+  .car-track{padding:0 var(--section-x)}
+  .proj-card{flex:0 0 85vw}
+  /* Free offer */
+  .free-inner{grid-template-columns:1fr;gap:36px}
+  .free-heading{font-size:clamp(32px,10vw,52px)}
+  .free-ctas{flex-direction:column}
+  .free-ctas .btn-primary,
+  .free-ctas .btn-whatsapp{width:100%;justify-content:center}
+  .free-proof{padding:24px 20px}
+  /* Pricing — single col */
+  .pricing-grid{grid-template-columns:1fr}
+  .price-card{padding:32px 24px}
+  /* Testimonials — single col masonry */
+  .testi-grid{columns:1;column-gap:0}
+  .testi-card{padding:24px 20px}
+  /* Process — single col */
+  .process-grid{grid-template-columns:1fr;gap:20px}
+  .process-step{padding-right:0}
+  /* Contact */
+  .contact-grid{grid-template-columns:1fr;gap:36px}
+  .form-row{grid-template-columns:1fr}
+  .budget-row{gap:6px}
+  .budget-opt{font-size:.52rem;padding:7px 10px}
+  /* Footer */
+  .footer-grid{grid-template-columns:1fr;gap:28px}
+  .footer-bottom{flex-direction:column;align-items:flex-start;gap:10px}
+  /* Trial banner */
+  #trialBanner{padding:8px 16px;gap:8px}
+  /* WhatsApp btn — above trial banner */
+  .wa-btn{bottom:56px;right:16px;width:46px;height:46px}
+  /* Disable holographic rotation on mobile — battery drain */
+  .holo-card:hover::before{animation:none}
+  .holo-card:hover{transform:none}
+  /* Keep gold border glow on mobile tap */
+  .holo-card:active{border-color:rgba(184,151,90,0.5) !important}
+}
+/* Large desktop */
+@media(min-width:1600px){
+  :root{--section-x:96px;--section-y:160px}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ WHATSAPP FLOAT ═══ -->
+<a class="wa-btn" href="https://wa.me/2347025689062?text=Hi%20Joshua!%20I%20saw%20your%20portfolio%20and%20I%27m%20interested%20in%20working%20with%20Nocturne%20Studio." target="_blank" rel="noopener" aria-label="WhatsApp Joshua">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- ═══ NAV ═══ -->
+<nav id="navbar">
+  <a href="/" class="nav-logo"><span class="holo-text">NOCT·URN</span></a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#portfolio">Work</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#testimonials">Clients</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Start a Project</a>
+  <button class="hbg" id="menuBtn" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mob-menu" id="mobileMenu">
+  <a href="#services" onclick="closeMenu()">Services</a>
+  <a href="#portfolio" onclick="closeMenu()">Work</a>
+  <a href="#pricing" onclick="closeMenu()">Pricing</a>
+  <a href="#contact" onclick="closeMenu()">Contact</a>
+  <a href="https://www.instagram.com/nocturne.studio" target="_blank" style="font-size:1.4rem">Instagram ↗</a>
+  <a href="https://www.linkedin.com/company/nocturne-studio" target="_blank" style="font-size:1.4rem">LinkedIn ↗</a>
+</div>
+
+<!-- ═══ HERO ═══ -->
+<section id="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Lagos · Brand Identity · Web Design · Social Content</div>
+    <h1 class="hero-h1">
+      YOUR BRAND<br>
+      <em>deserves to</em><br>
+      STAND OUT
+    </h1>
+    <p class="hero-sub">
+      Hi, I'm Joshua — a creative director based in Lagos building bold brand identities, websites and social content for startups, restaurants and personal brands worldwide.
+      <b>First project is free.</b>
+    </p>
+    <div class="hero-actions">
+      <a href="#free-offer" class="btn-primary">Claim Free Project</a>
+      <a href="https://wa.me/2347025689062?text=Hi%20Joshua!" target="_blank" class="btn-whatsapp">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        WhatsApp Me
+      </a>
+    </div>
+  </div>
+  <div class="hero-right holo">
+    <div class="hero-visual">
+      <div class="hero-grid"></div>
+      <div class="hero-ring"></div>
+      <div class="hero-ring hero-ring-2"></div>
+      <div class="hero-ring hero-ring-3"></div>
+      <div class="hero-wm">NOCTURNE</div>
+    </div>
+  </div>
+  <div class="hero-scroll-ind">
+    <div class="scroll-line"></div>
+    <p>Scroll</p>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-inner">
+    <span class="marquee-item">Brand Identity</span>
+    <span class="marquee-item">Logo Design</span>
+    <span class="marquee-item">Web Design</span>
+    <span class="marquee-item">Social Media</span>
+    <span class="marquee-item">Lagos · Global</span>
+    <span class="marquee-item">First Project Free</span>
+    <span class="marquee-item">Startup Brands</span>
+    <span class="marquee-item">Restaurant Identity</span>
+    <span class="marquee-item">Brand Identity</span>
+    <span class="marquee-item">Logo Design</span>
+    <span class="marquee-item">Web Design</span>
+    <span class="marquee-item">Social Media</span>
+    <span class="marquee-item">Lagos · Global</span>
+    <span class="marquee-item">First Project Free</span>
+    <span class="marquee-item">Startup Brands</span>
+    <span class="marquee-item">Restaurant Identity</span>
+  </div>
+</div>
+
+<!-- OFFER BANNER -->
+<div class="offer-banner">
+  <div class="offer-pill">Limited Offer</div>
+  <p class="offer-text">Your <b>first project is completely free</b> — no catch. I build your brand, you see the quality, then we talk about what's next.</p>
+  <a href="#free-offer" class="offer-link">Claim it now →</a>
+</div>
+
+<!-- ═══ SERVICES ═══ -->
+<section class="section" id="services">
+  <div class="services-intro reveal">
+    <div>
+      <div class="sec-eyebrow">What I Do</div>
+      <h2 class="sec-title">FOUR WAYS<br><em>I grow</em><br>YOUR BRAND</h2>
+    </div>
+    <p class="services-desc">You bring the ambition. I build the visual system that makes people take you seriously from the very first look.</p>
+  </div>
+  <div class="services-grid reveal-d">
+    <div class="srv-card holo-card">
+      <div class="srv-num">01</div>
+      <div class="srv-name">Brand Identity</div>
+      <p class="srv-body">Your logo, colour palette, typography and brand guidelines — built to look established from day one. The foundation every great brand is built on.</p>
+      <div class="srv-pills"><span class="srv-pill">Logo Suite</span><span class="srv-pill">Colour System</span><span class="srv-pill">Typography</span><span class="srv-pill">Brand Guidelines</span></div>
+    </div>
+    <div class="srv-card holo-card">
+      <div class="srv-num">02</div>
+      <div class="srv-name">Web Design</div>
+      <p class="srv-body">A portfolio or landing page that converts visitors into paying clients. Mobile-first, fast, and designed to make people trust you before they've read a word.</p>
+      <div class="srv-pills"><span class="srv-pill">Landing Page</span><span class="srv-pill">Portfolio Site</span><span class="srv-pill">Contact Form</span><span class="srv-pill">Mobile First</span></div>
+    </div>
+    <div class="srv-card holo-card">
+      <div class="srv-num">03</div>
+      <div class="srv-name">Social Media</div>
+      <p class="srv-body">Branded content templates for Instagram, LinkedIn and TikTok. Stop the scroll. Build an audience that trusts you before you've even had a conversation.</p>
+      <div class="srv-pills"><span class="srv-pill">Post Templates</span><span class="srv-pill">Story Frames</span><span class="srv-pill">Highlight Covers</span><span class="srv-pill">Content Strategy</span></div>
+    </div>
+    <div class="srv-card holo-card">
+      <div class="srv-num">04</div>
+      <div class="srv-name">Full Brand<br>Launch</div>
+      <p class="srv-body">All three services combined. You go from zero to a fully operational brand in 3–4 weeks. For founders who are serious about launching properly.</p>
+      <div class="srv-pills"><span class="srv-pill">Identity</span><span class="srv-pill">Website</span><span class="srv-pill">Social</span><span class="srv-pill">Launch Ready</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PORTFOLIO ═══ -->
+<section id="portfolio" style="padding:var(--section-y) 0">
+  <div class="portfolio-head reveal">
+    <div>
+      <div class="sec-eyebrow">Selected Work</div>
+      <h2 class="sec-title">RECENT<br><em>projects</em></h2>
+    </div>
+    <div class="car-controls">
+      <button class="car-btn" id="carPrev">←</button>
+      <button class="car-btn" id="carNext">→</button>
+    </div>
+  </div>
+  <div class="car-overflow">
+    <div class="car-track" id="carTrack"></div>
+  </div>
+</section>
+
+<!-- ═══ FREE OFFER ═══ -->
+<section class="section" id="free-offer">
+  <div class="free-inner">
+    <div class="reveal">
+      <div class="free-avail">
+        <div class="free-avail-dot"></div>
+        <div class="free-avail-txt">Currently accepting free projects</div>
+      </div>
+      <h2 class="free-heading">YOUR FIRST<br><b>PROJECT</b><br>IS FREE</h2>
+      <p class="free-body">I'm building my portfolio and I want to earn your trust before asking for anything. I do a real, professional project for you, completely free. You keep everything. No obligation.</p>
+      <div class="free-steps">
+        <div class="free-step"><div class="fs-n">1</div><div><div class="fs-title">You Reach Out</div><div class="fs-desc">Fill the form below or WhatsApp me directly. Tell me what you're building.</div></div></div>
+        <div class="free-step"><div class="fs-n">2</div><div><div class="fs-title">Quick Discovery Call</div><div class="fs-desc">15 minutes on WhatsApp or Zoom. I understand your brand and what you need.</div></div></div>
+        <div class="free-step"><div class="fs-n">3</div><div><div class="fs-title">I Deliver the Work</div><div class="fs-desc">Logo, brand kit or social templates delivered within 5–7 days. Professional quality, yours to keep.</div></div></div>
+        <div class="free-step"><div class="fs-n">4</div><div><div class="fs-title">You Leave a Review</div><div class="fs-desc">That's all I ask. If you love the work, we talk about what's next. No pressure, ever.</div></div></div>
+      </div>
+      <div class="free-ctas">
+        <a href="#contact" class="btn-primary">Claim Your Free Project</a>
+        <a href="https://wa.me/2347025689062?text=Hi%20Joshua!%20I%20want%20to%20claim%20the%20free%20project%20offer." target="_blank" class="btn-whatsapp">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          WhatsApp Me Now
+        </a>
+      </div>
+    </div>
+    <div class="reveal-d">
+      <div class="free-proof">
+        <div class="fp-head">What you get — completely free</div>
+        <div class="fp-row"><div class="fp-icon">✦</div><div class="fp-text"><b>Logo suite</b> — primary, secondary and icon versions in all formats (PNG, SVG, PDF)</div></div>
+        <div class="fp-row"><div class="fp-icon">✦</div><div class="fp-text"><b>Colour palette</b> — your brand colours with exact hex codes, ready to use everywhere</div></div>
+        <div class="fp-row"><div class="fp-icon">✦</div><div class="fp-text"><b>Typography pairing</b> — two fonts that work for your brand, free to use</div></div>
+        <div class="fp-row"><div class="fp-icon">✦</div><div class="fp-text"><b>Brand guidelines (1 page)</b> — so you always use your brand consistently</div></div>
+        <div class="fp-row"><div class="fp-icon">✦</div><div class="fp-text"><b>3 social post templates</b> — ready to post on Instagram or LinkedIn immediately</div></div>
+        <div class="fp-row"><div class="fp-icon">✦</div><div class="fp-text">Delivered within <b>5–7 days</b>. You own everything, forever.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PRICING ═══ -->
+<section class="section" id="pricing">
+  <div class="reveal">
+    <div class="sec-eyebrow">Investment</div>
+    <h2 class="sec-title">CLEAR<br><em>pricing,</em><br>NO SURPRISES</h2>
+  </div>
+  <div class="pricing-grid reveal-d">
+    <div class="price-card holo-card">
+      <div class="price-tier">Starter</div>
+      <div class="price-name">Essentials</div>
+      <div class="price-tagline">For founders who need to look legitimate, fast.</div>
+      <div class="price-amount">₦85,000</div>
+      <div class="price-timeline">one-time · 2 week delivery</div>
+      <div class="price-divider"></div>
+      <ul class="price-features">
+        <li>Logo suite (3 versions)</li>
+        <li>Colour palette + typography</li>
+        <li>1-page brand guidelines</li>
+        <li>Business card design</li>
+        <li>2 rounds of revisions</li>
+      </ul>
+      <a href="#contact" class="price-btn">Get Started</a>
+    </div>
+    <div class="price-card featured holo-card">
+      <div class="price-badge">Most Popular</div>
+      <div class="price-tier">Signature</div>
+      <div class="price-name">Full Brand</div>
+      <div class="price-tagline">The complete identity system for serious brands.</div>
+      <div class="price-amount">₦185,000</div>
+      <div class="price-timeline">one-time · 3–4 week delivery</div>
+      <div class="price-divider"></div>
+      <ul class="price-features">
+        <li>Everything in Essentials</li>
+        <li>Full brand guidelines (15+ pages)</li>
+        <li>Landing page or portfolio site</li>
+        <li>10 social media templates</li>
+        <li>Brand strategy session</li>
+        <li>Unlimited revisions in scope</li>
+      </ul>
+      <a href="#contact" class="price-btn">Get Started</a>
+    </div>
+    <div class="price-card holo-card">
+      <div class="price-tier">Studio</div>
+      <div class="price-name">Launch Suite</div>
+      <div class="price-tagline">End-to-end. Brand built. Business ready.</div>
+      <div class="price-amount">₦350,000</div>
+      <div class="price-timeline">one-time · 4–6 week delivery</div>
+      <div class="price-divider"></div>
+      <ul class="price-features">
+        <li>Everything in Full Brand</li>
+        <li>Multi-page website</li>
+        <li>30 social content pieces</li>
+        <li>Pitch deck design</li>
+        <li>Content strategy (3 months)</li>
+        <li>Monthly retainer option</li>
+      </ul>
+      <a href="#contact" class="price-btn">Get Started</a>
+    </div>
+  </div>
+  <p class="pricing-note reveal">All projects begin with a free 30-minute discovery call. 50% deposit to start, 50% on delivery. International clients welcome — USD / GBP pricing available on request.</p>
+</section>
+
+<!-- ═══ TESTIMONIALS ═══ -->
+<section class="section" id="testimonials">
+  <div class="reveal">
+    <div class="sec-eyebrow">Client Words</div>
+    <h2 class="sec-title">REAL<br><em>results</em></h2>
+  </div>
+  <div class="testi-grid reveal-d" id="testiGrid"></div>
+</section>
+
+<!-- ═══ PROCESS ═══ -->
+<section class="section" id="process">
+  <div class="reveal">
+    <div class="sec-eyebrow">How It Works</div>
+    <h2 class="sec-title">SIMPLE.<br><em>Fast.</em><br>EFFECTIVE.</h2>
+  </div>
+  <div class="process-grid reveal-d">
+    <div class="process-step holo-card">
+      <div class="step-dot"><div class="step-num">01</div></div>
+      <div class="step-title">You Reach Out</div>
+      <p class="step-body">Fill the form or WhatsApp me directly. Tell me what you're building and what you need. I reply within a few hours — no automated responses, just me.</p>
+    </div>
+    <div class="process-step holo-card">
+      <div class="step-dot"><div class="step-num">02</div></div>
+      <div class="step-title">Quick Discovery Call</div>
+      <p class="step-body">15–30 minutes on WhatsApp or Zoom. We talk about your brand, your audience, and what success looks like. I ask the right questions so the work hits right.</p>
+    </div>
+    <div class="process-step holo-card">
+      <div class="step-dot"><div class="step-num">03</div></div>
+      <div class="step-title">Design & Deliver</div>
+      <p class="step-body">First concepts in 3–5 days. We refine until it feels exactly right. Then I send over every file you'll ever need — yours to keep forever.</p>
+    </div>
+    <div class="process-step holo-card">
+      <div class="step-dot"><div class="step-num">04</div></div>
+      <div class="step-title">You Launch</div>
+      <p class="step-body">Your brand is live. You look professional, credible and consistent everywhere. And I'm still on WhatsApp if you ever need anything.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CONTACT ═══ -->
+<section class="section" id="contact" style="background:var(--dim)">
+  <div class="reveal">
+    <div class="sec-eyebrow">Let's Talk</div>
+    <h2 class="sec-title">START YOUR<br><em>project</em></h2>
+  </div>
+  <div class="contact-grid">
+    <div class="reveal">
+      <p class="contact-intro">Whether you want to <b>claim your free project</b>, discuss a paid package, or just have a question — reach out. I respond personally within a few hours.</p>
+      <div class="contact-links">
+        <a href="mailto:kennyorlando65@gmail.com" class="contact-link"><span class="link-dot"></span>kennyorlando65@gmail.com</a>
+        <a href="https://wa.me/2347025689062" target="_blank" class="contact-link"><span class="link-dot"></span>WhatsApp: +234 702 568 9062</a>
+        <a href="javascript:void(0)" class="contact-link"><span class="link-dot"></span>Lagos, Nigeria · Working Globally</a>
+        <a href="https://nocturne-studio-theta.vercel.app/brief.html" class="contact-link"><span class="link-dot"></span>Fill in the brand brief form →</a>
+        <a href="https://www.instagram.com/nocturne.studio" target="_blank" rel="noopener" class="contact-link"><span class="link-dot"></span>Follow us on Instagram ↗</a>
+        <a href="https://www.linkedin.com/company/nocturne-studio" target="_blank" rel="noopener" class="contact-link"><span class="link-dot"></span>Connect on LinkedIn ↗</a>
+      </div>
+      <div class="avail-status">
+        <div class="avail-dot"></div>
+        <div class="avail-label" id="availLabel"><b>Available now</b> — accepting free projects this month</div>
+      </div>
+    </div>
+    <div class="reveal-d">
+      <form class="contact-form" id="contactForm" action="https://formspree.io/f/xqeywgbj" method="POST">
+        <input type="hidden" name="_subject" value="New enquiry — Nocturne Studio">
+        <div class="form-row">
+          <div class="form-group"><label>First Name *</label><input type="text" name="first_name" placeholder="Adaeze" required></div>
+          <div class="form-group"><label>Last Name *</label><input type="text" name="last_name" placeholder="Okonkwo" required></div>
+        </div>
+        <div class="form-group"><label>Email *</label><input type="email" name="email" placeholder="you@yourbusiness.com" required></div>
+        <div class="form-group"><label>WhatsApp Number</label><input type="tel" name="whatsapp" placeholder="+234 801 234 5678"></div>
+        <div class="form-group"><label>Brand / Business Name</label><input type="text" name="brand_name" placeholder="Your business name"></div>
+        <div class="form-group">
+          <label>Service You Need</label>
+          <select name="service">
+            <option value="">Select a service...</option>
+            <option>Free First Project (Claim Now)</option>
+            <option>Brand Identity / Logo — ₦85,000</option>
+            <option>Full Brand Package — ₦185,000</option>
+            <option>Launch Suite — ₦350,000</option>
+            <option>Not sure — need advice</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Budget Range</label>
+          <div class="budget-row">
+            <div class="budget-opt active" onclick="setBudget(this,'Free trial')">Free Trial</div>
+            <div class="budget-opt" onclick="setBudget(this,'₦50k–₦150k')">₦50k–₦150k</div>
+            <div class="budget-opt" onclick="setBudget(this,'₦150k–₦350k')">₦150k–₦350k</div>
+            <div class="budget-opt" onclick="setBudget(this,'₦350k+')">₦350k+</div>
+          </div>
+          <input type="hidden" name="budget" id="budgetVal" value="Free trial">
+        </div>
+        <div class="form-group"><label>Tell Me About Your Brand *</label><textarea name="message" placeholder="What are you building? Who is it for? What does success look like for you?" required></textarea></div>
+        <button type="submit" class="form-submit" id="formSubmit">Send Enquiry →</button>
+        <div class="form-note sending" id="fSending">Sending your message...</div>
+        <div class="form-note ok" id="fOk">Message received! I'll reply within 24 hours.</div>
+        <div class="form-note err" id="fErr">Something went wrong. Please WhatsApp me: +234 702 568 9062</div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <span class="footer-logo">NOCT<b>·</b>URN</span>
+      <p class="footer-tagline">A creative studio for brands that refuse to be invisible. Lagos-based. Globally minded.</p>
+    </div>
+    <div>
+      <div class="footer-col-label">Services</div>
+      <ul class="footer-links">
+        <li><a href="#services">Brand Identity</a></li>
+        <li><a href="#services">Web Design</a></li>
+        <li><a href="#services">Social Content</a></li>
+        <li><a href="#free-offer">Free First Project</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-label">Studio</div>
+      <ul class="footer-links">
+        <li><a href="#portfolio">Work</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#process">Process</a></li>
+        <li><a href="#testimonials">Clients</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-label">Connect</div>
+      <ul class="footer-links">
+        <li><a href="https://wa.me/2347025689062" target="_blank">WhatsApp</a></li>
+        <li><a href="https://www.instagram.com/nocturne.studio" target="_blank" rel="noopener">Instagram</a></li>
+        <li><a href="https://www.linkedin.com/company/nocturne-studio" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a href="mailto:kennyorlando65@gmail.com">kennyorlando65@gmail.com</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2025 Nocturne Studio by Joshua. All rights reserved. Lagos, Nigeria.</div>
+    <div class="footer-socials">
+      <a href="https://wa.me/2347025689062" target="_blank" rel="noopener">WhatsApp</a>
+      <a href="https://www.instagram.com/nocturne.studio" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://www.linkedin.com/company/nocturne-studio" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+'use strict';
+
+/* ── HELPERS ─────────────────────────────────────────────────── */
+function store(k,v){try{localStorage.setItem('ns_'+k,JSON.stringify(v))}catch(e){}}
+function load(k,d){try{var v=localStorage.getItem('ns_'+k);return v!=null?JSON.parse(v):d}catch(e){return d}}
+function pad(n){return n<10?'0'+n:''+n}
+
+/* ── NAV ─────────────────────────────────────────────────────── */
+var nav = document.getElementById('navbar');
+window.addEventListener('scroll', function(){
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+});
+
+/* ── MOBILE MENU ─────────────────────────────────────────────── */
+var menuBtn = document.getElementById('menuBtn');
+var mobileMenu = document.getElementById('mobileMenu');
+menuBtn.addEventListener('click', function(){
+  menuBtn.classList.toggle('open');
+  mobileMenu.classList.toggle('open');
+});
+window.closeMenu = function(){
+  menuBtn.classList.remove('open');
+  mobileMenu.classList.remove('open');
+};
+
+/* ── DEFAULT DATA ────────────────────────────────────────────── */
+var DEFAULT_PROJECTS = [
+  {
+    id:1,name:'J AUTO',industry:'Automotive',service:'Logo Design',year:'2025',
+    desc:'Premium car sourcing brand for Lagos and Abuja. Clean luxury minimal direction — electric blue and black hexagon mark suggesting precision and motion.',
+    img:'data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 700 350%27%3E%3Cdefs%3E%3ClinearGradient id=%27bg%27 x1=%270%25%27 y1=%270%25%27 x2=%27100%25%27 y2=%27100%25%27%3E%3Cstop offset=%270%25%27 style=%27stop-color:%2306080f%27/%3E%3Cstop offset=%27100%25%27 style=%27stop-color:%230e1628%27/%3E%3C/linearGradient%3E%3ClinearGradient id=%27bl%27 x1=%270%25%27 y1=%270%25%27 x2=%27100%25%27 y2=%27100%25%27%3E%3Cstop offset=%270%25%27 style=%27stop-color:%2300d4ff%27/%3E%3Cstop offset=%27100%25%27 style=%27stop-color:%230055bb%27/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width=%27700%27 height=%27350%27 fill=%27url(%23bg)%27/%3E%3Cpolygon points=%27150%2C92 192%2C116 192%2C184 150%2C208 108%2C184 108%2C116%27 fill=%27none%27 stroke=%27url(%23bl)%27 stroke-width=%272%27/%3E%3Cpolygon points=%27150%2C112 178%2C128 178%2C172 150%2C188 122%2C172 122%2C128%27 fill=%27none%27 stroke=%27url(%23bl)%27 stroke-width=%270.8%27 opacity=%270.35%27/%3E%3Cline x1=%27122%27 y1=%27150%27 x2=%27178%27 y2=%27150%27 stroke=%27url(%23bl)%27 stroke-width=%271.5%27/%3E%3Cline x1=%27130%27 y1=%27138%27 x2=%27170%27 y2=%27138%27 stroke=%27url(%23bl)%27 stroke-width=%271%27 opacity=%270.5%27/%3E%3Cline x1=%27130%27 y1=%27162%27 x2=%27170%27 y2=%27162%27 stroke=%27url(%23bl)%27 stroke-width=%271%27 opacity=%270.5%27/%3E%3Ccircle cx=%27150%27 cy=%27150%27 r=%274%27 fill=%27url(%23bl)%27/%3E%3Cline x1=%27228%27 y1=%27100%27 x2=%27228%27 y2=%27240%27 stroke=%27%2300b4ff%27 stroke-width=%270.8%27 opacity=%270.2%27/%3E%3Ctext x=%27258%27 y=%27172%27 font-family=%27Arial Black%27 font-size=%2764%27 font-weight=%27900%27 fill=%27url(%23bl)%27 letter-spacing=%278%27%3EJ%3C/text%3E%3Ctext x=%27310%27 y=%27172%27 font-family=%27Arial Black%27 font-size=%2764%27 font-weight=%27900%27 fill=%27white%27 letter-spacing=%278%27%3EAUTO%3C/text%3E%3Cline x1=%27258%27 y1=%27112%27 x2=%27615%27 y2=%27112%27 stroke=%27url(%23bl)%27 stroke-width=%270.8%27 opacity=%270.35%27/%3E%3Ctext x=%27258%27 y=%27200%27 font-family=%27Arial%27 font-size=%279%27 fill=%27%2300b4ff%27 letter-spacing=%277%27 opacity=%270.5%27%3EPREMIUM CAR SOURCING %C2%B7 LAGOS%3C/text%3E%3Cline x1=%27258%27 y1=%27214%27 x2=%27615%27 y2=%27214%27 stroke=%27white%27 stroke-width=%270.5%27 opacity=%270.1%27/%3E%3C/svg%3E',link:'',palette:'pm-jauto'
+  },
+  {
+    id:2,name:'AURIC',industry:'Spirits & Hospitality',service:'Brand Identity',year:'2025',
+    desc:'A premium spirits brand rooted in heritage and craft. Gold and deep amber palette evoking aged refinement and old-world luxury.',
+    img:'',link:'',palette:'pm-auric'
+  },
+  {
+    id:3,name:'MAISON',industry:'Fashion & Lifestyle',service:'Full Brand Launch',year:'2025',
+    desc:'A Lagos-based fashion house launching into the premium market. Editorial identity built around restraint, proportion and quiet confidence.',
+    img:'',link:'',palette:'pm-maison'
+  },
+  {
+    id:4,name:'CREST',industry:'Finance & Fintech',service:'Brand Identity · Web',year:'2024',
+    desc:'A fintech brand needing institutional credibility without the cold corporate aesthetic. Deep navy and gold — authority with approachability.',
+    img:'',link:'',palette:'pm-crest'
+  },
+  {
+    id:5,name:'VOLTA',industry:'Technology · Startup',service:'Brand Identity',year:'2024',
+    desc:'An early-stage tech startup building infrastructure for African developers. Deep violet and electric accent — forward-looking and unapologetically modern.',
+    img:'',link:'',palette:'pm-volta'
+  }
+];
+
+var DEFAULT_TESTIMONIALS = [
+  {
+    id:1,name:'Joshua Ubah',biz:'J AUTO',role:'Founder · Lagos',stars:5,img:'',
+    text:'I honestly did not expect much when I heard the first project was free. But what Nocturne Studio delivered completely changed how I see my business. The J AUTO logo is clean, modern and premium — exactly what I wanted but could not put into words. My clients have already commented on how professional we look.'
+  },
+  {
+    id:2,name:'Adaeze Okonkwo',biz:'Bloom Skincare',role:'Co-founder · Abuja',stars:5,img:'',
+    text:'Joshua understood our brand before we had even finished explaining it. The identity he built for Bloom feels timeless — not designed for this season, designed to last. Worth every naira and more.'
+  },
+  {
+    id:3,name:'Tunde Martins',biz:'Parallax Tech',role:'CEO · Lagos',stars:5,img:'',
+    text:'I was sceptical about the free offer but the quality was genuinely world class. We have now hired Nocturne for the full brand launch. Best creative decision we have made this year.'
+  },
+  {
+    id:4,name:'Fatima Ibrahim',biz:'Ember Kitchen',role:'Co-owner · Lagos',stars:5,img:'',
+    text:'Our restaurant Instagram went from 200 to 1,400 followers in 6 weeks after the rebrand. The visual identity made people want to visit just from seeing our content online.'
+  }
+];
+
+/* ── PORTFOLIO ────────────────────────────────────────────────── */
+function buildPortfolio(){
+  var projects = load('projects', []);
+  if(!projects.length) projects = DEFAULT_PROJECTS;
+  var track = document.getElementById('carTrack');
+  if(!track) return;
+
+  track.innerHTML = projects.map(function(p){
+    var palette = p.palette || 'pm-auric';
+    var imgHtml = p.img
+      ? '<img src="'+p.img+'" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" alt="'+p.name+'">'
+      : '<div class="proj-art"><div class="proj-art-line"></div><div class="proj-art-name">'+p.name+'</div><div class="proj-art-mark">Nocturne Studio</div><div class="proj-art-line"></div></div>';
+
+    return '<div class="proj-card">'+
+      '<div class="proj-visual">'+
+        '<div class="proj-bg '+palette+'">'+imgHtml+'</div>'+
+        '<div class="proj-overlay"><div class="proj-tag">View Project →</div></div>'+
+      '</div>'+
+      '<div class="proj-info">'+
+        '<div>'+
+          '<div class="proj-name">'+p.name+'</div>'+
+          '<div class="proj-cat">'+p.service+' · '+p.industry+'</div>'+
+        '</div>'+
+        '<div class="proj-year">'+p.year+'</div>'+
+      '</div>'+
+    '</div>';
+  }).join('');
+
+  initCarousel();
+}
+
+function initCarousel(){
+  var track = document.getElementById('carTrack');
+  var cards = track ? track.querySelectorAll('.proj-card') : [];
+  var cur   = 0;
+  var gap   = 22;
+  var getW  = function(){ return cards[0] ? cards[0].offsetWidth + gap : 0; };
+  var move  = function(){ track.style.transform = 'translateX(-'+(cur * getW())+'px)'; };
+  var maxC  = Math.max(0, cards.length - 2);
+
+  var nb = document.getElementById('carNext');
+  var pb = document.getElementById('carPrev');
+  if(nb) nb.addEventListener('click', function(){ cur = Math.min(cur+1, maxC); move(); });
+  if(pb) pb.addEventListener('click', function(){ cur = Math.max(cur-1, 0); move(); });
+
+  // Touch
+  var tx = 0;
+  track.addEventListener('touchstart', function(e){ tx = e.touches[0].clientX; },{passive:true});
+  track.addEventListener('touchend', function(e){
+    var dx = tx - e.changedTouches[0].clientX;
+    if(Math.abs(dx) > 40){ if(dx > 0) cur=Math.min(cur+1,maxC); else cur=Math.max(cur-1,0); move(); }
+  });
+
+  // Auto
+  setInterval(function(){ cur = cur >= maxC ? 0 : cur+1; move(); }, 5500);
+}
+
+/* ── TESTIMONIALS ─────────────────────────────────────────────── */
+function buildTestimonials(){
+  var list  = load('testimonials', []);
+  if(!list.length) list = DEFAULT_TESTIMONIALS;
+  var grid  = document.getElementById('testiGrid');
+  if(!grid) return;
+
+  var grads = [
+    'linear-gradient(135deg,#b8975a,#8b6914)',
+    'linear-gradient(135deg,#5a7ab8,#2a4a8b)',
+    'linear-gradient(135deg,#5ab87a,#2a8b4a)',
+    'linear-gradient(135deg,#b85a5a,#8b2a2a)',
+    'linear-gradient(135deg,#7a5ab8,#4a2a8b)',
+    'linear-gradient(135deg,#b8875a,#8b5a14)',
+  ];
+
+  grid.innerHTML = list.map(function(t, i){
+    var init = t.name.split(' ').map(function(w){return w[0]}).join('').slice(0,2).toUpperCase();
+    var stars = '★'.repeat(t.stars||5) + '☆'.repeat(5-(t.stars||5));
+    var avHtml = t.img
+      ? '<img src="'+t.img+'" alt="'+t.name+'">'
+      : init;
+    var avStyle = t.img ? '' : 'background:'+grads[i%grads.length];
+    return '<div class="testi-card holo-card">'+
+      '<div class="testi-quote-mark">"</div>'+
+      '<div class="testi-stars">'+stars+'</div>'+
+      '<p class="testi-text">'+t.text+'</p>'+
+      '<div class="testi-author">'+
+        '<div class="testi-avatar" style="'+avStyle+'">'+avHtml+'</div>'+
+        '<div>'+
+          '<div class="testi-name">'+t.name+'</div>'+
+          '<div class="testi-role">'+t.biz+(t.role?' · '+t.role:'')+'</div>'+
+        '</div>'+
+      '</div>'+
+    '</div>';
+  }).join('');
+}
+
+/* ── AVAILABILITY ─────────────────────────────────────────────── */
+function applyAvail(){
+  var avail = load('available', true);
+  var msg   = load('avail_msg', 'Available now — accepting free projects this month');
+  var el    = document.getElementById('availLabel');
+  if(!el) return;
+  if(avail){
+    el.innerHTML = '<b>'+msg+'</b>';
+  } else {
+    el.innerHTML = '<b style="color:var(--red)">Currently fully booked</b> — join the waitlist below';
+  }
+}
+
+/* ── CONTACT FORM ─────────────────────────────────────────────── */
+window.setBudget = function(el, val){
+  document.querySelectorAll('.budget-opt').forEach(function(b){ b.classList.remove('active'); });
+  el.classList.add('active');
+  document.getElementById('budgetVal').value = val;
+};
+
+var cForm = document.getElementById('contactForm');
+if(cForm){
+  cForm.addEventListener('submit', function(e){
+    e.preventDefault();
+    var btn = document.getElementById('formSubmit');
+    var s = document.getElementById('fSending');
+    var ok = document.getElementById('fOk');
+    var er = document.getElementById('fErr');
+    btn.disabled=true; btn.textContent='Sending...';
+    s.style.display='block'; ok.style.display='none'; er.style.display='none';
+    fetch(cForm.action,{method:'POST',body:new FormData(cForm),headers:{Accept:'application/json'}})
+    .then(function(r){
+      s.style.display='none';
+      if(r.ok){ ok.style.display='block'; cForm.reset(); }
+      else { er.style.display='block'; }
+      btn.disabled=false; btn.textContent='Send Enquiry →';
+    })
+    .catch(function(){
+      s.style.display='none'; er.style.display='block';
+      btn.disabled=false; btn.textContent='Send Enquiry →';
+    });
+  });
+}
+
+/* ── SCROLL REVEAL ────────────────────────────────────────────── */
+var revels = document.querySelectorAll('.reveal,.reveal-d');
+var robs = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(e.isIntersecting){ e.target.classList.add('in'); robs.unobserve(e.target); }
+  });
+},{threshold:.08});
+revels.forEach(function(r){ robs.observe(r); });
+
+
+/* ── HOLOGRAPHIC MOUSE TRACKING ─────────────────────────────── */
+document.querySelectorAll('.srv-card').forEach(function(card){
+  card.addEventListener('mousemove', function(e){
+    var rect = card.getBoundingClientRect();
+    var x = ((e.clientX - rect.left) / rect.width * 100).toFixed(1) + '%';
+    var y = ((e.clientY - rect.top)  / rect.height * 100).toFixed(1) + '%';
+    card.style.setProperty('--mx', x);
+    card.style.setProperty('--my', y);
+  });
+  card.addEventListener('mouseleave', function(){
+    card.style.removeProperty('--mx');
+    card.style.removeProperty('--my');
+  });
+});
+
+/* ── SMOOTH SCROLL ────────────────────────────────────────────── */
+document.querySelectorAll('a[href^="#"]').forEach(function(a){
+  a.addEventListener('click', function(e){
+    var href = a.getAttribute('href');
+    if(!href || href === '#') return;
+    try {
+      var t = document.querySelector(href);
+      if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth',block:'start'}); }
+    } catch(err){}
+  });
+});
+
+/* ── INIT ─────────────────────────────────────────────────────── */
+buildPortfolio();
+buildTestimonials();
+applyAvail();
+applyTrialSetting();
+
+function applyTrialSetting(){
+  var trialOn = (function(){
+    try{ var v=localStorage.getItem('ns_free_trial_on'); return v!=null?JSON.parse(v):true; }catch(e){return true;}
+  })();
+  var freeSection = document.getElementById('free-offer');
+  var offerBanner = document.querySelector('.offer-banner');
+  var freeNavLink = document.querySelector('a[href="#free-offer"]');
+  if(!trialOn){
+    if(freeSection) freeSection.style.display='none';
+    if(offerBanner) offerBanner.style.display='none';
+    if(freeNavLink) freeNavLink.style.display='none';
+  } else {
+    if(freeSection) freeSection.style.display='';
+    if(offerBanner) offerBanner.style.display='';
+  }
+}
+
+})();
+</script>
+
+</body>
+</html>
